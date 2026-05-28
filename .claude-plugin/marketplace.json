@@ -1,0 +1,15 @@
+{
+  "name": "maia",
+  "metadata": {
+    "description": "Turn any body of knowledge into an interactive bilingual concept graph that teaches itself"
+  },
+  "owner": {
+    "name": "bitqs"
+  },
+  "plugins": [
+    {
+      "name": "maia",
+      "source": "."
+    }
+  ]
+}
