@@ -1,0 +1,13 @@
+{
+  "_comment": "Hand-labeled gold set for Laozi Dao De Jing core concepts. Expand as you refine. concepts use canonical EN forms; alias_map normalizes ZH + variants to these.",
+  "concepts": [
+    "dao", "de", "wu-wei", "ziran", "wu", "you", "yin-yang", "fan",
+    "rou", "shui", "bu-zheng", "pu", "xu-jing", "shengren", "zhiguo", "zhizu"
+  ],
+  "relations": [
+    ["de", "dao"], ["dao", "ziran"], ["wu-wei", "dao"], ["wu-wei", "ziran"],
+    ["you", "wu"], ["wu", "dao"], ["fan", "dao"], ["rou", "fan"],
+    ["shui", "rou"], ["bu-zheng", "wu-wei"], ["pu", "dao"], ["xu-jing", "dao"],
+    ["shengren", "wu-wei"], ["zhiguo", "wu-wei"], ["zhizu", "bu-zheng"]
+  ]
+}

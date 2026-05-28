@@ -1,0 +1,252 @@
+{
+  "schema": "bilingual-v2",
+  "lang_default": "en",
+  "source_mode": "corpus",
+  "expert": {
+    "en": "My Reading on Stoicism",
+    "zh": "我的斯多葛阅读笔记"
+  },
+  "domain": {
+    "en": "from documents",
+    "zh": "源自文档"
+  },
+  "nodes": [
+    {
+      "id": "dichotomy",
+      "name": {
+        "en": "Dichotomy of Control",
+        "zh": "控制二分法"
+      },
+      "type": "theory",
+      "relevance": 1.0,
+      "summary": {
+        "en": "Some things are within our power, some are not.",
+        "zh": "有些事在我们能力之内，有些不在。"
+      },
+      "sources": [
+        "stoicism.md#0"
+      ],
+      "profile": {
+        "what": {
+          "en": "The dichotomy of control divides everything into what is up to us — our judgments, desires, aversions — and what is not — our bodies, possessions, reputation. Epictetus opens the Enchiridion with it.",
+          "zh": "控制二分法把一切分为在我们能力之内者——判断、欲望、厌恶——与不在者——身体、财产、名声。爱比克泰德以此开篇《手册》。"
+        },
+        "why": {
+          "en": "It is the foundation of all Stoic practice: peace comes from investing concern only where you have power, and releasing the rest.",
+          "zh": "它是一切斯多葛实践的根基：唯将关切投于能力所及处、放下其余，方得安宁。"
+        },
+        "position": {
+          "en": "It grounds tranquility — once internalized, the path to ataraxia opens. Nearly every other practice depends on it.",
+          "zh": "它支撑着安宁——一旦内化，通往不动心之路即开。几乎所有其他实践都依赖于它。"
+        },
+        "quote": {
+          "en": "Some things are within our power, while others are not.",
+          "zh": "有些事物在我们的能力范围之内，有些则不在。"
+        },
+        "quote_source": "Epictetus, Enchiridion · stoicism.md#0"
+      }
+    },
+    {
+      "id": "tranquility",
+      "name": {
+        "en": "Tranquility",
+        "zh": "安宁"
+      },
+      "type": "concept",
+      "relevance": 0.85,
+      "summary": {
+        "en": "Freedom from being disturbed by what you cannot change.",
+        "zh": "不为不可改变之事所扰的自由。"
+      },
+      "sources": [
+        "stoicism.md#0",
+        "virtue.txt#0"
+      ],
+      "profile": {
+        "what": {
+          "en": "Tranquility (ataraxia) is freedom from disturbance — not passivity, but the calm that follows from no longer being shaken by what lies outside your control.",
+          "zh": "安宁（不动心）是免于扰动——非消极，而是不再为控制之外之事所动摇后的平静。"
+        },
+        "why": {
+          "en": "It is the practical payoff of Stoic philosophy: the state a practitioner aims toward.",
+          "zh": "它是斯多葛哲学的实践回报：修习者所趋向的状态。"
+        },
+        "position": {
+          "en": "Tranquility follows from the dichotomy of control and is sustained by the cardinal virtues. It is mentioned across both source notes.",
+          "zh": "安宁源于控制二分法，由四枢德所维系。两份笔记中皆有提及。"
+        },
+        "quote": {
+          "en": "Tranquility is not passivity; it is freedom from being disturbed.",
+          "zh": "安宁非消极，而是免于被扰动的自由。"
+        },
+        "quote_source": "stoicism.md#0"
+      }
+    },
+    {
+      "id": "premeditation",
+      "name": {
+        "en": "Premeditation of Adversity",
+        "zh": "预想逆境"
+      },
+      "type": "method",
+      "relevance": 0.7,
+      "summary": {
+        "en": "Rehearsing misfortune in advance to rob it of its power to shock.",
+        "zh": "预先演练不幸，以剥夺其令人震惊的力量。"
+      },
+      "sources": [
+        "stoicism.md#0"
+      ],
+      "profile": {
+        "what": {
+          "en": "Premeditatio malorum is the exercise of vividly imagining loss, hardship, or death before it arrives, so that when adversity comes it finds you already prepared.",
+          "zh": "预想逆境（premeditatio malorum）是在不幸来临前生动想象失去、艰难或死亡的练习，使逆境到来时你已有准备。"
+        },
+        "why": {
+          "en": "It turns the dichotomy of control from a belief into a daily habit — Seneca recommended it constantly.",
+          "zh": "它把控制二分法从信念变为日常习惯——塞内卡反复推荐。"
+        },
+        "position": {
+          "en": "A concrete practice that applies the dichotomy of control and cultivates tranquility.",
+          "zh": "一种应用控制二分法、培养安宁的具体实践。"
+        },
+        "quote": {
+          "en": "He robs present ills of their power who has perceived their coming beforehand.",
+          "zh": "预见祸患将至者，已先夺其威。"
+        },
+        "quote_source": "Seneca, Letters · stoicism.md#0"
+      }
+    },
+    {
+      "id": "virtues",
+      "name": {
+        "en": "Cardinal Virtues",
+        "zh": "四枢德"
+      },
+      "type": "theory",
+      "relevance": 0.95,
+      "summary": {
+        "en": "Wisdom, justice, courage, temperance.",
+        "zh": "智慧、正义、勇气、节制。"
+      },
+      "sources": [
+        "virtue.txt#0"
+      ],
+      "profile": {
+        "what": {
+          "en": "The four cardinal virtues are wisdom (knowing good from bad), justice (our dealings with others), courage (endurance in difficulty), and temperance (moderation of desire).",
+          "zh": "四枢德为智慧（辨善恶）、正义（待人之道）、勇气（困中之坚忍）、节制（欲望之节度）。"
+        },
+        "why": {
+          "en": "For the Stoics virtue is the ONLY true good and is sufficient for happiness — this is the ethical core.",
+          "zh": "于斯多葛而言，德是唯一真正的善，且足以致幸福——此为其伦理核心。"
+        },
+        "position": {
+          "en": "The virtues sustain tranquility and stand in contrast to preferred indifferents (external goods).",
+          "zh": "诸德维系安宁，与‘可取的无关者’（外在之物）形成对照。"
+        },
+        "quote": {
+          "en": "Virtue is sufficient for happiness.",
+          "zh": "德足以致幸福。"
+        },
+        "quote_source": "virtue.txt#0"
+      }
+    },
+    {
+      "id": "indifferents",
+      "name": {
+        "en": "Preferred Indifferents",
+        "zh": "可取的无关者"
+      },
+      "type": "concept",
+      "relevance": 0.72,
+      "summary": {
+        "en": "External goods worth having but not necessary for a good life.",
+        "zh": "值得拥有、但非美好生活所必需的外在之物。"
+      },
+      "sources": [
+        "virtue.txt#0"
+      ],
+      "profile": {
+        "what": {
+          "en": "Preferred indifferents are things like wealth and health: worth pursuing, but not constitutive of happiness. Their absence cannot make a virtuous life bad.",
+          "zh": "可取的无关者如财富与健康：值得追求，却不构成幸福。其缺失不能使有德之生变坏。"
+        },
+        "why": {
+          "en": "This concept is what separates Stoicism from Aristotle, who held external goods to be partly constitutive of flourishing.",
+          "zh": "此概念正是斯多葛与亚里士多德的分野——后者认为外在之物部分地构成繁盛。"
+        },
+        "position": {
+          "en": "Contrasts with the cardinal virtues: virtue is necessary and sufficient, indifferents are neither.",
+          "zh": "与四枢德相对照：德为必要且充分，无关者二者皆非。"
+        },
+        "quote": {
+          "en": "External goods are preferred, but not necessary for a good life.",
+          "zh": "外在之善为可取，却非美好生活所必需。"
+        },
+        "quote_source": "virtue.txt#0"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "dichotomy",
+      "target": "tranquility",
+      "relation": {
+        "en": "leads to",
+        "zh": "导向"
+      },
+      "evidence": "path to tranquility opens"
+    },
+    {
+      "source": "premeditation",
+      "target": "dichotomy",
+      "relation": {
+        "en": "applies",
+        "zh": "应用"
+      },
+      "evidence": "daily habit of the dichotomy"
+    },
+    {
+      "source": "premeditation",
+      "target": "tranquility",
+      "relation": {
+        "en": "leads to",
+        "zh": "导向"
+      },
+      "evidence": "robs misfortune of shock"
+    },
+    {
+      "source": "virtues",
+      "target": "tranquility",
+      "relation": {
+        "en": "sustains",
+        "zh": "维系"
+      },
+      "evidence": "virtue sustains the calm"
+    },
+    {
+      "source": "virtues",
+      "target": "indifferents",
+      "relation": {
+        "en": "contrasts with",
+        "zh": "对照"
+      },
+      "evidence": "virtue sufficient vs external goods"
+    }
+  ],
+  "meta": {
+    "foundational": [
+      "dichotomy",
+      "virtues",
+      "tranquility"
+    ],
+    "tour": [
+      "dichotomy",
+      "tranquility",
+      "premeditation",
+      "virtues",
+      "indifferents"
+    ]
+  }
+}

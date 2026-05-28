@@ -1,0 +1,833 @@
+{
+  "schema": "bilingual-v2",
+  "lang_default": "en",
+  "expert": {
+    "en": "Laozi — Dao De Jing",
+    "zh": "老子《道德经》"
+  },
+  "domain": {
+    "en": "Core Concept System",
+    "zh": "核心概念体系"
+  },
+  "nodes": [
+    {
+      "id": "dao",
+      "name": {
+        "en": "Dao (the Way)",
+        "zh": "道"
+      },
+      "type": "theory",
+      "difficulty": "foundational",
+      "relevance": 1.0,
+      "summary": {
+        "en": "The source and pattern of all things; nameless, prior to heaven and earth. The bedrock of the whole system.",
+        "zh": "万物的本源与运行规律，不可名状、先于天地。是整个体系的根基。"
+      },
+      "sources": [
+        "Ch.1",
+        "Ch.25",
+        "Ch.42"
+      ],
+      "profile": {
+        "what": {
+          "en": "The Dao is the nameless source from which all things arise and the pattern by which they move. It precedes heaven and earth, cannot be fully spoken, and yet is present in everything that exists.",
+          "zh": "道是万物由之而生的无名本源，也是万物运行所循的规律。它先于天地、不可尽言，却又遍在于一切存在之中。"
+        },
+        "why": {
+          "en": "Everything else in Laozi's thought is a consequence of the Dao. Without grasping it, the other concepts read as scattered advice; with it, they become one coherent vision of how to live in accord with reality.",
+          "zh": "老子思想中其余一切皆由道推衍而来。不解道，其余概念便如散落的劝诫；解道，它们才合为一套如何顺应实在而生的完整观照。"
+        },
+        "position": {
+          "en": "The Dao is the root of the entire graph: De manifests it, wu-wei accords with it, ziran is the manner in which it operates. Nearly every other concept ultimately points back here.",
+          "zh": "道是整张图的根：德显现它，无为顺应它，自然是它运作的方式。几乎所有其他概念最终都指回于此。"
+        },
+        "quote": {
+          "en": "The Dao that can be spoken is not the eternal Dao.",
+          "zh": "道可道，非常道。"
+        },
+        "quote_source": "Ch.1 第一章"
+      }
+    },
+    {
+      "id": "de",
+      "name": {
+        "en": "De (virtue/power)",
+        "zh": "德"
+      },
+      "type": "theory",
+      "difficulty": "foundational",
+      "relevance": 0.95,
+      "summary": {
+        "en": "The manifestation of Dao within concrete things. Dao is substance, De is its function.",
+        "zh": "道在具体万物中的显现与作用。道为体，德为用。"
+      },
+      "sources": [
+        "Ch.38",
+        "Ch.51"
+      ],
+      "profile": {
+        "what": {
+          "en": "De is the Dao made concrete within particular things — the power or virtue a thing receives from the Dao that makes it what it is. If the Dao is the underlying substance, De is its visible function.",
+          "zh": "德是道在具体万物中的落实——万物得之于道、成其所是的那种力量或品性。若道为体，德即为用。"
+        },
+        "why": {
+          "en": "De answers how the abstract Dao touches the concrete world. It is the bridge between the ineffable source and lived conduct, which is why the text is named for both.",
+          "zh": "德回答了抽象之道如何触及具体世界。它是不可言之本源与现实行止之间的桥梁，故全书以道、德并名。"
+        },
+        "position": {
+          "en": "De is part of the Dao — its expression in things. It stands just beside the Dao at the foundation, and the ethical concepts (wu-wei, the sage) draw on it.",
+          "zh": "德是道的构成——道在万物中的表达。它紧邻道而居于根基，伦理诸概念（无为、圣人）皆取资于它。"
+        },
+        "quote": {
+          "en": "The highest virtue is not virtuous, and so it has virtue.",
+          "zh": "上德不德，是以有德。"
+        },
+        "quote_source": "Ch.38 第三十八章"
+      }
+    },
+    {
+      "id": "wuwei",
+      "name": {
+        "en": "Wu-wei (non-action)",
+        "zh": "无为"
+      },
+      "type": "method",
+      "difficulty": "intermediate",
+      "relevance": 0.9,
+      "summary": {
+        "en": "Acting without forcing; following the nature of things. Not passivity but non-interference.",
+        "zh": "不妄为、不强加干预，顺应事物本性而行。并非消极不动。"
+      },
+      "sources": [
+        "Ch.37",
+        "Ch.48",
+        "Ch.63"
+      ],
+      "profile": {
+        "what": {
+          "en": "Wu-wei is action without forcing — doing by not contending, accomplishing by not interfering. It is not idleness but the art of acting in such accord with a situation's own grain that effort disappears.",
+          "zh": "无为是不强为之行——以不争而为，以不扰而成。它非懒怠，而是顺势而动、与事物本然之纹理相契，以至于用力之迹消隐的功夫。"
+        },
+        "why": {
+          "en": "It is Laozi's central practical teaching: the translation of the Dao into how one should act, govern, and live. Most of the text's advice on rulership and conduct is wu-wei applied.",
+          "zh": "它是老子核心的实践教诲：将道译为人当如何行、如何治、如何生。书中关于治国与处世的大半劝诫，皆是无为之应用。"
+        },
+        "position": {
+          "en": "Wu-wei embodies the Dao and accords with ziran; non-contention and softness are its facets; the sage and the art of governing are its practitioners. It is the hinge between metaphysics and conduct.",
+          "zh": "无为体现道、顺应自然；不争与柔弱是其侧面；圣人与治国是其践行者。它是形上与行止之间的枢纽。"
+        },
+        "quote": {
+          "en": "Act without action, and there is nothing that is not in order.",
+          "zh": "为无为，则无不治。"
+        },
+        "quote_source": "Ch.3 第三章"
+      }
+    },
+    {
+      "id": "ziran",
+      "name": {
+        "en": "Ziran (naturalness)",
+        "zh": "自然"
+      },
+      "type": "theory",
+      "difficulty": "foundational",
+      "relevance": 0.92,
+      "summary": {
+        "en": "Self-so, being as one inherently is. Dao follows ziran — its own spontaneous nature.",
+        "zh": "自己如此、本来如是。道法自然——道效法事物自身的本然。"
+      },
+      "sources": [
+        "Ch.25",
+        "Ch.17"
+      ],
+      "profile": {
+        "what": {
+          "en": "Ziran means 'self-so' — being just as one inherently is, without external imposition. It is spontaneity not in the sense of randomness but of unforced naturalness.",
+          "zh": "自然即“自己如此”——本来如是、不假外加。它的“自发”非指随意，而是不勉强的本然。"
+        },
+        "why": {
+          "en": "Ziran is the standard the Dao itself follows; it tells us that the goal is not to impose order but to let things unfold according to their own nature.",
+          "zh": "自然是道自身所效法的准则；它告诉我们，目的不在强加秩序，而在让万物依其本性舒展。"
+        },
+        "position": {
+          "en": "It sits at the foundation beside the Dao — 'the Dao follows ziran' — and wu-wei and pu (simplicity) both derive their meaning from it.",
+          "zh": "它与道同居根基——“道法自然”——无为与朴皆由它得义。"
+        },
+        "quote": {
+          "en": "Humans follow earth, earth follows heaven, heaven follows the Dao, and the Dao follows what is natural.",
+          "zh": "人法地，地法天，天法道，道法自然。"
+        },
+        "quote_source": "Ch.25 第二十五章"
+      }
+    },
+    {
+      "id": "wu",
+      "name": {
+        "en": "Wu (nothing/void)",
+        "zh": "无"
+      },
+      "type": "concept",
+      "difficulty": "advanced",
+      "relevance": 0.85,
+      "summary": {
+        "en": "The empty, undifferentiated state. All things arise from being, being arises from non-being.",
+        "zh": "空、虚、未分化之状态。天下万物生于有，有生于无。"
+      },
+      "sources": [
+        "Ch.1",
+        "Ch.11",
+        "Ch.40"
+      ],
+      "profile": {
+        "what": {
+          "en": "Wu is emptiness or non-being — the undifferentiated, formless state out of which form arises. It is not mere absence but a generative void, like the hollow that makes a vessel useful.",
+          "zh": "无是空、是无形——形由之而生的未分化之态。它非单纯的缺失，而是能生的虚空，如器之中空方能为用。"
+        },
+        "why": {
+          "en": "Wu reframes value: usefulness comes from what is not there. This inverts ordinary intuition and underlies the whole aesthetic of restraint and the power of the empty.",
+          "zh": "无重估了价值：用处恰来自于其所无。这颠覆了寻常直觉，是整套以约制、以虚为强之审美的根柢。"
+        },
+        "position": {
+          "en": "Wu is part of the Dao — its formless aspect. Being (you) arises from it; emptiness-and-stillness (xu-jing) is the practice of approaching it.",
+          "zh": "无是道的构成——其无形的一面。有由之而生；虚静是趋近于它的功夫。"
+        },
+        "quote": {
+          "en": "All things are born of being; being is born of non-being.",
+          "zh": "天下万物生于有，有生于无。"
+        },
+        "quote_source": "Ch.40 第四十章"
+      }
+    },
+    {
+      "id": "you",
+      "name": {
+        "en": "You (being)",
+        "zh": "有"
+      },
+      "type": "concept",
+      "difficulty": "advanced",
+      "relevance": 0.8,
+      "summary": {
+        "en": "Formed, nameable existence. Mutually arising with non-being.",
+        "zh": "已成形、可见可名的存在。与无相生相成。"
+      },
+      "sources": [
+        "Ch.1",
+        "Ch.2",
+        "Ch.11"
+      ],
+      "profile": {
+        "what": {
+          "en": "You is being — formed, nameable, manifest existence. It is the world of distinct things that have come into shape out of the formless.",
+          "zh": "有即存在——已成形、可名、显现的实在。它是从无形中成形而出的万有之界。"
+        },
+        "why": {
+          "en": "Being and non-being are Laozi's basic ontological pair; understanding their mutual arising is the key to the famous 'usefulness of emptiness'.",
+          "zh": "有与无是老子最基本的存在论对偶；解其相生，方解著名的‘虚之为用’。"
+        },
+        "position": {
+          "en": "You arises from wu (being is born of non-being) and is itself part of the Dao's manifestation.",
+          "zh": "有生于无，且本身是道之显现的一部分。"
+        },
+        "quote": {
+          "en": "Being and non-being produce each other.",
+          "zh": "有无相生。"
+        },
+        "quote_source": "Ch.2"
+      }
+    },
+    {
+      "id": "yinyang",
+      "name": {
+        "en": "Yin-Yang",
+        "zh": "阴阳"
+      },
+      "type": "concept",
+      "difficulty": "intermediate",
+      "relevance": 0.75,
+      "summary": {
+        "en": "All things carry yin and embrace yang, blending qi into harmony. Interdependent, transforming poles.",
+        "zh": "万物负阴而抱阳，冲气以为和。对立两极相互依存、转化。"
+      },
+      "sources": [
+        "Ch.42"
+      ],
+      "profile": {
+        "what": {
+          "en": "Yin and yang are the two complementary, opposing forces whose interplay constitutes all change. All things carry yin and embrace yang, blending vital breath into harmony.",
+          "zh": "阴阳是构成一切变化的两种互补对立之力。万物负阴而抱阳，冲气以为和。"
+        },
+        "why": {
+          "en": "It supplies the engine of transformation in Laozi's cosmos — nothing is static; every state contains the seed of its opposite.",
+          "zh": "它为老子宇宙中的转化提供动力——无物恒静；每一状态皆含其反面之种子。"
+        },
+        "position": {
+          "en": "Yin-yang is part of the Dao's generative structure, and the principle of reversal derives from it.",
+          "zh": "阴阳是道之生成结构的一部分，‘反’的规律由之而出。"
+        },
+        "quote": {
+          "en": "All things carry yin and embrace yang.",
+          "zh": "万物负阴而抱阳。"
+        },
+        "quote_source": "Ch.42"
+      }
+    },
+    {
+      "id": "fan",
+      "name": {
+        "en": "Fan (reversal)",
+        "zh": "反"
+      },
+      "type": "theory",
+      "difficulty": "intermediate",
+      "relevance": 0.78,
+      "summary": {
+        "en": "Reversal is the movement of Dao. At its extreme a thing turns into its opposite; cyclical return.",
+        "zh": "反者道之动。事物发展到极致必向反面转化，循环往复。"
+      },
+      "sources": [
+        "Ch.40",
+        "Ch.58"
+      ],
+      "profile": {
+        "what": {
+          "en": "Fan is reversal — the tendency of anything pushed to its extreme to turn into its opposite, and the cyclical return of all things to their root. It names the very movement of the Dao.",
+          "zh": "反即反转——任何事物推至极致便转向其反面的倾向，以及万物循环复归其根。它正是道的运动本身。"
+        },
+        "why": {
+          "en": "It is Laozi's law of dynamics: it explains why softness outlasts hardness and why grasping defeats itself, grounding the entire ethics of yielding.",
+          "zh": "它是老子的动力学法则：解释了何以柔能胜刚、执反自败，是整套‘守柔退让’伦理的根基。"
+        },
+        "position": {
+          "en": "Fan embodies the Dao's movement and derives from yin-yang; softness follows from it.",
+          "zh": "反体现道之动、源于阴阳；柔弱由之而来。"
+        },
+        "quote": {
+          "en": "Reversal is the movement of the Dao.",
+          "zh": "反者道之动。"
+        },
+        "quote_source": "Ch.40"
+      }
+    },
+    {
+      "id": "rou",
+      "name": {
+        "en": "Rou (softness)",
+        "zh": "柔弱"
+      },
+      "type": "concept",
+      "difficulty": "intermediate",
+      "relevance": 0.72,
+      "summary": {
+        "en": "The soft overcomes the hard. Holding to softness endures and prevails, like water.",
+        "zh": "柔弱胜刚强。守柔处下反而能持久、能胜，如水。"
+      },
+      "sources": [
+        "Ch.36",
+        "Ch.76",
+        "Ch.78"
+      ],
+      "profile": {
+        "what": {
+          "en": "Rou is softness and weakness held as strength. What is supple and yielding outlasts what is rigid; the soft overcomes the hard, as water wears away stone.",
+          "zh": "柔弱是以柔为强。柔软退让者长存于刚硬者之上；柔弱胜刚强，如水之磨石。"
+        },
+        "why": {
+          "en": "It turns conventional notions of power upside down — the central practical insight of how to endure and prevail without force.",
+          "zh": "它颠倒了寻常的力量观念——是‘不以力而能持久、能胜’这一核心实践洞见。"
+        },
+        "position": {
+          "en": "Softness derives from the law of reversal and is a facet of wu-wei; water is its great image.",
+          "zh": "柔弱源于‘反’的规律，是无为的一个侧面；水是其大象。"
+        },
+        "quote": {
+          "en": "The soft and weak overcome the hard and strong.",
+          "zh": "柔弱胜刚强。"
+        },
+        "quote_source": "Ch.36"
+      }
+    },
+    {
+      "id": "shui",
+      "name": {
+        "en": "Shui (water)",
+        "zh": "水"
+      },
+      "type": "concept",
+      "difficulty": "intermediate",
+      "relevance": 0.7,
+      "summary": {
+        "en": "The supreme good is like water: it benefits all without contending, dwelling where others disdain.",
+        "zh": "上善若水。利万物而不争，处众人之所恶，最接近道。"
+      },
+      "sources": [
+        "Ch.8",
+        "Ch.78"
+      ],
+      "profile": {
+        "what": {
+          "en": "Water is Laozi's supreme image of the Dao: it benefits all things without contending, and dwells in the low places everyone disdains. Soft and formless, it yet wears down the hardest stone.",
+          "zh": "水是老子喻道之至象：利万物而不争，处众人之所恶的卑下之地。柔而无形，却能磨穿最坚之石。"
+        },
+        "why": {
+          "en": "It makes the abstract virtues of yielding and non-contention vivid and concrete — the most teachable single image in the text.",
+          "zh": "它把柔弱与不争的抽象之德化为鲜活具体——是全书最易于教学的单一意象。"
+        },
+        "position": {
+          "en": "Water is the image of softness and non-contention, embodying both at once.",
+          "zh": "水是柔弱与不争之象，二者兼体于一身。"
+        },
+        "quote": {
+          "en": "The highest good is like water.",
+          "zh": "上善若水。"
+        },
+        "quote_source": "Ch.8"
+      }
+    },
+    {
+      "id": "buzheng",
+      "name": {
+        "en": "Bu-zheng (not contending)",
+        "zh": "不争"
+      },
+      "type": "concept",
+      "difficulty": "intermediate",
+      "relevance": 0.68,
+      "summary": {
+        "en": "Because one does not contend, none can contend with them. Yielding becomes greatness.",
+        "zh": "不与人争而天下莫能与之争。退让谦下反成其大。"
+      },
+      "sources": [
+        "Ch.8",
+        "Ch.22",
+        "Ch.66"
+      ],
+      "profile": {
+        "what": {
+          "en": "Bu-zheng is non-contention — declining to strive, compete, or assert. By not contending, one provokes no opposition, and so cannot be opposed.",
+          "zh": "不争即不与人争、不竞、不矜。因不争，故不招对立，遂莫能与之争。"
+        },
+        "why": {
+          "en": "It is the social and political face of wu-wei: yielding becomes a form of strength that gathers rather than repels.",
+          "zh": "它是无为的社会与政治之面：退让成为一种能聚而不拒的力量。"
+        },
+        "position": {
+          "en": "Non-contention is part of wu-wei and is embodied by water; contentment leads toward it.",
+          "zh": "不争是无为的构成，由水所体现；知足导向于它。"
+        },
+        "quote": {
+          "en": "Because he does not contend, no one can contend with him.",
+          "zh": "夫唯不争，故天下莫能与之争。"
+        },
+        "quote_source": "Ch.22"
+      }
+    },
+    {
+      "id": "pu",
+      "name": {
+        "en": "Pu (the uncarved block)",
+        "zh": "朴"
+      },
+      "type": "concept",
+      "difficulty": "intermediate",
+      "relevance": 0.7,
+      "summary": {
+        "en": "The state of unworked simplicity. Embrace plainness, reduce desire; return to the uncarved is to return to Dao.",
+        "zh": "未经雕琢的本真状态。见素抱朴，少私寡欲；返朴归道。"
+      },
+      "sources": [
+        "Ch.19",
+        "Ch.28",
+        "Ch.32"
+      ],
+      "profile": {
+        "what": {
+          "en": "Pu is the uncarved block — the state of original, unworked simplicity before names and distinctions are imposed. To embrace plainness and reduce desire is to return to it.",
+          "zh": "朴即未雕之木——名相分别加诸之前，本初未经斫琢的素朴之态。见素抱朴、少私寡欲，即归于此。"
+        },
+        "why": {
+          "en": "It is the goal of self-cultivation: stripping away artifice to recover one's natural condition, which is closest to the Dao.",
+          "zh": "它是修养的归宿：剥去造作以复其本然之态，最近于道。"
+        },
+        "position": {
+          "en": "Pu is akin to ziran (naturalness) and is a way back to the Dao; contentment derives from it.",
+          "zh": "朴近于自然，是返归于道之途；知足由之而来。"
+        },
+        "quote": {
+          "en": "Manifest plainness, embrace the uncarved block.",
+          "zh": "见素抱朴。"
+        },
+        "quote_source": "Ch.19"
+      }
+    },
+    {
+      "id": "xujing",
+      "name": {
+        "en": "Xu-jing (emptiness & stillness)",
+        "zh": "虚静"
+      },
+      "type": "method",
+      "difficulty": "advanced",
+      "relevance": 0.65,
+      "summary": {
+        "en": "Attain utmost emptiness, hold to stillness. A clear quiet mind perceives the root of all things.",
+        "zh": "致虚极，守静笃。心境空明方能观照万物之根。"
+      },
+      "sources": [
+        "Ch.16"
+      ],
+      "profile": {
+        "what": {
+          "en": "Xu-jing is emptiness-and-stillness — the cultivated state of a mind emptied to the utmost and held in deep stillness, from which one can observe the return of all things to their root.",
+          "zh": "虚静即虚极守静——心致虚之极、守静之笃的修养之态，由此可观万物复归其根。"
+        },
+        "why": {
+          "en": "It is the contemplative practice that lets one actually perceive the Dao at work, rather than merely believe in it.",
+          "zh": "它是使人真能观照道之运作、而非仅信之的观照功夫。"
+        },
+        "position": {
+          "en": "Emptiness-and-stillness is akin to wu (the void) and is a path that leads toward the Dao.",
+          "zh": "虚静近于无，是通向道的一条途径。"
+        },
+        "quote": {
+          "en": "Attain utmost emptiness; hold to deep stillness.",
+          "zh": "致虚极，守静笃。"
+        },
+        "quote_source": "Ch.16"
+      }
+    },
+    {
+      "id": "shengren",
+      "name": {
+        "en": "Shengren (the sage)",
+        "zh": "圣人"
+      },
+      "type": "concept",
+      "difficulty": "intermediate",
+      "relevance": 0.74,
+      "summary": {
+        "en": "The ideal person who embodies Dao: governs by non-action, teaches without words.",
+        "zh": "体道而行的理想人格。处无为之事，行不言之教。"
+      },
+      "sources": [
+        "Ch.2",
+        "Ch.7",
+        "Ch.66"
+      ],
+      "profile": {
+        "what": {
+          "en": "The shengren (sage) is the ideal person who fully embodies the Dao: governing by non-action, teaching without words, putting himself last and so coming first.",
+          "zh": "圣人是全然体道的理想人格：以无为而治，行不言之教，后其身而身先。"
+        },
+        "why": {
+          "en": "The sage is the living model of the whole philosophy — what a life lived in accord with the Dao actually looks like.",
+          "zh": "圣人是整套哲学的活范本——一个依道而生的生命究竟是何模样。"
+        },
+        "position": {
+          "en": "The sage practices wu-wei and is the figure on whom governing-by-Dao depends.",
+          "zh": "圣人践行无为，是以道治国所依托之人。"
+        },
+        "quote": {
+          "en": "The sage manages affairs without action, and teaches without words.",
+          "zh": "圣人处无为之事，行不言之教。"
+        },
+        "quote_source": "Ch.2"
+      }
+    },
+    {
+      "id": "zhiguo",
+      "name": {
+        "en": "Zhiguo (governing)",
+        "zh": "治国"
+      },
+      "type": "method",
+      "difficulty": "intermediate",
+      "relevance": 0.66,
+      "summary": {
+        "en": "Ruling by Dao: do not disturb the people, let them transform themselves. Wu-wei applied to politics.",
+        "zh": "以道治国：不扰民、不尚贤，使民自化。无为的政治落地。"
+      },
+      "sources": [
+        "Ch.3",
+        "Ch.57",
+        "Ch.60"
+      ],
+      "profile": {
+        "what": {
+          "en": "Zhiguo is governing by the Dao: not disturbing the people, not exalting cleverness or coveted goods, but letting them transform themselves. It is wu-wei applied to statecraft.",
+          "zh": "治国即以道治世：不扰民、不尚贤、不贵难得之货，而使民自化。是无为之于治术的应用。"
+        },
+        "why": {
+          "en": "It shows that Laozi's philosophy is not merely personal but political — a complete theory of light-handed rule.",
+          "zh": "它表明老子之学非仅修身，亦关治世——一套完整的‘无为之治’理论。"
+        },
+        "position": {
+          "en": "Governing practices wu-wei and depends on the sage as its ideal ruler.",
+          "zh": "治国践行无为，并以圣人为其理想统治者所依托。"
+        },
+        "quote": {
+          "en": "Govern a great state as you would cook a small fish.",
+          "zh": "治大国若烹小鲜。"
+        },
+        "quote_source": "Ch.60"
+      }
+    },
+    {
+      "id": "zhizu",
+      "name": {
+        "en": "Zhizu (contentment)",
+        "zh": "知足"
+      },
+      "type": "concept",
+      "difficulty": "foundational",
+      "relevance": 0.7,
+      "summary": {
+        "en": "Knowing contentment avoids disgrace; knowing when to stop avoids danger. No calamity greater than discontent.",
+        "zh": "知足不辱，知止不殆。祸莫大于不知足；节制欲望方能长久。"
+      },
+      "sources": [
+        "Ch.44",
+        "Ch.46"
+      ],
+      "profile": {
+        "what": {
+          "en": "Zhizu is knowing contentment — recognizing what is enough. Knowing contentment one avoids disgrace; knowing when to stop one avoids danger. No calamity is greater than not knowing what is enough.",
+          "zh": "知足即知其所足。知足者不辱，知止者不殆。祸莫大于不知足。"
+        },
+        "why": {
+          "en": "It is the practical antidote to desire, the daily discipline that keeps a life close to the Dao and free of self-inflicted ruin.",
+          "zh": "它是欲望的实践解药，是使生命近于道、免于自招之祸的日常之律。"
+        },
+        "position": {
+          "en": "Contentment derives from simplicity (pu) and leads toward non-contention.",
+          "zh": "知足源于朴，并导向不争。"
+        },
+        "quote": {
+          "en": "He who knows contentment is rich.",
+          "zh": "知足者富。"
+        },
+        "quote_source": "Ch.33"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "de",
+      "target": "dao",
+      "relation": {
+        "en": "part of",
+        "zh": "构成"
+      }
+    },
+    {
+      "source": "dao",
+      "target": "ziran",
+      "relation": {
+        "en": "follows",
+        "zh": "依循"
+      }
+    },
+    {
+      "source": "wuwei",
+      "target": "dao",
+      "relation": {
+        "en": "embodies",
+        "zh": "体现"
+      }
+    },
+    {
+      "source": "wuwei",
+      "target": "ziran",
+      "relation": {
+        "en": "accords with",
+        "zh": "顺应"
+      }
+    },
+    {
+      "source": "you",
+      "target": "wu",
+      "relation": {
+        "en": "arises from",
+        "zh": "生于"
+      }
+    },
+    {
+      "source": "wu",
+      "target": "dao",
+      "relation": {
+        "en": "part of",
+        "zh": "属于"
+      }
+    },
+    {
+      "source": "you",
+      "target": "dao",
+      "relation": {
+        "en": "part of",
+        "zh": "属于"
+      }
+    },
+    {
+      "source": "yinyang",
+      "target": "dao",
+      "relation": {
+        "en": "part of",
+        "zh": "属于"
+      }
+    },
+    {
+      "source": "fan",
+      "target": "dao",
+      "relation": {
+        "en": "embodies",
+        "zh": "体现"
+      }
+    },
+    {
+      "source": "fan",
+      "target": "yinyang",
+      "relation": {
+        "en": "derives from",
+        "zh": "源于"
+      }
+    },
+    {
+      "source": "rou",
+      "target": "fan",
+      "relation": {
+        "en": "derives from",
+        "zh": "源于"
+      }
+    },
+    {
+      "source": "shui",
+      "target": "rou",
+      "relation": {
+        "en": "images",
+        "zh": "为象"
+      }
+    },
+    {
+      "source": "shui",
+      "target": "buzheng",
+      "relation": {
+        "en": "images",
+        "zh": "为象"
+      }
+    },
+    {
+      "source": "buzheng",
+      "target": "wuwei",
+      "relation": {
+        "en": "part of",
+        "zh": "属于"
+      }
+    },
+    {
+      "source": "rou",
+      "target": "wuwei",
+      "relation": {
+        "en": "part of",
+        "zh": "属于"
+      }
+    },
+    {
+      "source": "pu",
+      "target": "ziran",
+      "relation": {
+        "en": "akin to",
+        "zh": "近于"
+      }
+    },
+    {
+      "source": "pu",
+      "target": "dao",
+      "relation": {
+        "en": "returns to",
+        "zh": "归于"
+      }
+    },
+    {
+      "source": "xujing",
+      "target": "dao",
+      "relation": {
+        "en": "leads to",
+        "zh": "通向"
+      }
+    },
+    {
+      "source": "xujing",
+      "target": "wu",
+      "relation": {
+        "en": "akin to",
+        "zh": "近于"
+      }
+    },
+    {
+      "source": "shengren",
+      "target": "wuwei",
+      "relation": {
+        "en": "practices",
+        "zh": "践行"
+      }
+    },
+    {
+      "source": "zhiguo",
+      "target": "wuwei",
+      "relation": {
+        "en": "practices",
+        "zh": "践行"
+      }
+    },
+    {
+      "source": "zhiguo",
+      "target": "shengren",
+      "relation": {
+        "en": "relies on",
+        "zh": "依托"
+      }
+    },
+    {
+      "source": "zhizu",
+      "target": "pu",
+      "relation": {
+        "en": "derives from",
+        "zh": "源于"
+      }
+    },
+    {
+      "source": "zhizu",
+      "target": "buzheng",
+      "relation": {
+        "en": "leads to",
+        "zh": "导向"
+      }
+    }
+  ],
+  "meta": {
+    "foundational": [
+      "dao",
+      "de",
+      "wu",
+      "ziran"
+    ],
+    "tour": [
+      "dao",
+      "de",
+      "ziran",
+      "wu",
+      "you",
+      "yinyang",
+      "fan",
+      "rou",
+      "shui",
+      "buzheng",
+      "wuwei",
+      "pu",
+      "xujing",
+      "zhizu",
+      "shengren",
+      "zhiguo"
+    ]
+  }
+}
