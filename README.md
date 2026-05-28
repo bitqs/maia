@@ -53,6 +53,7 @@ convictions that make it *teach*:
 
 ```bash
 git clone https://github.com/bitqs/maia && cd maia/backend
+python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 export ANTHROPIC_API_KEY=sk-...
 ```
