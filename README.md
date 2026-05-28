@@ -52,7 +52,7 @@ convictions that make it *teach*:
 ## Quickstart
 
 ```bash
-git clone https://github.com/bitqs/maia && cd maia/backend
+git clone https://github.com/bitqs/maia && cd maia/maia-plugin/backend
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 export ANTHROPIC_API_KEY=sk-...

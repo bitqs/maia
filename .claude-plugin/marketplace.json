@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "maia",
-      "source": "."
+      "source": "./maia-plugin"
     }
   ]
 }
