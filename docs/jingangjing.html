@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Diamond Sutra</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; width: 100%; overflow: hidden; }
+  body { background: #ebe6da; font-family: var(--fb); }
+  .sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+
+  #wrap { position: relative; width: 100vw; height: 100vh; display: flex; flex-direction: column; }
+  #bgfill { position: absolute; inset: 0; z-index: 0; }
+
+  header { position: relative; z-index: 2; padding: clamp(16px,2.6vh,34px) clamp(24px,3.5vw,60px) 0; pointer-events: none; }
+  .eyebrow { font-size: clamp(11px,0.95vw,14px); letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.5; }
+  h1 { font-size: clamp(24px,3vw,48px); font-weight: 400; line-height: 1.05; margin-top: 0.2em; font-family: var(--fd); }
+  .sub { font-size: clamp(13px,1.4vw,20px); font-style: italic; opacity: 0.62; margin-top: 0.12em; font-family: var(--fd); }
+
+  .controls { position: relative; z-index: 4; display: flex; flex-wrap: wrap; align-items: center; gap: clamp(8px,1vw,14px); padding: clamp(10px,1.4vh,20px) clamp(24px,3.5vw,60px) 0; }
+  .seg { display: inline-flex; border: 0.5px solid; border-radius: 999px; overflow: hidden; }
+  .seg button { border: none; border-radius: 0; padding: 4px 17px; background: transparent; cursor: pointer; font-size: clamp(13px,1vw,16px); font-family: var(--fb); }
+  .pill { width: auto; padding: 4px 17px; border-radius: 999px; border: 0.5px solid; background: transparent; cursor: pointer; font-size: clamp(13px,1vw,16px); font-family: var(--fb); }
+  .pill:hover { background: rgba(255,255,255,0.05); }
+  .pos { font-size: clamp(12px,0.95vw,15px); opacity: 0.5; }
+  input[type=text] { padding: 5px 14px; border: 0.5px solid; border-radius: 999px; background: transparent; font-size: clamp(13px,1vw,15px); width: clamp(110px,11vw,170px); font-family: var(--fb); }
+
+  /* the two-column body: graph left, inspector right */
+  #body { position: relative; z-index: 1; flex: 1 1 auto; min-height: 0; display: flex; }
+  #graphbox { position: relative; flex: 1 1 62%; min-width: 0; }
+  svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  #legend { position: absolute; bottom: clamp(10px,1.4vh,18px); left: clamp(24px,3.5vw,60px); font-size: clamp(11px,0.9vw,13px); opacity: 0.5; z-index: 2; pointer-events: none; }
+
+  #inspector {
+    flex: 0 0 clamp(300px, 36%, 480px);
+    border-left: 0.5px solid;
+    padding: clamp(18px,2.6vh,34px) clamp(20px,2.2vw,36px);
+    overflow-y: auto; z-index: 3;
+  }
+  #inspector .kicker { font-size: clamp(11px,0.9vw,13px); letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.55; }
+  #inspector .nm { font-size: clamp(24px,2.4vw,38px); line-height: 1.08; margin: 0.2em 0 0.1em; font-family: var(--fd); }
+  #inspector .alt { font-size: clamp(15px,1.4vw,20px); opacity: 0.55; font-family: var(--fd); }
+  .archive { margin-top: clamp(14px,2vh,24px); }
+  .seg-label { font-size: clamp(11px,0.9vw,13px); letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.5; margin-bottom: 0.3em; }
+  .seg-body { font-size: clamp(14px,1.25vw,18px); line-height: 1.72; opacity: 0.9; margin-bottom: clamp(12px,1.8vh,22px); }
+  .quote { border-left: 2px solid; padding-left: 14px; margin: clamp(10px,1.6vh,20px) 0; }
+  .quote .q { font-size: clamp(16px,1.5vw,22px); line-height: 1.6; font-style: italic; font-family: var(--fd); }
+  .quote .qs { font-size: clamp(12px,1vw,14px); opacity: 0.55; margin-top: 0.4em; }
+  .rels { display: flex; flex-wrap: wrap; gap: 6px 12px; margin-top: clamp(8px,1.2vh,16px); }
+  .rel { font-size: clamp(12.5px,1.1vw,15px); opacity: 0.72; cursor: pointer; }
+  .rel:hover { opacity: 1; text-decoration: underline; }
+  .hint { font-size: clamp(14px,1.3vw,18px); line-height: 1.7; opacity: 0.65; font-style: italic; font-family: var(--fd); }
+
+  footer { position: relative; z-index: 2; padding: 0 clamp(24px,3.5vw,60px) clamp(8px,1.2vh,16px); font-size: clamp(11px,0.9vw,13px); opacity: 0.4; font-style: italic; font-family: var(--fd); }
+
+  /* present mode */
+  body.present .eyebrow, body.present .controls, body.present footer { display: none; }
+  #presentBtn { position: absolute; top: clamp(16px,2.6vh,34px); right: clamp(24px,3.5vw,60px); z-index: 5; }
+
+  /* narrow screens: stack */
+  @media (max-width: 720px) {
+    #body { flex-direction: column; }
+    #graphbox { flex: 1 1 55%; }
+    #inspector { flex: 1 1 45%; border-left: none; border-top: 0.5px solid; }
+  }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <div id="bgfill"></div>
+  <button id="presentBtn" class="pill"></button>
+  <h2 class="sr-only">Interactive bilingual knowledge graph with a deep node inspector (what / why / position / key quotation), guided tour, and fullscreen presentation.</h2>
+  <header>
+    <div class="eyebrow">Knowledge Map</div>
+    <h1 id="h-expert"></h1>
+    <div class="sub" id="h-domain"></div>
+  </header>
+  <div class="controls" id="controls"></div>
+  <div id="body">
+    <div id="graphbox">
+      <svg id="svg" role="img" preserveAspectRatio="xMidYMid meet">
+        <title>Concept graph</title><desc id="svg-desc"></desc>
+        <defs id="defs"></defs>
+        <g id="edges" fill="none"></g>
+        <g id="elabels"></g>
+        <g id="nodes"></g>
+      </svg>
+      <div id="legend"></div>
+    </div>
+    <aside id="inspector" aria-live="polite"></aside>
+  </div>
+  <footer id="rationale"></footer>
+</div>
+
+<script>
+const DATA = {"graph": {"schema": "bilingual-v2", "lang_default": "zh", "expert": {"en": "Diamond Sutra", "zh": "金刚经"}, "meta": {"foundational": ["diamond-sutra", "prajna", "emptiness", "tathagata", "bodhisattva"], "tour": ["diamond-sutra", "kumarajiva", "subhuti", "tathagata", "prajna", "emptiness", "non-self", "non-form", "four-marks", "non-abiding", "giving", "perfections", "dissolving-grasping", "raft-metaphor", "supreme-enlightenment", "dharma-body", "unconditioned-dharmas", "karma", "three-thousandfold-world", "ganges-sands", "huineng", "chan-buddhism", "attachment"]}, "nodes": [{"id": "diamond-sutra", "name": {"en": "Diamond Sutra", "zh": "金刚经"}, "type": "theory", "difficulty": "foundational", "relevance": 1.0, "tags": ["text", "mahayana", "prajna"], "summary": {"en": "The Diamond Sutra (Vajracchedika Prajnaparamita Sutra) is a key Mahayana text teaching transcendent wisdom through a dialogue between the Buddha and Subhuti, systematically dismantling conceptual attachments.", "zh": "《金刚般若波罗蜜经》，大乘佛教核心经典，通过佛陀与须菩提的对话，以连续的否定式辩证法拆解一切执著，揭示般若实相。"}, "sources": [], "depth": 0, "aliases": ["Vajracchedika", "金刚般若波罗蜜经"], "explored_by": "main", "profile": {"what": {"en": "A Mahayana Buddhist sutra delivered by the Buddha Shakyamuni to his disciple Subhuti, consisting of 32 sections of dialogue that progressively deconstruct attachment to form, self, and doctrine.", "zh": "释迦牟尼佛为须菩提所说的大乘经典，共三十二分，通过逐层递进的问答彻底瓦解对相、我、法的执取。"}, "why": {"en": "Considered the consummate expression of Prajna wisdom — it does not merely describe emptiness but enacts it through its own paradoxical structure.", "zh": "被视为般若智慧的极致表达，不仅描述空性，更通过自身的悖论结构直接呈现它。"}, "position": {"en": "Crown text of the Prajnaparamita corpus; foundational to Chan/Zen Buddhism; prompted the enlightenment of Huineng.", "zh": "般若经系的顶点；禅宗的根本所依；六祖慧能因此经开悟。"}, "quote": {"en": "\"All phenomena with characteristics are illusory. If one sees that all characteristics are not characteristics, one sees the Tathagata.\"", "zh": "「凡所有相，皆是虚妄；若见诸相非相，即见如来。」"}, "quote_source": "Diamond Sutra, Chapter 5 / 第五分"}}, {"id": "prajna", "name": {"en": "Prajna", "zh": "般若"}, "type": "concept", "difficulty": "foundational", "relevance": 0.97, "tags": ["wisdom", "transcendent", "prajnaparamita"], "summary": {"en": "Transcendent wisdom — not ordinary knowledge but direct, non-conceptual insight into the nature of reality, particularly the emptiness of all phenomena.", "zh": "超越性智慧，非普通认知，而是对实相（尤其是空性）的直接、非概念性洞见。"}, "sources": [], "depth": 0, "aliases": ["般若波罗蜜", "Prajnaparamita"], "explored_by": "main", "profile": {"what": {"en": "The Sanskrit word for 'wisdom' in Buddhist context means insight that directly perceives the empty nature of all phenomena, transcending conceptual thinking.", "zh": "梵文「智慧」，在佛教语境中特指直接照见一切法空性的智慧，超越概念分别。"}, "why": {"en": "The 'perfection of wisdom' is the sixth and highest paramita — the faculty that makes liberation possible by cutting through the root of delusion.", "zh": "「般若波罗蜜」是六度中最高者，以其斩断痴迷之根而使解脱成为可能。"}, "position": {"en": "The central subject of the entire Prajnaparamita corpus; the Diamond Sutra is its sharpest crystallization.", "zh": "般若经系的核心主题，金刚经是其最锋利的结晶。"}, "quote": {"en": "\"The Prajna-paramita: it is like a raft — use it to cross over, don't carry it on your head.\"", "zh": "「般若波罗蜜如筏，用以渡河，勿顶于头。」"}, "quote_source": "Diamond Sutra metaphor"}}, {"id": "emptiness", "name": {"en": "Emptiness", "zh": "空性"}, "type": "concept", "difficulty": "foundational", "relevance": 0.95, "tags": ["emptiness", "non-inherent", "mahayana"], "summary": {"en": "Sunyata — all phenomena are empty of inherent, independent, self-sufficient existence. They arise dependently and possess no fixed essence.", "zh": "空性——一切法皆无自性、独立、自足的存在，依缘而生，没有固定本质。"}, "sources": [], "depth": 0, "aliases": ["Sunyata", "空", "性空"], "explored_by": "main", "profile": {"what": {"en": "The ontological insight that no phenomenon — including the self, the world, or even emptiness itself — has inherent, independent existence. All things arise in dependence on conditions.", "zh": "一切现象（包括自我、世界乃至空性本身）均无固有独立存在的本体洞见，万物皆依缘起而显现。"}, "why": {"en": "Emptiness is not nihilism but the ground of liberation — only because things lack fixed essence can they transform, be cultivated, and lead to awakening.", "zh": "空性非虚无主义，而是解脱的基础——正因万物无固定本质，方能转化、修行、趋向觉悟。"}, "position": {"en": "The metaphysical core of Mahayana Buddhism; the Diamond Sutra teaches it through the repeated logical structure 'A is not A, therefore it is called A'.", "zh": "大乘佛教的形上学核心；金刚经通过「A即非A，是名A」的重复逻辑结构来教授它。"}, "quote": {"en": "\"The so-called world is not the world, it is called the world.\"", "zh": "「所谓世界，即非世界，是名世界。」"}, "quote_source": "Diamond Sutra, Chapter 13 / 第十三分"}}, {"id": "tathagata", "name": {"en": "Tathagata", "zh": "如来"}, "type": "concept", "difficulty": "foundational", "relevance": 0.9, "tags": ["buddha", "enlightenment", "dharmakaya"], "summary": {"en": "Tathagata (Thus-Come-One) — one of the ten epithets of the Buddha, pointing to the one who has arrived at suchness (tathata), the true nature of reality beyond conceptual elaboration.", "zh": "「如来」，佛陀十号之一，意为「乘真如而来者」，指到达实相如如不动之境的觉者。"}, "sources": [], "depth": 0, "aliases": ["Thus-Come-One", "如来佛"], "explored_by": "main", "profile": {"what": {"en": "In the Diamond Sutra, the Tathagata is both speaker and subject — the one who embodies emptiness while appearing in form, demonstrating that enlightenment is neither existence nor non-existence.", "zh": "金刚经中如来既是说者也是所说的主题——以色身示现而本性空寂，证明觉悟非有非无。"}, "why": {"en": "The sutra repeatedly asks 'Can the Tathagata be seen by marks?' — each time answering no, to break attachment to fixed concepts of Buddhahood.", "zh": "经文反复问「可以身相见如来否？」，每次皆否，以破对佛身固定概念的执著。"}, "position": {"en": "The Tathagata is the living embodiment of the sutra's teaching — his own nature is the teaching.", "zh": "如来是经文教义的活生生体现——其自身本性即是教法。"}, "quote": {"en": "\"If one sees me in form or seeks me in sound, this person walks an erroneous path and cannot see the Tathagata.\"", "zh": "「若以色见我，以音声求我，是人行邪道，不能见如来。」"}, "quote_source": "Diamond Sutra, Chapter 26 / 第二十六分"}}, {"id": "bodhisattva", "name": {"en": "Bodhisattva", "zh": "菩萨"}, "type": "concept", "difficulty": "foundational", "relevance": 0.88, "tags": ["enlightenment-being", "mahayana", "compassion"], "summary": {"en": "A being who aspires to and works toward full Buddhahood for the benefit of all sentient beings, cultivating the six perfections without attachment to outcome.", "zh": "发誓为利益一切众生而趋向圆满觉悟的存在，修行六度而不执著于结果。"}, "sources": [], "depth": 0, "aliases": ["Bodhisattva", "菩萨道"], "explored_by": "main", "profile": {"what": {"en": "The Diamond Sutra opens with the question: how should a bodhisattva resolve the mind? The answer reveals the entire structure of non-attached action.", "zh": "金刚经开篇即问：菩萨应如何安住其心？答案揭示了无执行动的全部结构。"}, "why": {"en": "The bodhisattva ideal is key to Mahayana — liberation is not private escape but universal service, performed without clinging to the role of helper.", "zh": "菩萨道是大乘核心——解脱非个人逃离，而是普度众生的服务，且不执著于助人者的角色。"}, "position": {"en": "The Diamond Sutra's model practitioner; its teachings on non-attachment are specifically addressed to the bodhisattva path.", "zh": "金刚经的修行典范，其无执教义专门针对菩萨道。"}, "quote": {"en": "\"A bodhisattva should give rise to a mind that abides nowhere.\"", "zh": "「菩萨应无所住而生其心。」"}, "quote_source": "Diamond Sutra, Chapter 10 / 第十分"}}, {"id": "non-self", "name": {"en": "Non-self", "zh": "无我"}, "type": "concept", "difficulty": "foundational", "relevance": 0.9, "tags": ["self", "identity", "core-buddhism"], "summary": {"en": "Anatman — the teaching that no permanent, unchanging self exists within the individual. The 'self' is a convenient designation for a stream of interdependent processes.", "zh": "无我——在个体中并不存在永恒不变的「我」，「自我」只是相互依存过程之流的方便称谓。"}, "sources": [], "depth": 0, "aliases": ["Anatman", "anatta", "无我观"], "explored_by": "main", "profile": {"what": {"en": "The Diamond Sutra extends the no-self teaching beyond the personal to all phenomena — not just 'I' am empty, but all dharmas are empty.", "zh": "金刚经将无我延伸到个人之外的一切现象——不仅「我」是空的，一切法皆是空的。"}, "why": {"en": "Belief in a permanent self is the root of suffering — clinging arises because we protect and extend what we mistakenly take to be a fixed 'me'.", "zh": "相信永恒之我是苦的根源——执著源于我们保护和延伸那个被错误认定为固定「我」的东西。"}, "position": {"en": "Underlying condition for all Diamond Sutra teachings; without no-self, non-abiding and non-attachment are impossible.", "zh": "金刚经所有教义的底层条件，无无我则无住、无执皆无从实现。"}, "quote": {"en": "\"There is no self, no person, no sentient being, no life-span.\"", "zh": "「无我相，无人相，无众生相，无寿者相。」"}, "quote_source": "Diamond Sutra, Chapter 3 / 第三分"}}, {"id": "non-form", "name": {"en": "Non-form", "zh": "无相"}, "type": "concept", "difficulty": "intermediate", "relevance": 0.82, "tags": ["appearance", "beyond-form", "phenomenology"], "summary": {"en": "Non-form (wu-xiang) — transcending attachment to phenomenal appearances. Reality cannot be captured or grasped through its physical or conceptual characteristics.", "zh": "无相——超越对现象相貌的执取，实相无法通过其物理或概念特征来捕捉或把握。"}, "sources": [], "depth": 0, "aliases": ["Animitta", "无相解脱"], "explored_by": "main", "profile": {"what": {"en": "The Tathagata cannot be seen by his 32 marks; merit cannot be measured; dharma cannot be grasped — all these point to the teaching of non-form.", "zh": "如来不可以三十二相见；功德不可量；法不可执——皆指向无相之教。"}, "why": {"en": "Phenomena arise but do not fix — clinging to their appearance as real and permanent is the basis of ignorance.", "zh": "现象生起但不固定——执著其相为真实永恒是无明的基础。"}, "position": {"en": "One of three Mahayana liberations: no-form (animitta), no-wish (apranihita), and emptiness (sunyata).", "zh": "大乘三解脱门之一：无相（animitta）、无愿（apranihita）、空（sunyata）。"}, "quote": {"en": "\"Do not take the Tathagata as having attained supreme enlightenment through any dharma.\"", "zh": "「如来所得法，此法无实无虚。」"}, "quote_source": "Diamond Sutra, Chapter 17 / 第十七分"}}, {"id": "four-marks", "name": {"en": "Four Marks", "zh": "四相"}, "type": "concept", "difficulty": "intermediate", "relevance": 0.8, "tags": ["self-concept", "identity", "attachment"], "summary": {"en": "The four marks of ego-grasping: self (atman), person (pudgala), sentient being (sattva), and lifespan (jiva). The Diamond Sutra systematically dismantles all four.", "zh": "四种我执之相：我相、人相、众生相、寿者相。金刚经系统性地拆解这四者。"}, "sources": [], "depth": 0, "aliases": ["四相", "我人众寿四相"], "explored_by": "main", "profile": {"what": {"en": "Self-mark: identifying a fixed I; Person-mark: identifying a fixed individual; Sentient-being mark: a fixed living thing; Lifespan mark: continuity of a fixed entity across time.", "zh": "我相：执固定之我；人相：执固定个体；众生相：执固定有情；寿者相：执一实体跨越时间的延续。"}, "why": {"en": "These four marks are the structure of ego-grasping — the Diamond Sutra exposes them as conceptual overlays on a selfless, fluid reality.", "zh": "四相是我执的结构——金刚经揭示其为覆盖在无我、流动实相上的概念投射。"}, "position": {"en": "The practical target the Diamond Sutra's teaching aims to dissolve through prajna.", "zh": "金刚经之教义通过般若智慧力图瓦解的实践靶心。"}, "quote": {"en": "\"A bodhisattva who still has the four marks is not a bodhisattva.\"", "zh": "「若菩萨有我相、人相、众生相、寿者相，即非菩萨。」"}, "quote_source": "Diamond Sutra, Chapter 3 / 第三分"}}, {"id": "non-abiding", "name": {"en": "Non-abiding", "zh": "无住"}, "type": "concept", "difficulty": "intermediate", "relevance": 0.85, "tags": ["method", "practice", "attachment-free"], "summary": {"en": "Wu-zhu — not settling or grasping anywhere. Acting, giving, and thinking without fixing onto any result, concept, or experience.", "zh": "无住——不在任何地方落脚或执取，行动、布施、思考而不执著于任何结果、概念或经验。"}, "sources": [], "depth": 0, "aliases": ["无所住", "Wu-zhu"], "explored_by": "main", "profile": {"what": {"en": "The Diamond Sutra's most cited phrase — 'giving rise to a mind that abides nowhere' — points to spontaneous, unfixed action that flows without accumulating attachment.", "zh": "金刚经最常被引用的句子——「无所住而生其心」——指向自发、不固着的行动，流动而不积累执著。"}, "why": {"en": "Abiding creates the illusion of a fixed self that possesses experiences. Non-abiding is the practical expression of no-self in action.", "zh": "「住」制造了一个拥有经验的固定自我的幻觉；无住是无我在行动中的实践表达。"}, "position": {"en": "The operational heart of Diamond Sutra practice; the phrase that awakened Huineng.", "zh": "金刚经修行的操作性核心；令慧能开悟的那句话。"}, "quote": {"en": "\"A bodhisattva should give rise to a mind that abides nowhere.\"", "zh": "「应无所住而生其心。」"}, "quote_source": "Diamond Sutra, Chapter 10 / 第十分"}}, {"id": "giving", "name": {"en": "Giving", "zh": "布施"}, "type": "method", "difficulty": "intermediate", "relevance": 0.78, "tags": ["generosity", "paramita", "practice"], "summary": {"en": "Dana (giving/generosity) — the first of the six perfections, here taught as giving without attachment to giver, receiver, or gift.", "zh": "布施——六度之首，在此被教导为施者、受者、所施之物三者皆无执著的给予。"}, "sources": [], "depth": 0, "aliases": ["Dana", "三轮体空"], "explored_by": "main", "profile": {"what": {"en": "The Diamond Sutra uses giving as its primary example of non-attached action — a bodhisattva gives without any thought of self, recipient, or gift (san-lun ti-kong: three wheels empty).", "zh": "金刚经以布施为无执行动的首要示例——菩萨布施时无施者、受者、所施之念（三轮体空）。"}, "why": {"en": "Attached giving generates merit that reinforce ego; unattached giving generates immeasurable merit that cannot even be called merit.", "zh": "有执之施积累强化自我的功德；无执之施生无量功德，甚至不能称之为功德。"}, "position": {"en": "The concrete practice through which the Diamond Sutra teaches the abstract principle of non-abiding.", "zh": "金刚经通过其教导无住这一抽象原理的具体修行。"}, "quote": {"en": "\"A bodhisattva who gives without abiding in form — the merit of this giving is immeasurable.\"", "zh": "「菩萨不住相布施，其福德不可思量。」"}, "quote_source": "Diamond Sutra, Chapter 4 / 第四分"}}, {"id": "perfections", "name": {"en": "Perfections", "zh": "波罗蜜"}, "type": "concept", "difficulty": "intermediate", "relevance": 0.75, "tags": ["six-perfections", "path", "mahayana"], "summary": {"en": "The six paramitas (perfections/transcendences): giving, ethics, patience, energy, meditation, and wisdom — the bodhisattva's complete path to Buddhahood.", "zh": "六波罗蜜（六度）：布施、持戒、忍辱、精进、禅定、般若——菩萨趋向佛果的完整道路。"}, "sources": [], "depth": 0, "aliases": ["六度", "Six Perfections", "波罗蜜多"], "explored_by": "main", "profile": {"what": {"en": "Paramita means 'that which has crossed over' or 'perfection' — each practice, when performed without attachment, becomes a transcendent vehicle rather than a worldly activity.", "zh": "波罗蜜意为「到达彼岸」或「圆满」——每种修行若无执著地进行，便成为超越性的载体而非世俗活动。"}, "why": {"en": "The six perfections are the structural expression of the bodhisattva path; the Diamond Sutra focuses on prajna-paramita as the capstone that transforms all the others.", "zh": "六度是菩萨道的结构性表达；金刚经专注于般若波罗蜜，它是转化其余五度的顶点。"}, "position": {"en": "Framework within which the Diamond Sutra operates; prajna-paramita is the sixth and makes the other five into paramitas.", "zh": "金刚经运作其中的框架；般若波罗蜜是第六度，使其余五度成为真正的波罗蜜。"}, "quote": {"en": "\"The Tathagata says prajna-paramita is not prajna-paramita, therefore it is called prajna-paramita.\"", "zh": "「如来说般若波罗蜜，即非般若波罗蜜，是名般若波罗蜜。」"}, "quote_source": "Diamond Sutra, Chapter 13 / 第十三分"}}, {"id": "attachment", "name": {"en": "Attachment", "zh": "执著"}, "type": "concept", "difficulty": "intermediate", "relevance": 0.78, "tags": ["suffering", "grasping", "root"], "summary": {"en": "Upadana — the grasping, clinging fixation that treats impermanent phenomena as permanent, empty forms as solid selves. The root condition for suffering.", "zh": "取著——把无常现象视为永恒、把空幻形相视为坚实自我的执取固着，是苦的根本条件。"}, "sources": [], "depth": 0, "aliases": ["执取", "Upadana", "固执"], "explored_by": "main", "profile": {"what": {"en": "The Diamond Sutra targets attachment at multiple levels: attachment to self, to others, to dharma, and even to the teaching of no-attachment itself.", "zh": "金刚经在多个层面解除执著：对自我的执著、对他人的执著、对法的执著，乃至对无执著这一教义本身的执著。"}, "why": {"en": "Attachment to form and fixed identity is the mechanism that perpetuates the cycle of suffering — prajna cuts through it directly.", "zh": "对相和固定身份的执著是延续轮回苦难的机制——般若直接斩断它。"}, "position": {"en": "What the Diamond Sutra's every chapter dismantles; the sutra itself warns against attachment to the sutra.", "zh": "金刚经每一章都在瓦解的东西；经文本身警告不要执著于经文。"}, "quote": {"en": "\"Even the dharma should be relinquished; how much more so what is not dharma.\"", "zh": "「法尚应舍，何况非法。」"}, "quote_source": "Diamond Sutra, Chapter 6 / 第六分"}}, {"id": "dissolving-grasping", "name": {"en": "Dissolving Grasping", "zh": "破执"}, "type": "method", "difficulty": "intermediate", "relevance": 0.8, "tags": ["method", "liberation", "deconstruction"], "summary": {"en": "The Diamond Sutra's structural method: systematically dissolving every possible object of attachment — self, world, Buddha, dharma, teaching, merit — through repeated negation.", "zh": "金刚经的结构性方法：通过反复否定，系统瓦解一切可能的执著对象——我、世界、佛、法、教义、功德。"}, "sources": [], "depth": 0, "aliases": ["破相", "遮诠法"], "explored_by": "main", "profile": {"what": {"en": "The 'A is not A, therefore it is called A' formula — a dialectical negation used 30+ times in the sutra to prevent any concept from crystallizing into dogma.", "zh": "「A即非A，是名A」的公式——经文中使用30余次的辩证否定，防止任何概念固化为教条。"}, "why": {"en": "Language and thought naturally reify — turn fluid processes into solid objects. The Diamond Sutra's method short-circuits this reification at every turn.", "zh": "语言和思维自然地将一切实体化——将流动过程变为固体对象，金刚经的方法在每个转折处打断这一实体化。"}, "position": {"en": "The literary and philosophical technique that makes the Diamond Sutra uniquely powerful — it teaches emptiness by embodying it in structure.", "zh": "使金刚经独具力量的文学与哲学技法——通过在结构中体现空性来教授空性。"}, "quote": {"en": "\"The Tathagata says the raft-wisdom is not raft-wisdom, it is called raft-wisdom.\"", "zh": "「如来说世界，非世界，是名世界。」"}, "quote_source": "Diamond Sutra, Chapter 13 / 第十三分"}}, {"id": "raft-metaphor", "name": {"en": "Raft Metaphor", "zh": "如筏喻者"}, "type": "concept", "difficulty": "intermediate", "relevance": 0.75, "tags": ["metaphor", "pragmatism", "teaching"], "summary": {"en": "The dharma is like a raft — use it to cross the river of samsara, but do not carry it on your back once you have crossed. Even liberation must not become an attachment.", "zh": "法如筏喻——用以渡越轮回之河，渡后勿背负。连解脱本身也不能成为执著的对象。"}, "sources": [], "depth": 0, "aliases": ["筏喻", "Raft Simile"], "explored_by": "main", "profile": {"what": {"en": "A pragmatic teaching: Buddhist doctrine is instrumental, not absolute. The raft gets you there; clinging to the raft prevents arrival.", "zh": "一种实用性教导：佛法是工具，而非绝对真理。筏让你抵达；执著于筏则阻碍抵达。"}, "why": {"en": "Warns against turning Buddhism into a dogmatic system — the teaching points to the moon, is not the moon.", "zh": "警告不要将佛法变成教条体系——教义指向月亮，而非月亮本身。"}, "position": {"en": "One of Buddhism's most memorable meta-teachings; bridges Mahayana with pragmatic philosophy.", "zh": "佛教最令人难忘的元教义之一，将大乘与实用哲学联系起来。"}, "quote": {"en": "\"You monks know my teachings are like a raft — even dharma must be abandoned, let alone non-dharma.\"", "zh": "「知我说法如筏喻者，法尚应舍，何况非法。」"}, "quote_source": "Diamond Sutra, Chapter 6 / 第六分"}}, {"id": "supreme-enlightenment", "name": {"en": "Supreme Enlightenment", "zh": "阿耨多罗三藐三菩提"}, "type": "concept", "difficulty": "advanced", "relevance": 0.72, "tags": ["buddhahood", "liberation", "goal"], "summary": {"en": "Anuttara-samyak-sambodhi — unsurpassed, complete, perfect enlightenment; the ultimate goal of the bodhisattva path and the attainment of full Buddhahood.", "zh": "无上正等正觉——最高圆满菩提，菩萨道的终极目标与圆满佛果的证得。"}, "sources": [], "depth": 0, "aliases": ["无上菩提", "正觉", "Anuttara-samyak-sambodhi"], "explored_by": "main", "profile": {"what": {"en": "The Diamond Sutra's paradox: the bodhisattva strives for supreme enlightenment yet knows there is no fixed dharma called supreme enlightenment to attain.", "zh": "金刚经的悖论：菩萨追求无上菩提，却深知并无一个固定之法叫做无上菩提可以证得。"}, "why": {"en": "If enlightenment were a fixed 'thing' to attain, grasping it would itself perpetuate ego and delusion. True enlightenment is non-attainment.", "zh": "若菩提是可执取的固定「物」，执取它本身便会延续自我与妄念。真正的觉悟是无所得。"}, "position": {"en": "The sutra's horizon — always aimed at, never grasped; the paradox at its heart.", "zh": "经文的地平线——始终朝向，永不执取；其核心悖论。"}, "quote": {"en": "\"There is no fixed dharma called anuttara-samyak-sambodhi.\"", "zh": "「实无有法名为阿耨多罗三藐三菩提。」"}, "quote_source": "Diamond Sutra, Chapter 17 / 第十七分"}}, {"id": "dharma-body", "name": {"en": "Dharma Body", "zh": "法身"}, "type": "concept", "difficulty": "advanced", "relevance": 0.7, "tags": ["buddha-nature", "trikaya", "essence"], "summary": {"en": "Dharmakaya — the truth-body of the Buddha, his essential nature identical with the dharma itself and with emptiness, distinguished from his physical form-body.", "zh": "法身——佛陀的真理之身，其本质与法本身及空性同一，有别于其物质色身。"}, "sources": [], "depth": 0, "aliases": ["法身佛", "Dharmakaya", "三身之一"], "explored_by": "main", "profile": {"what": {"en": "The Diamond Sutra points to dharmakaya by insisting the Tathagata cannot be seen through marks — the real Buddha is formless truth, not a golden body with 32 characteristics.", "zh": "金刚经通过坚持如来不可以相见来指向法身——真正的佛是无形的真理，而非有三十二相的金身。"}, "why": {"en": "Conceptualizing the Buddha as a being with specific marks creates another object of attachment — dharmakaya points beyond all marks.", "zh": "将佛陀概念化为具有特定相貌的存在会造成另一个执著对象——法身指向一切相之外。"}, "position": {"en": "Implicit throughout the sutra; made explicit in the Trikaya doctrine that arose partly from Diamond Sutra teachings.", "zh": "贯穿经文始终；在部分源自金刚经教义的三身论中被明确表述。"}, "quote": {"en": "\"The Tathagata has no place to come from and no place to go to, therefore he is called the Tathagata.\"", "zh": "「如来者，无所从来，亦无所去，故名如来。」"}, "quote_source": "Diamond Sutra, Chapter 29 / 第二十九分"}}, {"id": "unconditioned-dharmas", "name": {"en": "Unconditioned Dharmas", "zh": "无为法"}, "type": "concept", "difficulty": "advanced", "relevance": 0.68, "tags": ["nirvana", "absolute", "unconditioned"], "summary": {"en": "Asamskrita-dharma — unconditioned, uncompounded phenomena; things not produced by causes and conditions, of which nirvana is the prime example.", "zh": "无为法——非因缘所生的、未经合成的现象，以涅槃为主要例证。"}, "sources": [], "depth": 0, "aliases": ["Asamskrita", "无为", "不生不灭"], "explored_by": "main", "profile": {"what": {"en": "The Diamond Sutra says all sages are distinguished by unconditioned dharmas — implying that awakening transcends the cycle of conditioned phenomena.", "zh": "金刚经言一切圣贤皆以无为法而有差别——意味着觉悟超越有为法的循环。"}, "why": {"en": "Understanding what lies beyond conditioning is essential to understanding the goal — nirvana is not a place or state but the cessation of conditioned arising.", "zh": "理解条件性之外的存在对理解目标至关重要——涅槃不是一个地方或状态，而是有为缘起的息灭。"}, "position": {"en": "Background ontology of the Diamond Sutra; points to the unconditioned nature of emptiness itself.", "zh": "金刚经的背景本体论，指向空性本身的无为性质。"}, "quote": {"en": "\"All sages are distinguished by unconditioned dharmas.\"", "zh": "「一切贤圣，皆以无为法而有差别。」"}, "quote_source": "Diamond Sutra, Chapter 7 / 第七分"}}, {"id": "karma", "name": {"en": "Karma", "zh": "因果"}, "type": "concept", "difficulty": "intermediate", "relevance": 0.72, "tags": ["cause-effect", "merit", "action"], "summary": {"en": "Karma — the law of cause and effect in Buddhist teaching. The Diamond Sutra teaches that non-attached action generates immeasurable merit while erasing karmic debts.", "zh": "因果——佛教中的因果律。金刚经教导无执行动产生无量功德，同时消除业债。"}, "sources": [], "depth": 0, "aliases": ["业力", "Karma", "善因善果"], "explored_by": "main", "profile": {"what": {"en": "The Diamond Sutra illustrates karma through merit — acts of giving, copying the sutra, or teaching generate vast merit, but attached merit is still merit (limited); unattached merit is boundless.", "zh": "金刚经通过功德阐明因果——布施、抄经、讲法产生巨大功德，但有执著的功德仍是功德（有限）；无执著的功德无边无量。"}, "why": {"en": "Karma shows why ethical action matters even in an 'empty' universe — actions have consequences even without a fixed self that performs them.", "zh": "因果表明为何在「空」的宇宙中道德行动仍然重要——行动有后果，即便没有执行它们的固定自我。"}, "position": {"en": "Ethical backbone of the Diamond Sutra's teachings; prevents emptiness from collapsing into nihilism.", "zh": "金刚经教义的伦理骨干，防止空性沦为虚无主义。"}, "quote": {"en": "\"If good men and women accept, hold, read and recite this sutra... their merit will far exceed those who gave the seven jewels.\"", "zh": "「若有善男子善女人受持读诵此经……其所得功德，胜前福德。」"}, "quote_source": "Diamond Sutra, Chapter 8 / 第八分"}}, {"id": "three-thousandfold-world", "name": {"en": "Three-thousandfold World", "zh": "三千大千世界"}, "type": "concept", "difficulty": "intermediate", "relevance": 0.65, "tags": ["cosmology", "scale", "metaphor"], "summary": {"en": "The three-thousandfold great-thousandfold world — Buddhist cosmological scale used in the Diamond Sutra to convey the incomprehensible magnitude of non-attached merit.", "zh": "三千大千世界——佛教宇宙论尺度，金刚经用以传达无执功德之不可思量的宏大。"}, "sources": [], "depth": 0, "aliases": ["大千世界", "trichiliocosm"], "explored_by": "main", "profile": {"what": {"en": "One billion world-systems. The Diamond Sutra uses this scale rhetorically: 'even if someone filled the three-thousandfold world with the seven jewels and gave it all away, the merit of holding this sutra is greater.'", "zh": "十亿个世界系统。金刚经以此为修辞手法：「即使有人将三千大千世界七宝布施，持此经的功德仍更大。」"}, "why": {"en": "Points to the incomparable value of wisdom-dharma over material merit — the teaching transcends any quantifiable good deed.", "zh": "指向法施远超财施的无可比拟价值——教义超越任何可量化的善行。"}, "position": {"en": "Recurring rhetorical device across the sutra; the scale of cosmology mirrors the scale of prajna.", "zh": "贯穿经文的反复修辞手法；宇宙论的尺度映照般若的尺度。"}, "quote": {"en": "\"If someone filled the three-thousandfold world with the seven jewels for giving, the merit obtained is vast — yet a person who holds this sutra gains more.\"", "zh": "「若有人以七宝满尔所三千大千世界，以用布施……若复有人于此经中受持，乃至四句偈等……其福胜彼。」"}, "quote_source": "Diamond Sutra, Chapter 11 / 第十一分"}}, {"id": "ganges-sands", "name": {"en": "Ganges Sands", "zh": "恒河沙"}, "type": "concept", "difficulty": "intermediate", "relevance": 0.62, "tags": ["metaphor", "infinity", "rhetoric"], "summary": {"en": "The grains of sand in the Ganges River — used as a metaphor for inconceivable multiplicity throughout the Diamond Sutra to indicate unbounded scale.", "zh": "恒河沙数——金刚经中反复使用的比喻，以恒河沙粒之数指代不可思议的无量之多。"}, "sources": [], "depth": 0, "aliases": ["恒河沙数", "Ganges metaphor"], "explored_by": "main", "profile": {"what": {"en": "The Diamond Sutra repeatedly invokes 'as many Ganges rivers as there are grains of sand in the Ganges' — a recursive infinity that dwarfs human calculation.", "zh": "金刚经反复引用「恒河所有沙数，如是沙等恒河」——一种递归无限，使人类的计算相形见绌。"}, "why": {"en": "The scale metaphors serve to break the mind's habit of thinking in manageable quantities — prajna operates beyond quantity.", "zh": "尺度比喻用于打破心灵以可管理数量思考的习惯——般若运作于数量之外。"}, "position": {"en": "Rhetorical device that pairs with three-thousandfold world; together they frame the immensity of merit and wisdom.", "zh": "与三千大千世界配对的修辞手法，共同框定功德与智慧的宏大。"}, "quote": {"en": "\"As many Ganges Rivers as there are grains of sand in the Ganges...\"", "zh": "「所谓恒河中所有沙数，如是沙等恒河……」"}, "quote_source": "Diamond Sutra, Chapter 11 / 第十一分"}}, {"id": "subhuti", "name": {"en": "Subhuti", "zh": "须菩提"}, "type": "concept", "difficulty": "intermediate", "relevance": 0.75, "tags": ["disciple", "dialogue", "emptiness-elder"], "summary": {"en": "Subhuti — the Buddha's disciple known as 'foremost in understanding emptiness' who conducts the Diamond Sutra dialogue, his questions structuring the entire teaching.", "zh": "须菩提——佛陀弟子，「解空第一」，以其问答构成整部金刚经的骨架。"}, "sources": [], "depth": 0, "aliases": ["解空第一", "Subhuti"], "explored_by": "main", "profile": {"what": {"en": "Subhuti asks the opening question of the Diamond Sutra — how should a bodhisattva resolve the mind? — and his progressive questions structure each chapter's advance.", "zh": "须菩提提出金刚经的开篇之问——菩萨应如何安住其心？——其逐进的追问构成每章的推进结构。"}, "why": {"en": "His title 'foremost in understanding emptiness' is itself subverted by the sutra — even understanding emptiness must not be clung to.", "zh": "他「解空第一」的称号本身被经文所颠覆——连对空性的理解也不能执著。"}, "position": {"en": "The dialogue partner whose questions make the teaching possible; represents the practitioner encountering the teaching.", "zh": "以问题使教义成为可能的对话者；代表遇见教义的修行者。"}, "quote": {"en": "\"World-honored One, how should a bodhisattva who has set out on the vehicle of a bodhisattva take his stand, how should he abide, how should he practice?\"", "zh": "「世尊，善男子、善女人，发阿耨多罗三藐三菩提心，应云何住，云何降伏其心？」"}, "quote_source": "Diamond Sutra, Chapter 2 / 第二分"}}, {"id": "kumarajiva", "name": {"en": "Kumarajiva", "zh": "鸠摩罗什"}, "type": "concept", "difficulty": "intermediate", "relevance": 0.7, "tags": ["translation", "history", "chinese-buddhism"], "summary": {"en": "Kumarajiva (344–413 CE) — the Central Asian Buddhist monk whose Chinese translation of the Diamond Sutra became the standard version, shaping all subsequent Chinese Buddhism.", "zh": "鸠摩罗什（344—413年）——中亚佛教僧侣，其金刚经汉译本成为标准译本，塑造了后世所有中国佛教。"}, "sources": [], "depth": 0, "aliases": ["Kumarajiva", "罗什大师"], "explored_by": "main", "profile": {"what": {"en": "Translated the Diamond Sutra in 402 CE in Chang'an; his translation is celebrated for its literary elegance as much as its doctrinal precision.", "zh": "402年在长安译出金刚经；其译本以文学优雅与教义精准著称。"}, "why": {"en": "Translation is interpretation — Kumarajiva's choices shaped how generations of Chinese practitioners understood emptiness, non-self, and Buddhahood.", "zh": "翻译即诠释——鸠摩罗什的抉择塑造了数代中国修行者对空性、无我与佛果的理解。"}, "position": {"en": "Historical entry point of the Diamond Sutra into Chinese culture; without his translation, no Huineng and no Chan Buddhism.", "zh": "金刚经进入中国文化的历史入口；没有其译本，便无慧能，亦无禅宗。"}, "quote": {"en": "\"Kumarajiva's translation has the quality of the original Sanskrit — it sings where others merely speak.\"", "zh": "「罗什译文具梵本之神韵，他人译处仅达意，罗什则传神。」"}, "quote_source": "Traditional assessment by Chinese scholars"}}, {"id": "huineng", "name": {"en": "Huineng", "zh": "慧能"}, "type": "concept", "difficulty": "advanced", "relevance": 0.73, "tags": ["chan", "sixth-patriarch", "awakening"], "summary": {"en": "Huineng (638–713 CE) — the Sixth Patriarch of Chan Buddhism, who was awakened upon hearing the line 'give rise to a mind that abides nowhere' from the Diamond Sutra.", "zh": "慧能（638—713年）——禅宗六祖，因听闻金刚经「应无所住而生其心」一句而开悟。"}, "sources": [], "depth": 0, "aliases": ["六祖", "惠能", "Sixth Patriarch"], "explored_by": "main", "profile": {"what": {"en": "An illiterate woodcutter who achieved enlightenment through the Diamond Sutra; his Platform Sutra is the only non-Indian text given the title 'sutra' in Chinese Buddhism.", "zh": "一个因金刚经而觉悟的文盲樵夫；其《坛经》是中国佛教中唯一被尊称为「经」的非印度文本。"}, "why": {"en": "Huineng embodies the Diamond Sutra's central teaching: enlightenment is not attained through learning, position, or status, but through direct insight cutting through all marks.", "zh": "慧能体现金刚经核心教义：觉悟不通过学问、地位或资历获得，而是通过直接洞见斩断一切相。"}, "position": {"en": "Living proof of the Diamond Sutra's power; transmitter of its essence into Chan; the reason the sutra became central to East Asian Buddhism.", "zh": "金刚经力量的活证；将其精髓传入禅宗；金刚经成为东亚佛教核心的原因。"}, "quote": {"en": "\"Originally not a single thing — where could dust alight?\"", "zh": "「本来无一物，何处惹尘埃。」"}, "quote_source": "Huineng's enlightenment verse, Platform Sutra"}}, {"id": "chan-buddhism", "name": {"en": "Chan Buddhism", "zh": "禅宗"}, "type": "theory", "difficulty": "advanced", "relevance": 0.7, "tags": ["zen", "chinese-buddhism", "direct-pointing"], "summary": {"en": "Chan (Zen) Buddhism — the Chinese school of Buddhism that most directly embodied the Diamond Sutra's spirit: direct pointing to mind, no dependence on words, seeing one's nature.", "zh": "禅宗——最直接体现金刚经精神的中国佛教宗派：直指人心、不立文字、见性成佛。"}, "sources": [], "depth": 0, "aliases": ["Zen", "禅", "Chan"], "explored_by": "main", "profile": {"what": {"en": "A Chinese Buddhist school founded by Bodhidharma and crystallized by Huineng, emphasizing meditation, direct experience, and transmission beyond scripture — the opposite of textual attachment.", "zh": "由菩提达摩创立、慧能结晶的中国佛教宗派，强调禅定、直接体验与超越经文的传承——与文字执著恰好相反。"}, "why": {"en": "Chan takes the Diamond Sutra's anti-attachment to its logical extreme — even the Diamond Sutra should not be grasped; enlightenment is this very moment.", "zh": "禅宗将金刚经的无执推向逻辑极端——连金刚经本身也不应执取；觉悟就是当下这一刻。"}, "position": {"en": "The spiritual descendant and living tradition of Diamond Sutra teachings; transmitted throughout East Asia as Zen.", "zh": "金刚经教义的精神后裔与活的传统，以「Zen」之名传播于整个东亚。"}, "quote": {"en": "\"Not depending on words and letters, a separate transmission outside the teachings, directly pointing to the mind, seeing one's nature and becoming Buddha.\"", "zh": "「不立文字，教外别传，直指人心，见性成佛。」"}, "quote_source": "Traditional Chan motto attributed to Bodhidharma"}}], "edges": [{"source": "diamond-sutra", "target": "prajna", "relation": {"en": "centers on", "zh": "以…为核心"}, "evidence": "The full title is Vajracchedika Prajnaparamita Sutra"}, {"source": "diamond-sutra", "target": "emptiness", "relation": {"en": "teaches through negation", "zh": "通过否定教导"}, "evidence": "Every chapter systematically negates fixed concepts"}, {"source": "diamond-sutra", "target": "subhuti", "relation": {"en": "dialogue partner", "zh": "对话者"}, "evidence": "Subhuti's questions structure the entire sutra"}, {"source": "diamond-sutra", "target": "tathagata", "relation": {"en": "spoken by", "zh": "由…宣说"}, "evidence": "The Buddha Shakyamuni delivers the sutra"}, {"source": "diamond-sutra", "target": "kumarajiva", "relation": {"en": "translated into Chinese by", "zh": "由…译为汉语"}, "evidence": "402 CE translation became the canonical version"}, {"source": "prajna", "target": "emptiness", "relation": {"en": "directly perceives", "zh": "直接照见"}, "evidence": "Prajna is defined as insight into emptiness"}, {"source": "prajna", "target": "perfections", "relation": {"en": "is the sixth and highest", "zh": "是第六也是最高"}, "evidence": "Prajna-paramita completes the six perfections"}, {"source": "prajna", "target": "dissolving-grasping", "relation": {"en": "operates through", "zh": "通过…运作"}, "evidence": "Wisdom functions by dissolving conceptual fixation"}, {"source": "emptiness", "target": "non-self", "relation": {"en": "implies at personal level", "zh": "在个人层面意味着"}, "evidence": "No-self is emptiness applied to the person"}, {"source": "emptiness", "target": "non-form", "relation": {"en": "implies at phenomenal level", "zh": "在现象层面意味着"}, "evidence": "No fixed marks = no inherent nature"}, {"source": "emptiness", "target": "unconditioned-dharmas", "relation": {"en": "points toward", "zh": "指向"}, "evidence": "Emptiness itself is unconditioned"}, {"source": "non-self", "target": "four-marks", "relation": {"en": "dismantles", "zh": "瓦解"}, "evidence": "No-self negates all four marks of ego-grasping"}, {"source": "four-marks", "target": "attachment", "relation": {"en": "is the structure of", "zh": "是…的结构"}, "evidence": "The four marks are how attachment organizes itself"}, {"source": "bodhisattva", "target": "perfections", "relation": {"en": "cultivates", "zh": "修行"}, "evidence": "The bodhisattva's path is defined by the six perfections"}, {"source": "bodhisattva", "target": "supreme-enlightenment", "relation": {"en": "aspires to without grasping", "zh": "不执取地向往"}, "evidence": "The paradox of seeking what cannot be attained"}, {"source": "bodhisattva", "target": "non-abiding", "relation": {"en": "practices", "zh": "修习"}, "evidence": "'Give rise to a mind that abides nowhere' is addressed to bodhisattvas"}, {"source": "non-abiding", "target": "attachment", "relation": {"en": "counteracts", "zh": "对治"}, "evidence": "Non-abiding is the direct antidote to grasping"}, {"source": "non-abiding", "target": "giving", "relation": {"en": "exemplified by", "zh": "由…示范"}, "evidence": "Non-attached giving is the sutra's primary example"}, {"source": "giving", "target": "karma", "relation": {"en": "generates limitless", "zh": "产生无量"}, "evidence": "Non-attached giving produces immeasurable merit"}, {"source": "giving", "target": "perfections", "relation": {"en": "is first of", "zh": "是…之首"}, "evidence": "Dana-paramita opens the six perfections"}, {"source": "attachment", "target": "dissolving-grasping", "relation": {"en": "dissolved by", "zh": "被…瓦解"}, "evidence": "The sutra's method is systematic dissolution of grasping"}, {"source": "dissolving-grasping", "target": "raft-metaphor", "relation": {"en": "illustrated by", "zh": "由…阐明"}, "evidence": "The raft metaphor shows teaching as tool, not object of grasping"}, {"source": "tathagata", "target": "dharma-body", "relation": {"en": "essentially is", "zh": "本质上是"}, "evidence": "The real Tathagata is the formless dharma-body"}, {"source": "tathagata", "target": "non-form", "relation": {"en": "cannot be seen through marks", "zh": "不可以相见"}, "evidence": "Cannot be seen by 32 marks"}, {"source": "dharma-body", "target": "emptiness", "relation": {"en": "is identical with", "zh": "与…同一"}, "evidence": "The dharma-body is emptiness itself"}, {"source": "perfections", "target": "karma", "relation": {"en": "transforms quality of", "zh": "转化…的质"}, "evidence": "Perfection makes action non-karmic in the binding sense"}, {"source": "three-thousandfold-world", "target": "ganges-sands", "relation": {"en": "paired with in scale metaphors", "zh": "与…配对为尺度比喻"}, "evidence": "Both used together to convey immeasurable scale"}, {"source": "three-thousandfold-world", "target": "prajna", "relation": {"en": "scale incomparable to", "zh": "尺度远小于"}, "evidence": "Even filling three-thousand worlds with jewels cannot match wisdom-merit"}, {"source": "kumarajiva", "target": "huineng", "relation": {"en": "made possible through", "zh": "经由…而成为可能"}, "evidence": "Without the translation, Huineng could not have heard the sutra"}, {"source": "huineng", "target": "non-abiding", "relation": {"en": "awakened by", "zh": "因…而开悟"}, "evidence": "'Abide nowhere' was the phrase that triggered his enlightenment"}, {"source": "huineng", "target": "chan-buddhism", "relation": {"en": "crystallized", "zh": "结晶为"}, "evidence": "Huineng's teaching became the Southern Chan tradition"}, {"source": "chan-buddhism", "target": "diamond-sutra", "relation": {"en": "rooted in", "zh": "根植于"}, "evidence": "Diamond Sutra is central to Chan curriculum"}, {"source": "chan-buddhism", "target": "prajna", "relation": {"en": "embodies as direct experience", "zh": "体现为直接经验"}, "evidence": "Chan is prajna without conceptual mediation"}, {"source": "raft-metaphor", "target": "attachment", "relation": {"en": "warns against even dharma-", "zh": "警告连法的执著也要防止"}, "evidence": "Even the teaching must be released after crossing"}, {"source": "unconditioned-dharmas", "target": "supreme-enlightenment", "relation": {"en": "characterizes", "zh": "特征性地描述"}, "evidence": "Supreme enlightenment is unconditioned"}, {"source": "subhuti", "target": "emptiness", "relation": {"en": "foremost in understanding", "zh": "解空第一"}, "evidence": "His title in the sangha"}, {"source": "non-form", "target": "four-marks", "relation": {"en": "transcends", "zh": "超越"}, "evidence": "Non-form means not grasping any of the four marks"}, {"source": "karma", "target": "non-abiding", "relation": {"en": "purified by", "zh": "被…净化"}, "evidence": "Non-attached action does not accumulate binding karma"}, {"source": "supreme-enlightenment", "target": "emptiness", "relation": {"en": "is empty of inherent existence", "zh": "无自性"}, "evidence": "No fixed dharma called supreme enlightenment"}, {"source": "ganges-sands", "target": "karma", "relation": {"en": "scales merit analogy", "zh": "衡量功德的比喻"}, "evidence": "As many merits as Ganges sands = immeasurable"}]}, "theme": {"name": "editorial", "bg_css": "#ebe6da", "ink": "#2a1f14", "accent": "#9a7a5a", "node_core": "#c8a06a", "node_edge": "#9a7a5a", "text_on_bg": "#2a1f14", "font_display": "Georgia, 'Songti SC', serif", "font_body": "Georgia, 'Songti SC', serif", "letterspacing": "0", "layout": "radial", "edge_style": "curved", "node_shape": "circle", "centrality_by": "solidity", "rationale_en": "", "rationale_zh": ""}};
+const G = DATA.graph, TH = DATA.theme;
+const NODES = G.nodes, EDGES = G.edges;
+const META = G.meta || {tour: [], foundational: []};
+const byId = {}; NODES.forEach(n => byId[n.id] = n);
+const FOUND = new Set(META.foundational || []);
+let lang = (G.lang_default === "zh") ? "zh" : "en";
+let cur = null, tourIdx = -1;
+
+document.documentElement.style.setProperty("--fd", TH.font_display);
+document.documentElement.style.setProperty("--fb", TH.font_body);
+document.body.style.color = TH.text_on_bg;
+document.getElementById("bgfill").style.background = TH.bg_css;
+document.getElementById("inspector").style.borderColor = TH.accent + "33";
+
+const NS="http://www.w3.org/2000/svg";
+const svg = document.getElementById("svg");
+const eg = document.getElementById("edges"), ng = document.getElementById("nodes");
+function el(t,a){ const e=document.createElementNS(NS,t); for(const k in a) e.setAttribute(k,a[k]); return e; }
+function nm(n,l){ const v=n.name||{}; return (l==="zh"?v.zh:v.en)||v.en||v.zh||n.id; }
+function sm(n,l){ const v=n.summary||{}; return (l==="zh"?v.zh:v.en)||v.en||v.zh||""; }
+function rel(e,l){ const v=e.relation||{}; return (l==="zh"?v.zh:v.en)||v.en||v.zh||""; }
+function relevance(n){ return (typeof n.relevance==="number")?n.relevance:0.7; }
+function pf(n,part,l){ const p=(n.profile||{})[part]; if(!p) return ""; return (l==="zh"?p.zh:p.en)||p.en||p.zh||""; }
+
+let W=1200,H=700,pos={};
+function computeLayout(){
+  const box=document.getElementById("graphbox").getBoundingClientRect();
+  W=Math.max(420,box.width); H=Math.max(360,box.height);
+  svg.setAttribute("viewBox",`0 0 ${W} ${H}`);
+  const CX=W/2, CY=H/2, spread=Math.min(W,H)*0.44;
+  const root=(META.tour&&META.tour[0])||(META.foundational&&META.foundational[0])||NODES[0].id;
+  pos={};
+  NODES.forEach((n,i)=>{const a=i/NODES.length*6.283;const r=spread*(0.35+(1-relevance(n))*0.65);pos[n.id]={x:CX+Math.cos(a)*r,y:CY+Math.sin(a)*r,vx:0,vy:0};});
+  if(TH.layout==="grid"){
+    const order=[...NODES].sort((a,b)=>relevance(b)-relevance(a));
+    const cols=Math.max(3,Math.round(Math.sqrt(NODES.length)*1.2));
+    const cw=W/(cols+1),rh=Math.min(H/(Math.ceil(NODES.length/cols)+1),120);
+    order.forEach((n,i)=>{const r=Math.floor(i/cols),c=i%cols;pos[n.id]={x:cw*(c+1)+(r%2)*20,y:rh*(r+1.2),vx:0,vy:0};});
+    drawAll();return;
+  }
+  pos[root]={x:CX,y:CY,vx:0,vy:0};
+  const ids=NODES.map(n=>n.id),repel=spread*spread*1.0,LL=spread*0.78;
+  for(let it=0;it<480;it++){
+    for(let i=0;i<ids.length;i++)for(let j=i+1;j<ids.length;j++){const a=pos[ids[i]],b=pos[ids[j]];let dx=a.x-b.x,dy=a.y-b.y,d=Math.hypot(dx,dy)||1,f=repel/(d*d);a.vx+=dx/d*f;a.vy+=dy/d*f;b.vx-=dx/d*f;b.vy-=dy/d*f;}
+    EDGES.forEach(e=>{const a=pos[e.source],b=pos[e.target];if(!a||!b)return;let dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy)||1,f=(d-LL)*0.013;a.vx+=dx/d*f;a.vy+=dy/d*f;b.vx-=dx/d*f;b.vy-=dy/d*f;});
+    ids.forEach(k=>{const n=pos[k],tr=spread*(0.28+(1-relevance(byId[k]))*0.72);let dx=n.x-CX,dy=n.y-CY,d=Math.hypot(dx,dy)||1;n.vx+=dx/d*(tr-d)*0.02;n.vy+=dy/d*(tr-d)*0.02;if(k===root){n.x=CX;n.y=CY;return;}n.x+=(n.vx*=0.8);n.y+=(n.vy*=0.8);const m=Math.min(W,H)*0.07,mb=Math.min(W,H)*0.14;n.x=Math.max(m,Math.min(W-m,n.x));n.y=Math.max(m,Math.min(H-mb,n.y));});
+  }
+  drawAll();
+}
+
+let edgeEls=[],nodeEls={};
+function drawAll(){
+  eg.innerHTML="";ng.innerHTML="";edgeEls=[];nodeEls={};
+  const base=Math.min(W,H),coreR=base*0.072,periR=base*0.022;
+  EDGES.forEach(e=>{const a=pos[e.source],b=pos[e.target];if(!a||!b)return;let d;
+    if(TH.edge_style==="straight"||TH.edge_style==="elbow"){d=`M${a.x},${a.y} L${b.x},${b.y}`;}
+    else{const mx=(a.x+b.x)/2,my=(a.y+b.y)/2,dx=b.x-a.x,dy=b.y-a.y,h=Math.hypot(dx,dy)||1,k=(TH.edge_style==="arc"?0.06:0.045)*base;const cx=mx-dy/h*k,cy=my+dx/h*k;d=`M${a.x},${a.y} Q${cx},${cy} ${b.x},${b.y}`;}
+    const p=el("path",{d,stroke:TH.node_edge,"stroke-width":"1","stroke-opacity":"0.18",fill:"none","stroke-linecap":"round"});p.dataset.s=e.source;p.dataset.t=e.target;eg.appendChild(p);edgeEls.push(p);});
+  NODES.forEach(n=>{const pt=pos[n.id];if(!pt)return;const isCore=FOUND.has(n.id),r=relevance(n);
+    const g=el("g",{transform:`translate(${pt.x},${pt.y})`});g.style.cursor="pointer";g.dataset.id=n.id;g.tabIndex=0;g.setAttribute("role","button");g.setAttribute("aria-label",nm(n,lang));
+    g.onclick=()=>select(n.id);g.onkeydown=(ev)=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();select(n.id);}};
+    if(TH.node_shape==="rounded_rect"){
+      const fp=isCore?base*0.022:base*0.017,label=nm(n,lang),w=Math.max(label.length*fp*0.62+24,base*0.1),h=fp*2.1;
+      if(r>0.85&&TH.centrality_by!=="size")g.appendChild(el("circle",{r:w*0.6,fill:"url(#halo)"}));
+      g.appendChild(el("rect",{x:-w/2,y:-h/2,width:w,height:h,rx:6,fill:TH.node_core,"fill-opacity":(0.14+r*0.34).toFixed(2),stroke:TH.accent,"stroke-opacity":(0.4+r*0.5).toFixed(2),"stroke-width":isCore?"1.4":"0.7"}));
+      const t=el("text",{"text-anchor":"middle","dominant-baseline":"central","font-family":TH.font_display,fill:TH.text_on_bg,"fill-opacity":(0.72+r*0.28).toFixed(2),"font-size":fp.toFixed(1),"letter-spacing":TH.letterspacing});t.textContent=label;g.appendChild(t);
+    } else {
+      const R=periR+r*(coreR-periR);
+      const ntype=n.type||"concept";
+      /* flat warm circle */
+      const c=el("circle",{r:R.toFixed(1),fill:TH.node_core,"fill-opacity":(0.50+r*0.40).toFixed(2),stroke:TH.ink,"stroke-opacity":(0.06+r*0.10).toFixed(2),"stroke-width":"0.8"});
+      g.appendChild(c);
+      /* type icon — simple geometric symbol */
+      const sc=R*0.36,sw=Math.max(0.6,R*0.068).toFixed(2);
+      const ia={stroke:TH.ink,"stroke-width":sw,"stroke-linecap":"round","stroke-linejoin":"round",fill:"none","stroke-opacity":"0.24"};
+      if(ntype==="theory"){
+        /* open book: two pages meeting at spine */
+        const bx=sc*0.72,by1=sc*0.50,by2=sc*0.68,bt=sc*0.70;
+        g.appendChild(el("path",Object.assign({},ia,{d:`M0,${-bt.toFixed(1)} L${-bx.toFixed(1)},${-by1.toFixed(1)} L${-bx.toFixed(1)},${by2.toFixed(1)} L0,${by2.toFixed(1)} L${bx.toFixed(1)},${by2.toFixed(1)} L${bx.toFixed(1)},${-by1.toFixed(1)} Z`})));
+        g.appendChild(el("line",Object.assign({},ia,{x1:"0",y1:(-bt).toFixed(1),x2:"0",y2:by2.toFixed(1)})));
+        g.appendChild(el("line",Object.assign({},ia,{"stroke-opacity":"0.12",x1:(-sc*0.55).toFixed(1),y1:(-sc*0.08).toFixed(1),x2:(-sc*0.08).toFixed(1),y2:(-sc*0.08).toFixed(1)})));
+      } else if(ntype==="method"){
+        /* three horizontal lines, middle widest */
+        [[0.58,-0.38],[0.68,0],[0.46,0.38]].forEach(([hw,fy])=>{
+          g.appendChild(el("line",Object.assign({},ia,{x1:(-sc*hw).toFixed(1),y1:(sc*fy).toFixed(1),x2:(sc*hw).toFixed(1),y2:(sc*fy).toFixed(1)})));
+        });
+      } else if(ntype==="tool"){
+        /* diamond */
+        g.appendChild(el("path",Object.assign({},ia,{d:`M0,${(-sc*0.72).toFixed(1)} L${(sc*0.62).toFixed(1)},0 L0,${(sc*0.72).toFixed(1)} L${(-sc*0.62).toFixed(1)},0 Z`})));
+      } else {
+        /* concept: outer ring + inner dot */
+        g.appendChild(el("circle",Object.assign({},ia,{r:(sc*0.65).toFixed(1)})));
+        g.appendChild(el("circle",{r:(sc*0.20).toFixed(1),fill:TH.ink,"fill-opacity":"0.18",stroke:"none"}));
+      }
+      /* label below the circle */
+      const fp=Math.min(base*0.016,R*0.52);
+      const label=nm(n,lang);
+      const t=el("text",{"text-anchor":"middle","font-family":TH.font_display,"fill":TH.ink,"fill-opacity":"0.80","font-size":fp.toFixed(1)});
+      t.setAttribute("y",(R+fp*1.35).toFixed(1));t.textContent=label;g.appendChild(t);
+    }
+    ng.appendChild(g);nodeEls[n.id]=g;});
+  if(cur)paint(cur);
+}
+
+const defs=document.getElementById("defs");
+(function(){const c=el("radialGradient",{id:"core",cx:"50%",cy:"50%",r:"50%"});
+  c.appendChild(el("stop",{offset:"0%","stop-color":"#ffffff","stop-opacity":"0.95"}));c.appendChild(el("stop",{offset:"55%","stop-color":TH.node_core}));c.appendChild(el("stop",{offset:"100%","stop-color":TH.ink,"stop-opacity":"0.6"}));defs.appendChild(c);
+  const h=el("radialGradient",{id:"halo",cx:"50%",cy:"50%",r:"50%"});h.appendChild(el("stop",{offset:"0%","stop-color":TH.accent,"stop-opacity":"0.45"}));h.appendChild(el("stop",{offset:"100%","stop-color":TH.accent,"stop-opacity":"0"}));defs.appendChild(h);
+  const f=el("filter",{id:"tshadow",x:"-40%",y:"-40%",width:"180%",height:"180%"});f.appendChild(el("feDropShadow",{dx:"0",dy:"0",stdDeviation:"3","flood-color":"#000000","flood-opacity":"0.92"}));defs.appendChild(f);})();
+
+function showEdgeLabels(id){
+  const elg=document.getElementById("elabels");elg.innerHTML="";
+  if(!id)return;
+  const base=Math.min(W,H),fp=base*0.0145;
+  EDGES.forEach(e=>{
+    if(e.source!==id&&e.target!==id)return;
+    const a=pos[e.source],b=pos[e.target];if(!a||!b)return;
+    const label=rel(e,lang);if(!label)return;
+    /* midpoint of the bezier curve (t=0.5 approximation: just lerp endpoints) */
+    const mx=(a.x+b.x)/2,my=(a.y+b.y)/2;
+    /* direction arrow: → if source==id, ← if target==id */
+    const arrow=e.source===id?" →":" ←";
+    const txt=label+arrow;
+    const tw=txt.length*fp*0.60+14;
+    const bg=el("rect",{x:(mx-tw/2).toFixed(1),y:(my-fp*0.92).toFixed(1),
+      width:tw.toFixed(1),height:(fp*1.7).toFixed(1),rx:"4",
+      fill:TH.bg_css,"fill-opacity":"0.92",
+      stroke:TH.accent,"stroke-opacity":"0.4","stroke-width":"0.5"});
+    const t=el("text",{"text-anchor":"middle","x":mx.toFixed(1),"y":(my+fp*0.52).toFixed(1),
+      "font-family":TH.font_body,"font-size":fp.toFixed(1),
+      fill:TH.ink,"fill-opacity":"0.80","letter-spacing":"0.025em"});
+    t.textContent=txt;
+    elg.appendChild(bg);elg.appendChild(t);
+  });
+}
+
+function paint(id){
+  /* build connected set for dimming unrelated nodes */
+  const conn=new Set([id]);
+  EDGES.forEach(e=>{if(e.source===id)conn.add(e.target);if(e.target===id)conn.add(e.source);});
+  Object.values(nodeEls).forEach(g=>{
+    const nid=g.dataset.id,nn=byId[nid],rr=relevance(nn);
+    const s=g.querySelector("circle:last-of-type, rect"),t=g.querySelector("text");if(!s)return;
+    if(nid===id){
+      s.setAttribute("stroke",TH.ink);s.setAttribute("stroke-opacity","0.90");s.setAttribute("stroke-width","2.4");
+      g.style.opacity="1";
+    } else if(conn.has(nid)){
+      s.setAttribute("stroke",TH.accent);s.setAttribute("stroke-opacity",(0.5+rr*0.4).toFixed(2));s.setAttribute("stroke-width","1.2");
+      g.style.opacity="1";
+    } else {
+      s.setAttribute("stroke",TH.accent);s.setAttribute("stroke-opacity",(0.1+rr*0.15).toFixed(2));s.setAttribute("stroke-width","0.6");
+      g.style.opacity="0.22";
+    }
+  });
+  edgeEls.forEach(p=>{const on=p.dataset.s===id||p.dataset.t===id;p.setAttribute("stroke-opacity",on?"0.75":"0.06");p.setAttribute("stroke-width",on?"2.0":"0.8");});
+  showEdgeLabels(id);
+}
+
+const STR={en:{tour:"start tour",next:"next ›",hint:"Tap any concept to read its full archive — what it is, why it matters, where it sits, and a key line. Or take the guided tour. ← → to step, F to present.",leg:"● solid = core   ○ faint = peripheral",search:"Search…",present:"⤢ present",what:"What it is",why:"Why it matters",position:"Its place in the system",rels:"Connections",src:"sources"},
+            zh:{tour:"开始引导",next:"下一 ›",hint:"点按任一概念，读它的完整档案——是什么、为何重要、处于何位、关键一句。或循引导徐行。← → 翻页，F 演示。",leg:"● 实者为本   ○ 淡者为末",search:"搜索…",present:"⤢ 演示",what:"是什么",why:"为何重要",position:"在体系中的位置",rels:"关联",src:"出处"}};
+
+function render(id){
+  const n=byId[id],s=STR[lang];paint(id);
+  const what=pf(n,"what",lang)||sm(n,lang), why=pf(n,"why",lang), position=pf(n,"position",lang), quote=pf(n,"quote",lang), qsrc=(n.profile||{}).quote_source||"";
+  const conns=EDGES.filter(e=>e.source===id||e.target===id).map(e=>{const o=e.source===id?e.target:e.source,d=e.source===id?"→":"←";return `<span class="rel" data-go="${o}">${rel(e,lang)} ${d} ${nm(byId[o],lang)}</span>`;}).join("");
+  const altName = lang==="en" ? ((n.name||{}).zh||"") : ((n.name||{}).en||"");
+  const typeLabel={theory:lang==="zh"?"根本理念":"major work",method:lang==="zh"?"方法":"method",tool:lang==="zh"?"工具":"tool",concept:lang==="zh"?"概念":"concept"}[n.type||"concept"];
+  const diff=n.difficulty||"intermediate";
+  const CHAP_EN={foundational:"Chapter I · Foundations",intermediate:"Chapter II · Core Ideas",advanced:"Chapter III · Deep Cuts"};
+  const CHAP_ZH={foundational:"第一章 · 基础",intermediate:"第二章 · 核心",advanced:"第三章 · 深入"};
+  const chapLabel=(lang==="zh"?CHAP_ZH:CHAP_EN)[diff]||"";
+  const tourPos=(META.tour||[]).indexOf(id);
+  const posLabel=tourPos>=0?`${tourPos+1} / ${(META.tour||[]).length}`:"";
+  const kicker=`${chapLabel}${posLabel?" — #"+posLabel:""} · ${typeLabel}`;
+  let html = `<div class="kicker">${kicker}</div><div class="nm">${nm(n,lang)}</div><div class="alt">${altName}</div><div class="archive">`;
+  if(what){ html+=`<div class="seg-label">${s.what}</div><div class="seg-body">${what}</div>`; }
+  if(why){ html+=`<div class="seg-label">${s.why}</div><div class="seg-body">${why}</div>`; }
+  if(quote){ html+=`<div class="quote" style="border-color:${TH.accent}66"><div class="q">${quote}</div>${qsrc?`<div class="qs">— ${qsrc}</div>`:""}</div>`; }
+  if(position){ html+=`<div class="seg-label">${s.position}</div><div class="seg-body">${position}</div>`; }
+  html+=`<div class="seg-label">${s.rels}</div><div class="rels">${conns}</div>`;
+  const src=(n.sources||[]).filter(Boolean);
+  if(src.length){ const lbl = (G.source_mode==="corpus") ? (lang==="zh"?"出自你的文档":"from your documents") : s.src; html+=`<div class="qs" style="margin-top:14px">${lbl}: ${src.join(" · ")}</div>`; }
+  html+=`</div>`;
+  const insp=document.getElementById("inspector"); insp.innerHTML=html;
+  insp.querySelectorAll(".rel").forEach(r=>r.onclick=()=>select(r.dataset.go));
+  insp.scrollTop=0;
+}
+
+function buildControls(){
+  const c=document.getElementById("controls");c.innerHTML="";
+  const seg=document.createElement("div");seg.className="seg";seg.style.borderColor=TH.accent+"66";
+  const en=document.createElement("button"),zh=document.createElement("button");en.textContent="EN";zh.textContent="中";en.id="b-en";zh.id="b-zh";en.onclick=()=>setLang("en");zh.onclick=()=>setLang("zh");
+  seg.appendChild(en);seg.appendChild(zh);c.appendChild(seg);
+  const tour=document.createElement("button");tour.className="pill";tour.id="b-tour";tour.style.borderColor=TH.accent+"66";tour.style.color=TH.text_on_bg;tour.onclick=()=>doTour(1);c.appendChild(tour);
+  const prev=document.createElement("button");prev.className="pill";prev.textContent="‹";prev.style.borderColor=TH.accent+"66";prev.style.color=TH.text_on_bg;prev.onclick=()=>doTour(-1);c.appendChild(prev);
+  const search=document.createElement("input");search.type="text";search.id="search";search.style.borderColor=TH.accent+"66";search.style.color=TH.text_on_bg;search.oninput=(e)=>doSearch(e.target.value);c.appendChild(search);
+  const pos=document.createElement("span");pos.className="pos";pos.id="pos";c.appendChild(pos);
+}
+function setLang(l){
+  lang=l;const en=document.getElementById("b-en"),zh=document.getElementById("b-zh");
+  en.style.background=l==="en"?TH.accent:"transparent";en.style.color=l==="en"?TH.ink:TH.text_on_bg;
+  zh.style.background=l==="zh"?TH.accent:"transparent";zh.style.color=l==="zh"?TH.ink:TH.text_on_bg;
+  document.getElementById("b-tour").textContent=tourIdx<0?STR[l].tour:STR[l].next;
+  document.getElementById("search").placeholder=STR[l].search;document.getElementById("legend").textContent=STR[l].leg;document.getElementById("presentBtn").textContent=STR[l].present;
+  Object.entries(nodeEls).forEach(([id,g])=>{const t=g.querySelector("text");if(t)t.textContent=nm(byId[id],lang);});
+  document.getElementById("h-expert").textContent=(G.expert||{})[lang]||(G.expert||{}).en||"";
+  document.getElementById("h-domain").textContent=(G.domain||{})[lang]||(G.domain||{}).en||"";
+  if(cur)render(cur);else document.getElementById("inspector").innerHTML=`<div class="hint">${STR[l].hint}</div>`;
+}
+function select(id){cur=id;tourIdx=-1;document.getElementById("pos").textContent="";document.getElementById("b-tour").textContent=STR[lang].tour;render(id);}
+function doTour(dir){const tour=META.tour||[];if(!tour.length)return;if(dir>0&&tourIdx<0)tourIdx=0;else tourIdx=Math.max(0,Math.min(tour.length-1,tourIdx+dir));cur=tour[tourIdx];document.getElementById("pos").textContent=`${tourIdx+1} / ${tour.length}`;document.getElementById("b-tour").textContent=STR[lang].next;render(cur);}
+function doSearch(q){q=(q||"").trim().toLowerCase();Object.entries(nodeEls).forEach(([id,g])=>{const n=byId[id];const hay=((n.name||{}).en||"")+" "+((n.name||{}).zh||"")+" "+sm(n,lang)+" "+pf(n,"what",lang);g.style.opacity=(!q||hay.toLowerCase().includes(q))?"1":"0.18";});}
+
+const pb=document.getElementById("presentBtn");pb.style.borderColor=TH.accent+"66";pb.style.color=TH.text_on_bg;pb.onclick=togglePresent;
+function togglePresent(){if(!document.fullscreenElement){document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();document.body.classList.add("present");}else{document.exitFullscreen&&document.exitFullscreen();document.body.classList.remove("present");}setTimeout(computeLayout,120);}
+document.addEventListener("fullscreenchange",()=>{if(!document.fullscreenElement)document.body.classList.remove("present");setTimeout(computeLayout,120);});
+document.addEventListener("keydown",(e)=>{if(e.target.tagName==="INPUT")return;if(e.key==="ArrowRight")doTour(1);else if(e.key==="ArrowLeft")doTour(-1);else if(e.key==="f"||e.key==="F")togglePresent();else if(e.key==="Escape"&&document.body.classList.contains("present"))document.body.classList.remove("present");});
+let rT;window.addEventListener("resize",()=>{clearTimeout(rT);rT=setTimeout(computeLayout,150);});
+
+document.getElementById("svg-desc").textContent="Concept graph of "+((G.expert||{}).en||"");
+const rat=(lang==="zh"?TH.rationale_zh:TH.rationale_en)||TH.rationale_en||"";
+document.getElementById("rationale").textContent=rat?("Theme · "+TH.name+" — "+rat):("Theme · "+TH.name);
+
+buildControls();computeLayout();setLang(lang);
+</script>
+</body>
+</html>

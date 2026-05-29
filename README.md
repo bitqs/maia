@@ -94,7 +94,10 @@ Each graph is fully bilingual — the **EN / 中** toggle switches labels, inspe
 
 </details>
 
-> Open any `.html` · **F** to present · **← →** to walk the tour · **EN / 中** to switch worlds
+> **Live demos** — open in browser, no download:
+> [Laozi — Dao De Jing](https://bitqs.github.io/maia/daodejing.html) · [Diamond Sutra](https://bitqs.github.io/maia/jingangjing.html) · [Shot Editing](https://bitqs.github.io/maia/jing-tou-jian-ji.html)
+
+> **F** to present · **← →** to walk the tour · **EN / 中** to switch worlds
 
 ## Quickstart
 
@@ -257,7 +260,10 @@ Maia 给你中间那个东西：**一张能教会你的地图**。概念按重�
 
 </details>
 
-> 打开任意 `.html` · **F** 演示 · **← →** 步进引导 · **EN / 中** 切换世界
+> **在线 Demo** — 浏览器直接打开，无需下载：
+> [老子《道德经》](https://bitqs.github.io/maia/daodejing.html) · [金刚经](https://bitqs.github.io/maia/jingangjing.html) · [镜头剪辑](https://bitqs.github.io/maia/jing-tou-jian-ji.html)
+
+> **F** 演示 · **← →** 步进引导 · **EN / 中** 切换世界
 
 ## 快速开始
 
