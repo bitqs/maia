@@ -51,26 +51,28 @@ convictions that make it *teach*:
 
 ## Quickstart
 
+**As a Claude Code plugin** (recommended — no API key setup needed):
+
+```bash
+/plugins install github:bitqs/maia
+```
+
+Then in any Claude Code session:
+
+```
+/maia:build 道德经
+/maia:build Stoicism
+/maia:build --corpus ./my-notes/ --title "My Reading"
+```
+
+**Standalone** (Python):
+
 ```bash
 git clone https://github.com/bitqs/maia && cd maia/maia-plugin/backend
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-export ANTHROPIC_API_KEY=sk-...
-```
-
-**Map a subject** (Maia researches it):
-
-```bash
-python build.py --expert "Laozi Daodejing" --domain "core concepts" --lang en
-python export_html.py ../output/graph.json ../output/theme.json daodejing.html
+python export_html.py ../output/graph.json daodejing.html
 open daodejing.html
-```
-
-**Map your own documents** (Maia reads them):
-
-```bash
-python build_corpus.py --paths ./notes ./book.pdf --title "My Reading on Stoicism"
-python export_html.py ../output/graph.json ../output/theme.json mine.html
 ```
 
 Don't specify a depth and Maia decides one from the subject — a single classic
@@ -117,16 +119,30 @@ A few design choices worth calling out:
 
 ## Gallery
 
-The same engine, three subjects, three identities it chose for itself:
+<table>
+<tr>
+<td align="center" width="50%">
 
-| Subject | Identity | Why |
-|---|---|---|
-| Laozi — *Daodejing* | **ink-wash** — warm dark paper, brush serif, water-curved lines | classical · eastern · intuitive · organic |
-| Quantum Mechanics | **blueprint** — slate-navy, mono type, grid, straight edges | modern · technical · rational · geometric |
-| Renaissance Painting | **editorial** — warm gallery white, transitional serif, arcs | classical · western · humanistic |
+**道德经** · *Tao Te Ching*
 
-> Worked examples ship in `examples_*.json`. Open any exported `.html` and press
-> **F** to present; **← →** to walk the tour; **EN / 中** to switch worlds.
+<img src="docs/daodejing-preview.png" alt="道德经 knowledge graph" width="100%"/>
+
+Ink-wash palette — warm dark ground, 24 concepts from Dao to Wu-wei, bilingual tour from foundational to advanced.
+
+</td>
+<td align="center" width="50%">
+
+**金刚经** · *Diamond Sutra*
+
+<img src="docs/jingangjing-preview.png" alt="金刚经 knowledge graph" width="100%"/>
+
+Same engine, same aesthetic — 24 concepts from Prajna to Chan Buddhism, structured around the sutra's core dialectic of negation.
+
+</td>
+</tr>
+</table>
+
+> Open any exported `.html` and press **F** to present · **← →** to walk the tour · **EN / 中** to switch language worlds.
 
 ## Project layout
 
