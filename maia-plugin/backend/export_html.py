@@ -20,13 +20,13 @@ from pathlib import Path
 
 
 DEFAULT_THEME = {
-    "name": "warm-paper",
-    "bg_css": "radial-gradient(ellipse 120% 90% at 38% 32%, #26241d 0%, #1a1813 55%, #131109 100%)",
-    "ink": "#1a1813",
-    "accent": "#c9bfa6",
-    "node_core": "#d8c89a",
-    "node_edge": "#c9bfa6",
-    "text_on_bg": "#f3e9cf",
+    "name": "editorial",
+    "bg_css": "#ebe6da",
+    "ink": "#2a1f14",
+    "accent": "#9a7a5a",
+    "node_core": "#c8a06a",
+    "node_edge": "#9a7a5a",
+    "text_on_bg": "#2a1f14",
     "font_display": "Georgia, 'Songti SC', serif",
     "font_body": "Georgia, 'Songti SC', serif",
     "letterspacing": "0",
@@ -65,10 +65,10 @@ TEMPLATE = r"""<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>__TITLE__</title>
 <style>
-  :root { color-scheme: dark; }
+  :root { color-scheme: light; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; width: 100%; overflow: hidden; }
-  body { background: #0c0b08; font-family: var(--fb); }
+  body { background: #ebe6da; font-family: var(--fb); }
   .sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
 
   #wrap { position: relative; width: 100vw; height: 100vh; display: flex; flex-direction: column; }
@@ -224,40 +224,14 @@ function drawAll(){
       const t=el("text",{"text-anchor":"middle","dominant-baseline":"central","font-family":TH.font_display,fill:TH.text_on_bg,"fill-opacity":(0.72+r*0.28).toFixed(2),"font-size":fp.toFixed(1),"letter-spacing":TH.letterspacing});t.textContent=label;g.appendChild(t);
     } else {
       const R=periR+r*(coreR-periR);
-      const ntype=n.type||"concept";
-      /* type palette — amber for major works, sage for methods, cream for concepts */
-      const TFILL={theory:"#b8872a",method:"#5e8878",tool:"#7a7858"};
-      const TSTR={theory:"#e8c060",method:"#88b8a0",tool:"#a8a878"};
-      const TLBL={theory:"#f0d580",method:"#b0d8c4",tool:"#d0d0a8"};
-      const tfill=TFILL[ntype],tstr=TSTR[ntype],tlbl=TLBL[ntype];
-      /* halo: relevance-gated soft glow */
-      if(r>0.72)g.appendChild(el("circle",{r:(R*1.7).toFixed(1),fill:"url(#halo)"}));
-      const c=el("circle",{r:R.toFixed(1)});
-      if(tfill){
-        /* typed node: solid color, relevance drives opacity */
-        c.setAttribute("fill",tfill);
-        c.setAttribute("fill-opacity",(0.18+r*0.72).toFixed(2));
-        c.setAttribute("stroke",tstr);
-      } else if(isCore){
-        /* high-relevance concept: radial gradient, brighter stroke */
-        c.setAttribute("fill","url(#core)");
-        c.setAttribute("stroke",TH.text_on_bg);
-      } else {
-        /* peripheral concept: muted cream, relevance-scaled */
-        c.setAttribute("fill",TH.node_core);
-        c.setAttribute("fill-opacity",(0.1+r*0.72).toFixed(2));
-        c.setAttribute("stroke",TH.accent);
-      }
-      c.setAttribute("stroke-opacity",(0.28+r*0.62).toFixed(2));
-      c.setAttribute("stroke-width",ntype==="theory"?"2.0":isCore?"1.6":"0.9");
+      /* flat warm circle — opacity tracks relevance, no type-specific palette */
+      const c=el("circle",{r:R.toFixed(1),fill:TH.node_core,"fill-opacity":(0.50+r*0.40).toFixed(2),stroke:TH.ink,"stroke-opacity":(0.06+r*0.10).toFixed(2),"stroke-width":"0.8"});
       g.appendChild(c);
-      /* label: white halo technique — dark stroke behind + bright fill on top */
-      const fp=Math.min(base*0.017, R*0.50);
+      /* label below the circle */
+      const fp=Math.min(base*0.016,R*0.52);
       const label=nm(n,lang);
-      const tH=el("text",{"text-anchor":"middle","dominant-baseline":"central","font-family":TH.font_display,"letter-spacing":"0.02em","stroke":"#0a0806","stroke-width":"4","stroke-linejoin":"round","stroke-opacity":"0.92","fill":"none"});
-      tH.setAttribute("y","0");tH.setAttribute("font-size",fp.toFixed(1));tH.textContent=label;g.appendChild(tH);
-      const t=el("text",{"text-anchor":"middle","dominant-baseline":"central","font-family":TH.font_display,"letter-spacing":"0.02em","fill":"#f5efe2","fill-opacity":"0.97"});
-      t.setAttribute("y","0");t.setAttribute("font-size",fp.toFixed(1));t.textContent=label;g.appendChild(t);
+      const t=el("text",{"text-anchor":"middle","font-family":TH.font_display,"fill":TH.ink,"fill-opacity":"0.80","font-size":fp.toFixed(1)});
+      t.setAttribute("y",(R+fp*1.35).toFixed(1));t.textContent=label;g.appendChild(t);
     }
     ng.appendChild(g);nodeEls[n.id]=g;});
   if(cur)paint(cur);
@@ -285,11 +259,11 @@ function showEdgeLabels(id){
     const tw=txt.length*fp*0.60+14;
     const bg=el("rect",{x:(mx-tw/2).toFixed(1),y:(my-fp*0.92).toFixed(1),
       width:tw.toFixed(1),height:(fp*1.7).toFixed(1),rx:"4",
-      fill:"#0e0c09","fill-opacity":"0.88",
+      fill:TH.bg_css,"fill-opacity":"0.92",
       stroke:TH.accent,"stroke-opacity":"0.4","stroke-width":"0.5"});
     const t=el("text",{"text-anchor":"middle","x":mx.toFixed(1),"y":(my+fp*0.52).toFixed(1),
       "font-family":TH.font_body,"font-size":fp.toFixed(1),
-      fill:TH.accent,"fill-opacity":"0.95","letter-spacing":"0.025em"});
+      fill:TH.ink,"fill-opacity":"0.80","letter-spacing":"0.025em"});
     t.textContent=txt;
     elg.appendChild(bg);elg.appendChild(t);
   });
@@ -303,7 +277,7 @@ function paint(id){
     const nid=g.dataset.id,nn=byId[nid],rr=relevance(nn);
     const s=g.querySelector("circle:last-of-type, rect"),t=g.querySelector("text");if(!s)return;
     if(nid===id){
-      s.setAttribute("stroke",TH.text_on_bg);s.setAttribute("stroke-opacity","1");s.setAttribute("stroke-width","2.4");
+      s.setAttribute("stroke",TH.ink);s.setAttribute("stroke-opacity","0.90");s.setAttribute("stroke-width","2.4");
       g.style.opacity="1";
     } else if(conn.has(nid)){
       s.setAttribute("stroke",TH.accent);s.setAttribute("stroke-opacity",(0.5+rr*0.4).toFixed(2));s.setAttribute("stroke-width","1.2");
