@@ -11,58 +11,38 @@ Export a Maia graph JSON to a self-contained HTML file and open it in the browse
 ## Step 1 — Locate the plugin root
 
 ```bash
-SKILL_REAL=$(realpath ~/.agents/skills/maia:view 2>/dev/null || readlink -f ~/.agents/skills/maia:view 2>/dev/null || echo "")
-PLUGIN_ROOT=""
-for candidate in \
-  "/Users/$USER/.claude/plugins/cache/maia/maia/1.0.0" \
-  "$HOME/.maia-plugin" \
-  "$([ -n "$SKILL_REAL" ] && cd "$SKILL_REAL/../.." 2>/dev/null && pwd || echo "")"; do
-  if [ -n "$candidate" ] && [ -f "$candidate/.claude-plugin/plugin.json" ]; then
-    PLUGIN_ROOT="$candidate"
-    break
-  fi
-done
+PLUGIN_ROOT="$HOME/.claude/plugins/cache/maia/maia/1.0.0"
+[ -f "$PLUGIN_ROOT/.claude-plugin/plugin.json" ] || { echo "Plugin root not found. Run /maia:build first."; exit 1; }
+BACKEND="$PLUGIN_ROOT/backend"
+OUTPUT="$PLUGIN_ROOT/output"
 ```
 
 ## Step 2 — Resolve graph and output paths
 
 From `$ARGUMENTS`:
 - If a `.json` path is given, use it as `GRAPH`
-- Otherwise, use the most recently modified `*.json` in `$PLUGIN_ROOT/output/` that is not a `theme.json`:
+- Otherwise, use the most recently modified `*.json` in `$OUTPUT/` that is not `theme.json`:
   ```bash
-  GRAPH=$(ls -t "$PLUGIN_ROOT/output/"*.json 2>/dev/null | grep -v theme.json | head -1)
+  GRAPH=$(ls -t "$OUTPUT/"*.json 2>/dev/null | grep -v theme.json | head -1)
   ```
 
 - If `--out <path>` is given, use that as `HTML_OUT`
-- Otherwise derive from the graph filename: `$PLUGIN_ROOT/output/<stem>.html`
+- Otherwise derive from the graph filename: `$OUTPUT/<stem>.html`
 
 If no graph is found, tell the user:
 > No graph found. Run `/maia:build <topic>` first.
 
-Also locate the matching `theme.json`:
-```bash
-THEME_DIR=$(dirname "$GRAPH")
-THEME="$THEME_DIR/theme.json"
-[ -f "$THEME" ] || THEME=""
-```
-
-## Step 3 — Activate venv
+## Step 3 — Check venv
 
 ```bash
-source "$PLUGIN_ROOT/backend/.venv/bin/activate"
+VENV="$BACKEND/.venv"
+[ -f "$VENV/bin/python" ] || { echo "Environment not set up. Run /maia:build first."; exit 1; }
 ```
-
-If the venv doesn't exist, tell the user to run `/maia:build` first (it sets up the environment).
 
 ## Step 4 — Export
 
 ```bash
-cd "$PLUGIN_ROOT/backend"
-if [ -n "$THEME" ]; then
-  python export_html.py "$GRAPH" "$THEME" "$HTML_OUT"
-else
-  python export_html.py "$GRAPH" "$HTML_OUT"
-fi
+cd "$BACKEND" && .venv/bin/python export_html.py "$GRAPH" "$HTML_OUT"
 ```
 
 ## Step 5 — Open

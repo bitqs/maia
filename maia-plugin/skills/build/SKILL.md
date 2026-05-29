@@ -24,7 +24,7 @@ If no arguments given, ask:
 ## Step 2 — Locate plugin root
 
 ```bash
-PLUGIN_ROOT="/Users/$USER/.claude/plugins/cache/maia/maia/1.0.0"
+PLUGIN_ROOT="$HOME/.claude/plugins/cache/maia/maia/1.0.0"
 [ -f "$PLUGIN_ROOT/.claude-plugin/plugin.json" ] || { echo "Plugin root not found"; exit 1; }
 BACKEND="$PLUGIN_ROOT/backend"
 OUTPUT="$PLUGIN_ROOT/output"
