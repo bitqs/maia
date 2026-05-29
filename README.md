@@ -119,30 +119,57 @@ A few design choices worth calling out:
 
 ## Gallery
 
+Each graph is bilingual — the **EN / 中** toggle in the top bar switches the entire map: labels, inspector text, captions, and tour narration. Two languages, two world-views, one graph.
+
+<details open>
+<summary><strong>English</strong></summary>
+
 <table>
 <tr>
 <td align="center" width="50%">
 
-**道德经** · *Tao Te Ching*
+**Laozi — Dao De Jing**
 
-<img src="docs/daodejing-preview.png" alt="道德经 knowledge graph" width="100%"/>
-
-Ink-wash palette — warm dark ground, 24 concepts from Dao to Wu-wei, bilingual tour from foundational to advanced.
+<img src="docs/daodejing-en.png" alt="Dao De Jing knowledge graph (EN)" width="100%"/>
 
 </td>
 <td align="center" width="50%">
 
-**金刚经** · *Diamond Sutra*
+**Diamond Sutra**
 
-<img src="docs/jingangjing-preview.png" alt="金刚经 knowledge graph" width="100%"/>
-
-Same engine, same aesthetic — 24 concepts from Prajna to Chan Buddhism, structured around the sutra's core dialectic of negation.
+<img src="docs/jingangjing-en.png" alt="Diamond Sutra knowledge graph (EN)" width="100%"/>
 
 </td>
 </tr>
 </table>
 
-> Open any exported `.html` and press **F** to present · **← →** to walk the tour · **EN / 中** to switch language worlds.
+</details>
+
+<details>
+<summary><strong>中文</strong></summary>
+
+<table>
+<tr>
+<td align="center" width="50%">
+
+**老子《道德经》**
+
+<img src="docs/daodejing-zh.png" alt="道德经知识图谱（中文）" width="100%"/>
+
+</td>
+<td align="center" width="50%">
+
+**金刚经**
+
+<img src="docs/jingangjing-zh.png" alt="金刚经知识图谱（中文）" width="100%"/>
+
+</td>
+</tr>
+</table>
+
+</details>
+
+> Open any exported `.html` · **F** to present · **← →** to walk the tour · **EN / 中** to switch language worlds
 
 ## Project layout
 
