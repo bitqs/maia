@@ -1,0 +1,1442 @@
+{
+  "schema": "bilingual-v2",
+  "expert": {
+    "en": "Shot Editing",
+    "zh": "镜头剪辑"
+  },
+  "domain": {
+    "en": "core concepts",
+    "zh": "核心概念"
+  },
+  "nodes": [
+    {
+      "id": "the-cut",
+      "name": {
+        "en": "The Cut",
+        "zh": "剪切点"
+      },
+      "type": "concept",
+      "summary": {
+        "en": "The fundamental unit of film editing: the instantaneous join between the last frame of one shot and the first frame of the next.",
+        "zh": "电影剪辑的基本单元：一个镜头最后一帧与下一个镜头第一帧之间的瞬间衔接。"
+      },
+      "tags": [
+        {
+          "en": "foundational",
+          "zh": "基础"
+        }
+      ],
+      "difficulty": "foundational",
+      "relevance": 1.0,
+      "sources": [
+        "https://www.studiobinder.com/blog/what-is-film-editing-definition/"
+      ],
+      "depth": 0,
+      "aliases": [],
+      "explored_by": "main",
+      "profile": {
+        "what": {
+          "en": "A cut is the direct, immediate transition from one shot to the next — no dissolve, no fade, just a hard splice. It is the editor's primary tool and the atom of all cinematic time.",
+          "zh": "剪切是从一个镜头直接切换到另一个镜头的瞬间过渡——无叠化、无淡入淡出，只是硬性拼接。这是剪辑师最核心的工具，也是所有电影时间的最小单元。"
+        },
+        "why": {
+          "en": "The cut is what makes cinema possible as a language. Without it, film would be mere recorded theater. The decision of where to cut — on which frame — shapes emotion, pacing, meaning, and the viewer's sense of continuous reality.",
+          "zh": "剪切使电影成为一门语言。没有剪切，电影只是被记录的舞台剧。剪在哪一帧的决定，塑造了情感、节奏、意义，以及观众对连续现实的感知。"
+        },
+        "position": {
+          "en": "The cut is the primitive upon which all editing theory is built. Continuity editing and montage are both systems for organizing cuts — they differ in what meaning they assign to the junction between shots.",
+          "zh": "剪切点是所有剪辑理论的基础原语。连续性剪辑和蒙太奇都是组织剪切的系统——它们的区别在于赋予镜头衔接处什么样的意义。"
+        },
+        "quote": {
+          "en": "\"The expressive power of editing resides in the cut itself — the join, the splice, the moment of transition from one image to the next.\"",
+          "zh": "「剪辑的表达力就蕴藏在剪切本身——那个接点、拼接处、从一个画面过渡到下一个的瞬间。」"
+        },
+        "quote_source": "Walter Murch, In the Blink of an Eye"
+      }
+    },
+    {
+      "id": "continuity-editing",
+      "name": {
+        "en": "Continuity Editing",
+        "zh": "连续性剪辑"
+      },
+      "type": "theory",
+      "summary": {
+        "en": "The dominant Hollywood editing system: matching time, space, and action across cuts to sustain the illusion of a seamless, continuous reality.",
+        "zh": "好莱坞主流剪辑体系：在剪切之间匹配时间、空间和动作，维持无缝连续现实的幻觉。"
+      },
+      "tags": [
+        {
+          "en": "system",
+          "zh": "系统"
+        },
+        {
+          "en": "Hollywood",
+          "zh": "好莱坞"
+        }
+      ],
+      "difficulty": "foundational",
+      "relevance": 0.95,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Continuity_editing",
+        "https://www.lucidlink.com/blog/editing-techniques"
+      ],
+      "depth": 0,
+      "aliases": [
+        "invisible editing"
+      ],
+      "explored_by": "main",
+      "profile": {
+        "what": {
+          "en": "Continuity editing is a system of conventions — the 180-degree rule, eyeline match, match on action, establishing-shot-then-closeup — designed to stitch multiple shots into a scene that feels spatially and temporally coherent. The goal is transparency: the edit should be felt but never seen.",
+          "zh": "连续性剪辑是一套惯例体系——180度规则、视线匹配、动作匹配、定场镜头先于特写——旨在将多个镜头缝合成一个在空间和时间上感觉连贯的场景。目标是透明：剪辑应该被感受到，但绝不应该被看见。"
+        },
+        "why": {
+          "en": "Without continuity editing, the viewer is constantly pulled out of the story by disorienting jumps in space or time. Continuity editing creates the narrative container within which emotion, character, and story can operate.",
+          "zh": "没有连续性剪辑，观众会不断被空间或时间上令人迷失的跳跃拉出故事。连续性剪辑创造了叙事容器，情感、人物和故事可以在其中运作。"
+        },
+        "position": {
+          "en": "Continuity editing is the bedrock grammar of commercial cinema. It depends on: the 180-degree rule for spatial orientation; eyeline match for perceptual coherence; match on action for temporal flow. Montage theory was developed partly in opposition to it.",
+          "zh": "连续性剪辑是商业电影的基础语法。它依赖：180度规则提供空间方向感；视线匹配提供感知连贯性；动作匹配提供时间流动感。蒙太奇理论的发展部分正是对它的反叛。"
+        },
+        "quote": {
+          "en": "\"Continuity editing matches time, space and action across cuts to create a seamless flow — a linear, logical progression, shot to shot and scene to scene, constantly orienting the viewer.\"",
+          "zh": "「连续性剪辑在剪切之间匹配时间、空间和动作，创造无缝流动——线性的、逻辑的推进，从镜头到镜头、从场景到场景，持续为观众提供方向感。」"
+        },
+        "quote_source": "LucidLink, 17 Foundational Editing Techniques"
+      }
+    },
+    {
+      "id": "montage",
+      "name": {
+        "en": "Montage",
+        "zh": "蒙太奇"
+      },
+      "type": "theory",
+      "summary": {
+        "en": "The theory that meaning emerges not from individual shots but from their collision — two images placed together create a third idea that neither contains alone.",
+        "zh": "意义不来自单个镜头，而来自镜头的碰撞——两个画面并置产生第三层含义，这是苏联电影的奠基性理论。"
+      },
+      "tags": [
+        {
+          "en": "Soviet cinema",
+          "zh": "苏联电影"
+        },
+        {
+          "en": "theory",
+          "zh": "理论"
+        }
+      ],
+      "difficulty": "foundational",
+      "relevance": 0.95,
+      "sources": [
+        "https://qzcut.com/2023/11/filmtheory/830/",
+        "https://www.studiobinder.com/blog/what-is-film-editing-definition/"
+      ],
+      "depth": 0,
+      "aliases": [
+        "蒙太奇理论"
+      ],
+      "explored_by": "main",
+      "profile": {
+        "what": {
+          "en": "Montage (from French montage, 'assembly') is the principle that juxtaposing two shots creates a meaning beyond either shot alone. Eisenstein codified five types: metric, rhythmic, tonal, overtonal, and intellectual. It deliberately embraces discontinuity to generate ideas.",
+          "zh": "蒙太奇（源自法语montage，意为'组装'）是这样一个原则：并置两个镜头能产生超越任一镜头单独含义的意义。爱森斯坦将其编纂为五种类型：度量、节奏、调性、超调性和理性蒙太奇。它刻意拥抱不连续性以产生思想。"
+        },
+        "why": {
+          "en": "Montage revealed that editing is not merely assembly but authorship. The editor, by choosing which images to place next to which, generates meaning, emotion, and argument. This insight made the editor a co-author of the film.",
+          "zh": "蒙太奇揭示了剪辑不仅仅是组装，而是创作。剪辑师通过选择哪些画面放在哪些画面旁边，产生意义、情感和论点。这一洞见使剪辑师成为电影的共同创作者。"
+        },
+        "position": {
+          "en": "Montage is the theoretical counterpart to continuity editing. Where continuity editing suppresses awareness of cuts, montage exploits those cuts as the primary site of meaning. The Kuleshov effect is its foundational demonstration.",
+          "zh": "蒙太奇是连续性剪辑的理论对立面。连续性剪辑压制观众对剪切的感知，而蒙太奇将这些剪切作为意义产生的主要场所加以利用。库里肖夫效应是其基础性演示。"
+        },
+        "quote": {
+          "en": "\"The juxtaposition of two separate shots by splicing them together resembles not so much a simple sum of one shot plus another as it does a creation.\" — Eisenstein",
+          "zh": "「将两个独立镜头拼接在一起的并置，与其说是一个镜头加另一个镜头的简单相加，不如说是一种创造。」——谢尔盖·爱森斯坦"
+        },
+        "quote_source": "Eisenstein, Film Form (1949)"
+      }
+    },
+    {
+      "id": "kuleshov-effect",
+      "name": {
+        "en": "Kuleshov Effect",
+        "zh": "库里肖夫效应"
+      },
+      "type": "theory",
+      "summary": {
+        "en": "The discovery that the same shot of an actor's neutral face reads differently when cut next to different images — proof that editing creates meaning relationally, not absolutely.",
+        "zh": "同一个演员面无表情的镜头，与不同画面剪辑在一起时，观众会读出不同含义——证明剪辑产生意义是关系性的，而非绝对的。"
+      },
+      "tags": [
+        {
+          "en": "experiment",
+          "zh": "实验"
+        },
+        {
+          "en": "Soviet cinema",
+          "zh": "苏联电影"
+        }
+      ],
+      "difficulty": "intermediate",
+      "relevance": 0.78,
+      "sources": [
+        "https://qzcut.com/2023/11/filmtheory/830/"
+      ],
+      "depth": 1,
+      "aliases": [],
+      "explored_by": "main",
+      "profile": {
+        "what": {
+          "en": "Lev Kuleshov intercut the same expressionless close-up of actor Ivan Mozzhukhin with shots of soup, a woman, and a child's coffin. Audiences attributed hunger, desire, and grief to the actor's face — though the face was identical in all three cases.",
+          "zh": "列夫·库里肖夫将演员伊万·莫兹尤欣同一个无表情特写，分别与一碗汤、一位女性和一具儿童棺材交叉剪辑。观众分别将饥饿、欲望和悲伤归因于演员的表情——尽管三种情况下的面部表情完全相同。"
+        },
+        "why": {
+          "en": "The Kuleshov effect proved that meaning in cinema is produced in the mind of the viewer, activated by the juxtaposition of shots — not by any intrinsic property of a shot in isolation. This is the empirical foundation of montage theory.",
+          "zh": "库里肖夫效应证明了电影中的意义是在观众的心智中产生的，由镜头的并置激活——而不是由孤立镜头的任何内在属性决定。这是蒙太奇理论的实证基础。"
+        },
+        "position": {
+          "en": "The Kuleshov effect is the origin point of montage theory. It led directly to Eisenstein's systematic development of montage types and remains the most cited experiment in film studies.",
+          "zh": "库里肖夫效应是蒙太奇理论的起点。它直接推动了爱森斯坦对蒙太奇类型的系统发展，至今仍是电影研究中被引用最多的实验。"
+        },
+        "quote": {
+          "en": "\"The expression of a face changes depending on what it has been montaged with.\" — Lev Kuleshov",
+          "zh": "「一张面孔的表情随着它被蒙太奇的内容而改变。」——列夫·库里肖夫"
+        },
+        "quote_source": "Kuleshov, Art of the Cinema (1929)"
+      }
+    },
+    {
+      "id": "rhythm-and-pacing",
+      "name": {
+        "en": "Rhythm and Pacing",
+        "zh": "节奏与速度"
+      },
+      "type": "concept",
+      "summary": {
+        "en": "The temporal architecture of editing: how the duration and frequency of cuts creates emotional cadence. Faster cuts accelerate tension; slower cuts allow contemplation.",
+        "zh": "剪辑的时间结构：剪切的持续时间和频率如何创造情感节奏。越快的剪切加速紧张感；越慢的剪切留有沉思空间。"
+      },
+      "tags": [
+        {
+          "en": "timing",
+          "zh": "时机"
+        },
+        {
+          "en": "emotion",
+          "zh": "情感"
+        }
+      ],
+      "difficulty": "foundational",
+      "relevance": 0.85,
+      "sources": [
+        "https://www.studiobinder.com/blog/what-is-film-editing-definition/"
+      ],
+      "depth": 0,
+      "aliases": [
+        "剪辑节奏"
+      ],
+      "explored_by": "main",
+      "profile": {
+        "what": {
+          "en": "Rhythm in editing is the felt beat of the film — created by the duration of shots (long vs. short), the frequency of cuts, and the relationship between on-screen movement and the cut point. Like musical rhythm, it operates both analytically and emotionally.",
+          "zh": "剪辑中的节奏是电影的可感受节拍——由镜头时长（长与短）、剪切频率，以及画面内运动与剪切点的关系共同创造。就像音乐节奏一样，它既在分析层面运作，也在情感层面运作。"
+        },
+        "why": {
+          "en": "Rhythm is how the editor conducts the audience's nervous system. A chase cut too slowly feels slack; a meditation cut too quickly feels violent. Getting rhythm right is what separates technically correct editing from emotionally effective editing.",
+          "zh": "节奏是剪辑师指挥观众神经系统的方式。追逐戏剪得太慢显得松弛；冥想场景剪得太快显得暴力。把握好节奏通常是区分技术正确的剪辑与情感有效的剪辑的关键。"
+        },
+        "position": {
+          "en": "Rhythm pervades every other editing concept. It is the variable that makes montage energetic or languid, makes a jump cut jarring or musical. Eisenstein's metric and rhythmic montage are formalizations of this principle.",
+          "zh": "节奏贯穿所有其他剪辑概念。它是使蒙太奇充满活力或慵懒的变量，使跳切显得突兀或音乐性。爱森斯坦的度量蒙太奇和节奏蒙太奇是对这一原则的形式化。"
+        },
+        "quote": {
+          "en": "\"The right frame at the right time — that is the whole art of editing.\"",
+          "zh": "「在正确的时刻给出正确的帧——这就是剪辑艺术的全部。」"
+        },
+        "quote_source": "Walter Murch, In the Blink of an Eye"
+      }
+    },
+    {
+      "id": "the-180-degree-rule",
+      "name": {
+        "en": "The 180-Degree Rule",
+        "zh": "180度规则"
+      },
+      "type": "method",
+      "summary": {
+        "en": "An imaginary line between two characters that the camera must never cross mid-scene, preserving consistent screen direction and preventing spatial disorientation.",
+        "zh": "在两个角色之间划定的虚拟轴线，摄像机在场景中途绝不能越过，以保持一致的画面方向感，防止空间迷失。"
+      },
+      "tags": [
+        {
+          "en": "spatial continuity",
+          "zh": "空间连续性"
+        },
+        {
+          "en": "rule",
+          "zh": "规则"
+        }
+      ],
+      "difficulty": "intermediate",
+      "relevance": 0.82,
+      "sources": [
+        "https://en.wikipedia.org/wiki/180-degree_rule"
+      ],
+      "depth": 1,
+      "aliases": [
+        "axis of action",
+        "轴线原则"
+      ],
+      "explored_by": "main",
+      "profile": {
+        "what": {
+          "en": "Imagine a line passing through the center of the scene — two characters facing each other, or a car moving left to right. As long as the camera stays on one side of this 180-degree line, Character A will always appear on screen-left and Character B on screen-right. Cross the line and they appear to swap positions.",
+          "zh": "想象一条穿过场景中心的轴线——两个面对面的角色，或一辆从左向右行驶的汽车。只要摄像机保持在这条180度线的一侧，角色A就始终出现在画面左侧，角色B在右侧。越过轴线，他们的位置就会互换。"
+        },
+        "why": {
+          "en": "Screen direction is a spatial language that viewers process intuitively. When it breaks without purpose, the audience loses their mental map of who is where, creating confusion that pulls them out of the story.",
+          "zh": "画面方向是一种观众直觉处理的空间语言。当它无目的地断裂时，观众会失去关于人物位置的心理地图，产生困惑并脱离故事。"
+        },
+        "position": {
+          "en": "The 180-degree rule is the spatial foundation of continuity editing. It enables the eyeline match and makes shot-reverse-shot coherent. Deliberate violations — Kubrick, Godard — are expressive precisely because the rule is so deeply internalized.",
+          "zh": "180度规则是连续性剪辑的空间基础。它使视线匹配成为可能，并使正反打镜头保持连贯。刻意的违反——库布里克、戈达尔——之所以具有表达力，正是因为这条规则已被深度内化。"
+        },
+        "quote": {
+          "en": "\"By staying on one side of the 180-degree rule, Character A will always appear to be looking screen right, while Character B will always appear to be looking screen left.\"",
+          "zh": "「通过保持在180度规则的一侧，角色A将始终显得在向画面右方看，而角色B将始终显得在向画面左方看。」"
+        },
+        "quote_source": "Fiveable, Continuity Editing and the 180-Degree Rule"
+      }
+    },
+    {
+      "id": "eyeline-match",
+      "name": {
+        "en": "Eyeline Match",
+        "zh": "视线匹配"
+      },
+      "type": "method",
+      "summary": {
+        "en": "A cut in which a character looks at something off-screen, followed by a shot of what they see — creating the perceptual illusion that character and object share the same space.",
+        "zh": "一个角色望向画面外某物，接着切换到他们所看之物的镜头——创造出角色与物体共处同一空间的感知幻觉。"
+      },
+      "tags": [
+        {
+          "en": "spatial continuity",
+          "zh": "空间连续性"
+        },
+        {
+          "en": "perception",
+          "zh": "感知"
+        }
+      ],
+      "difficulty": "intermediate",
+      "relevance": 0.8,
+      "sources": [
+        "https://www.masterclass.com/articles/film-101-what-are-eyelines-how-to-use-eyeline-match-to-tell-a-story-and-drive-a-narrative"
+      ],
+      "depth": 1,
+      "aliases": [
+        "视线接续"
+      ],
+      "explored_by": "main",
+      "profile": {
+        "what": {
+          "en": "Shot A shows a character looking in a specific direction. Shot B shows the object or person they are looking at, from roughly the angle their gaze implies. The viewer concludes that the character is looking at what appears in Shot B.",
+          "zh": "镜头A显示一个角色向特定方向注视。镜头B显示他们所看的物体或人，角度大致符合他们目光的指向。观众得出结论，认为角色正在看镜头B中出现的东西。"
+        },
+        "why": {
+          "en": "The eyeline match exploits the viewer's hardwired tendency to follow gaze. It is the primary tool for constructing perceptual space — making a character and object filmed on different days in different locations feel co-present.",
+          "zh": "视线匹配利用了观众跟随目光的本能倾向。它是构建感知空间的主要工具——使在不同日期、不同地点拍摄的角色和物体感觉同处一地。"
+        },
+        "position": {
+          "en": "Eyeline match is a direct consequence of the 180-degree rule — both must be respected to maintain spatial coherence. It is the micro-level mechanism of shot-reverse-shot and grounds point-of-view editing.",
+          "zh": "视线匹配是180度规则的直接结果——两者都必须遵守才能维持空间连贯性。它是正反打镜头的微观机制，也是主观视角剪辑的基础。"
+        },
+        "quote": {
+          "en": "\"An eyeline match is a fundamental technique whose purpose is to create a seamless link between two shots by matching a character's gaze to what they are looking at.\"",
+          "zh": "「视线匹配是连续性剪辑中的基础技术，其目的是通过将角色的目光与他们所看之物匹配，在两个不同镜头之间创造无缝连接。」"
+        },
+        "quote_source": "MasterClass, Film 101: What Are Eyelines?"
+      }
+    },
+    {
+      "id": "shot-reverse-shot",
+      "name": {
+        "en": "Shot / Reverse Shot",
+        "zh": "正反打镜头"
+      },
+      "type": "method",
+      "summary": {
+        "en": "The standard dialogue editing pattern: alternating between two characters facing each other, each shot framed from behind the other character's shoulder.",
+        "zh": "标准对话剪辑模式：在两个面对面的角色之间交替切换，每个镜头从另一角色的肩膀后方取景。"
+      },
+      "tags": [
+        {
+          "en": "dialogue",
+          "zh": "对话"
+        },
+        {
+          "en": "coverage",
+          "zh": "覆盖"
+        }
+      ],
+      "difficulty": "intermediate",
+      "relevance": 0.8,
+      "sources": [
+        "https://learnaboutfilm.com/film-language/sequence/180-degree-rule/"
+      ],
+      "depth": 1,
+      "aliases": [
+        "过肩镜头",
+        "对打"
+      ],
+      "explored_by": "main",
+      "profile": {
+        "what": {
+          "en": "Shot A: Character A over Character B's shoulder. Reverse shot: Character B over Character A's shoulder. Edited together, they create the perceptual reality of a conversation even though the actors may have been filmed separately.",
+          "zh": "镜头A：越过角色B的肩膀拍角色A。反打：越过角色A的肩膀拍角色B。剪辑在一起，即使演员可能分开拍摄，也创造了对话的感知现实。"
+        },
+        "why": {
+          "en": "Shot/reverse shot creates intimacy and clarity in dialogue. By cutting between faces, the editor controls whose reaction the viewer sees and when, shaping dramatic emphasis and emotional alignment with characters.",
+          "zh": "正反打创造了对话中的亲密感和清晰度。通过在面部之间切换，剪辑师控制观众看到谁的反应以及何时看到，塑造戏剧重点和与角色的情感共鸣。"
+        },
+        "position": {
+          "en": "Shot/reverse shot is the application of both the 180-degree rule and eyeline match in their most common use case. It is perhaps the single most frequently executed editing pattern in narrative cinema.",
+          "zh": "正反打是180度规则和视线匹配在最常见使用场景中的应用。它可能是叙事电影中执行频率最高的单一剪辑模式。"
+        },
+        "quote": {
+          "en": "\"Shooting first in one direction, then in the other, is called shot reverse shot. When stitched together, eyelines should match so it is clear they are looking at each other.\"",
+          "zh": "「先向一个方向拍摄，再向另一个方向拍摄，这就叫正反打。两个镜头拼接在一起时，视线应该匹配，使观众清楚地知道他们在互相注视。」"
+        },
+        "quote_source": "Learn About Film, The 180 Degree Rule and Eyeline Match"
+      }
+    },
+    {
+      "id": "match-cut",
+      "name": {
+        "en": "Match Cut",
+        "zh": "匹配剪辑"
+      },
+      "type": "method",
+      "summary": {
+        "en": "A cut that links two shots by a shared visual element — shape, movement, or composition — creating either spatial continuity or a thematic leap across time and space.",
+        "zh": "通过共享的视觉元素——形状、运动或构图——连接两个镜头的剪辑，创造空间连续性或跨越时空的主题飞跃。"
+      },
+      "tags": [
+        {
+          "en": "transition",
+          "zh": "转场"
+        },
+        {
+          "en": "visual link",
+          "zh": "视觉关联"
+        }
+      ],
+      "difficulty": "intermediate",
+      "relevance": 0.75,
+      "sources": [
+        "https://www.lucidlink.com/blog/editing-techniques"
+      ],
+      "depth": 1,
+      "aliases": [
+        "形式剪辑"
+      ],
+      "explored_by": "main",
+      "profile": {
+        "what": {
+          "en": "A match cut finds a visual or compositional rhyme between the end of one shot and the beginning of the next. Kubrick's 2001 cuts from a bone spinning in prehistoric air to a space station — same shape, same rotation, 4 million years apart.",
+          "zh": "匹配剪辑在一个镜头的结尾和下一个镜头的开头之间找到视觉或构图上的呼应。库布里克《2001》从史前空气中旋转的骨头切换到太空站——相同的形状、相同的旋转，相隔400万年。"
+        },
+        "why": {
+          "en": "Match cuts work because the brain completes patterns. When two different images rhyme visually, the viewer feels a connection — of theme, character, or time — that the narrative may not have stated explicitly.",
+          "zh": "匹配剪辑之所以有效，是因为大脑会完成图案。当两个不同的画面在视觉上产生呼应时，观众会感受到一种主题、人物或时间上的连接——叙事可能并未明确陈述。"
+        },
+        "position": {
+          "en": "Match cuts can be used within continuity editing (match on action) for smooth spatial flow, or deployed as pure montage (thematic match cut) to make conceptual arguments. The bone-to-space-station is the canonical montage usage.",
+          "zh": "匹配剪辑可以在连续性剪辑中使用（动作匹配），实现流畅的空间流动；也可以作为纯蒙太奇（主题匹配剪辑）来提出概念性论点。骨头到太空站是标准的蒙太奇用法。"
+        },
+        "quote": {
+          "en": "\"A match cut aligns the framing of focal points while shifting location or time — a seamless visual progression that bypasses logical geography.\"",
+          "zh": "「匹配剪辑在改变地点或时间的同时对齐焦点的构图——一种绕过逻辑地理的无缝视觉推进。」"
+        },
+        "quote_source": "LucidLink, 17 Foundational Editing Techniques"
+      }
+    },
+    {
+      "id": "match-on-action",
+      "name": {
+        "en": "Match on Action",
+        "zh": "动作匹配"
+      },
+      "type": "method",
+      "summary": {
+        "en": "Cutting mid-movement: the editor joins two shots at a point in an ongoing action, so the movement continues seamlessly across the cut, making the edit invisible.",
+        "zh": "在运动过程中剪切：剪辑师在一个持续动作的某一时刻连接两个镜头，使运动在剪切点无缝延续，让剪辑变得不可见。"
+      },
+      "tags": [
+        {
+          "en": "continuity",
+          "zh": "连续性"
+        },
+        {
+          "en": "movement",
+          "zh": "运动"
+        }
+      ],
+      "difficulty": "intermediate",
+      "relevance": 0.73,
+      "sources": [
+        "https://fiveable.me/introduction-to-film-theory/unit-7/principles-film-editing-continuity/study-guide/Ir0eCOaIoHfJaoKE"
+      ],
+      "depth": 1,
+      "aliases": [
+        "动作接续"
+      ],
+      "explored_by": "main",
+      "profile": {
+        "what": {
+          "en": "If a character starts opening a door in Shot A, the editor cuts partway through the motion to Shot B where the door continues opening from a different angle. The action bridges the cut, and the viewer's attention to movement suppresses awareness of the edit itself.",
+          "zh": "如果一个角色在镜头A中开始开门，剪辑师在动作进行到一半时切换到镜头B，从不同角度继续开门的动作。动作跨越了剪切点，观众对运动的注意力抑制了对剪辑本身的感知。"
+        },
+        "why": {
+          "en": "Motion is the viewer's strongest perceptual attractor. By cutting in the middle of an action, the editor exploits this to conceal the edit. It is one of the most reliable techniques for achieving invisible editing.",
+          "zh": "运动是观众最强的感知吸引器。通过在动作中途剪切，剪辑师利用这一点来隐藏剪辑。这是实现不可见剪辑最可靠的技术之一。"
+        },
+        "position": {
+          "en": "Match on action is a specific application of continuity editing at the shot junction. It works with match cuts (same action, different angle) but is distinct from thematic match cuts that make conceptual rather than physical connections.",
+          "zh": "动作匹配是连续性剪辑在镜头衔接处的具体应用。它与匹配剪辑（相同动作、不同角度）协同运作，但有别于建立概念而非物理连接的主题匹配剪辑。"
+        },
+        "quote": {
+          "en": "\"Spatial continuity can be achieved through the establishing shot, the 180-degree rule, the eye-line match, and match on action.\"",
+          "zh": "「空间连续性可以通过定场镜头、180度规则、视线匹配和动作匹配来实现。」"
+        },
+        "quote_source": "Fiveable, Principles of Film Editing and Continuity"
+      }
+    },
+    {
+      "id": "jump-cut",
+      "name": {
+        "en": "Jump Cut",
+        "zh": "跳切"
+      },
+      "type": "method",
+      "summary": {
+        "en": "A cut within the same shot or scene that skips a portion of time, causing the subject to 'jump' abruptly forward — a deliberate breach of continuity.",
+        "zh": "在同一镜头或场景内跳过一段时间的剪切，导致主体突然向前'跳跃'——是对连续性的刻意破坏。"
+      },
+      "tags": [
+        {
+          "en": "discontinuity",
+          "zh": "不连续性"
+        },
+        {
+          "en": "New Wave",
+          "zh": "新浪潮"
+        }
+      ],
+      "difficulty": "intermediate",
+      "relevance": 0.72,
+      "sources": [
+        "https://www.lucidlink.com/blog/editing-techniques"
+      ],
+      "depth": 1,
+      "aliases": [
+        "跳接"
+      ],
+      "explored_by": "main",
+      "profile": {
+        "what": {
+          "en": "A jump cut removes a portion of a continuous shot or makes a cut between two shots of the same subject from nearly the same angle — causing the subject to lurch forward in time. Godard used jump cuts systematically in Breathless (1960) to declare independence from Hollywood grammar.",
+          "zh": "跳切删除连续镜头的一部分，或在几乎相同角度的同一主体的两个镜头之间进行剪切——导致主体在时间上猛然跳进。戈达尔在《精疲力竭》（1960）中系统地使用跳切，宣告对好莱坞语法的独立。"
+        },
+        "why": {
+          "en": "Jump cuts are visible edits — they call attention to themselves. Used intentionally, they create energy, anxiety, or a Brechtian alienation effect that reminds the audience they are watching a film.",
+          "zh": "跳切是可见的剪辑——它们会引起对自身的注意。有意使用时，它们创造能量、焦虑，或布莱希特式的间离效果，提醒观众他们在看电影。"
+        },
+        "position": {
+          "en": "Jump cuts are the direct violation of continuity editing's core tenet. Where continuity editing suppresses the edit, the jump cut flaunts it. This makes jump cuts the stylistic signature of movements (French New Wave) and formats (vlog, action) that want visible speed over seamless illusion.",
+          "zh": "跳切是对连续性剪辑核心原则的直接违反。连续性剪辑压制剪辑的存在，跳切则炫耀它。这使跳切成为某些运动（法国新浪潮）和格式（视频博客、动作片）的风格标志。"
+        },
+        "quote": {
+          "en": "\"Jump cuts deliberately remove portions of action, moving subjects through time in disjointed ways — creating energy, tension, or stylistic disruption.\"",
+          "zh": "「跳切刻意删除动作的一部分，以不连贯的方式让主体在时间中移动——创造能量、紧张感或风格上的破坏。」"
+        },
+        "quote_source": "LucidLink, 17 Foundational Editing Techniques"
+      }
+    },
+    {
+      "id": "cross-cutting",
+      "name": {
+        "en": "Cross-Cutting",
+        "zh": "交叉剪辑"
+      },
+      "type": "method",
+      "summary": {
+        "en": "Alternating between two or more simultaneous lines of action in different locations, building suspense by implying they are converging toward a single moment.",
+        "zh": "在不同地点的两条或多条同时进行的动作线之间交替切换，通过暗示它们正向同一时刻汇聚来制造悬念。"
+      },
+      "tags": [
+        {
+          "en": "narrative",
+          "zh": "叙事"
+        },
+        {
+          "en": "suspense",
+          "zh": "悬念"
+        }
+      ],
+      "difficulty": "intermediate",
+      "relevance": 0.78,
+      "sources": [
+        "https://www.lucidlink.com/blog/editing-techniques"
+      ],
+      "depth": 1,
+      "aliases": [
+        "交叉蒙太奇"
+      ],
+      "explored_by": "main",
+      "profile": {
+        "what": {
+          "en": "D.W. Griffith pioneered cross-cutting: cut from the hero riding to save the hostage to the villain threatening her, back and forth, faster and faster, until they converge. The alternation tells the viewer both actions are happening simultaneously.",
+          "zh": "D.W.格里菲斯开创了交叉剪辑：从骑马赶来营救人质的英雄切换到威胁她的反派，来回切换，越来越快，直到两者汇聚。这种交替告诉观众两个动作正在同时发生。"
+        },
+        "why": {
+          "en": "Cross-cutting generates suspense by exploiting the viewer's desire for simultaneity. The audience holds two narrative threads in mind and experiences the tension of their impending collision. Accelerating the cutting frequency tightens the suspense.",
+          "zh": "交叉剪辑通过利用观众对同时性的渴望来产生悬念。观众同时持有两条叙事线索，并体验它们即将碰撞的紧张感。加快剪切频率会拧紧悬念的发条。"
+        },
+        "position": {
+          "en": "Cross-cutting is both a continuity technique (maintaining temporal simultaneity) and a montage technique (meaning emerges from the contrast between the two lines). Parallel editing is a variant where the two lines need not converge.",
+          "zh": "交叉剪辑既是连续性技术（保持时间上的同时性），也是蒙太奇技术（意义从两条线索的对比中产生）。平行剪辑是一种变体，两条线索不必汇聚。"
+        },
+        "quote": {
+          "en": "\"Cross-cutting alternates between simultaneous actions to build narrative momentum and dramatic tension toward convergence.\"",
+          "zh": "「交叉剪辑在同时进行的动作之间交替切换，向汇聚点建立叙事动力和戏剧张力。」"
+        },
+        "quote_source": "LucidLink, 17 Foundational Editing Techniques"
+      }
+    },
+    {
+      "id": "establishing-shot",
+      "name": {
+        "en": "Establishing Shot",
+        "zh": "定场镜头"
+      },
+      "type": "method",
+      "summary": {
+        "en": "A wide shot at the start of a scene that shows the spatial context — where we are, who is present, how the space is arranged — before cutting to closer framings.",
+        "zh": "场景开始时的宽景镜头，显示空间背景——我们在哪里、谁在场、空间如何排布——在切换到更近的景别之前。"
+      },
+      "tags": [
+        {
+          "en": "spatial orientation",
+          "zh": "空间定向"
+        },
+        {
+          "en": "coverage",
+          "zh": "覆盖"
+        }
+      ],
+      "difficulty": "intermediate",
+      "relevance": 0.7,
+      "sources": [
+        "https://fiveable.me/introduction-to-film-theory/unit-7/principles-film-editing-continuity/study-guide/Ir0eCOaIoHfJaoKE"
+      ],
+      "depth": 1,
+      "aliases": [
+        "全景镜头",
+        "master shot"
+      ],
+      "explored_by": "main",
+      "profile": {
+        "what": {
+          "en": "An establishing shot is typically a wide or extreme wide shot that opens a scene by showing the physical environment: a city skyline to announce we're in New York, a courtroom interior before cutting to the defendant. It creates the spatial mental model that allows subsequent close-ups to be understood.",
+          "zh": "定场镜头通常是一个宽景或超宽景镜头，通过向观众展示物理环境来开启场景：城市天际线宣告我们在纽约，法庭内景在切换到被告之前。它创建空间心理模型，使随后的特写镜头能够被理解。"
+        },
+        "why": {
+          "en": "Without establishing shots, close-ups and medium shots lose their spatial grounding. The viewer can follow the emotion but not the geography. Establishing shots are the spatial contract between editor and audience.",
+          "zh": "没有定场镜头，特写镜头和中景镜头会失去空间依托。观众可以跟随情感，但无法把握地理位置。定场镜头是剪辑师与观众之间的空间契约。"
+        },
+        "position": {
+          "en": "The establishing shot is the opening move of continuity editing's scene grammar: wide to medium to close, re-establish as needed. Its absence is a choice — the Coen Brothers often withhold establishing shots to create spatial unease.",
+          "zh": "定场镜头是连续性剪辑场景语法的开局动作：宽景到中景到特写，根据需要重新建立。它的缺席是一种选择——科恩兄弟经常省略定场镜头来制造空间上的不安。"
+        },
+        "quote": {
+          "en": "\"An establishing shot sets the geography of a scene before cutting closer — it is the viewer's spatial contract with the narrative.\"",
+          "zh": "「定场镜头在剪辑师切换到更近景别之前建立场景的地理关系——它是观众与叙事之间的空间契约。」"
+        },
+        "quote_source": "Fiveable, Principles of Film Editing and Continuity"
+      }
+    },
+    {
+      "id": "long-take",
+      "name": {
+        "en": "Long Take",
+        "zh": "长镜头"
+      },
+      "type": "method",
+      "summary": {
+        "en": "An extended uncut shot — lasting far longer than the editing average — that places the viewer inside duration itself, forgoing the editor's power to compress time.",
+        "zh": "远超平均剪辑时长的无剪辑延伸镜头——将观众置于时间流逝本身之中，放弃剪辑师压缩时间的权力。"
+      },
+      "tags": [
+        {
+          "en": "duration",
+          "zh": "时长"
+        },
+        {
+          "en": "Bazin",
+          "zh": "巴赞"
+        }
+      ],
+      "difficulty": "intermediate",
+      "relevance": 0.75,
+      "sources": [
+        "https://www.lucidlink.com/blog/editing-techniques"
+      ],
+      "depth": 1,
+      "aliases": [
+        "sequence shot",
+        "一镜到底"
+      ],
+      "explored_by": "main",
+      "profile": {
+        "what": {
+          "en": "A long take is a single uninterrupted shot of unusual duration — a minute, several minutes, or in extreme cases the entire film (Hitchcock's Rope). André Bazin theorized that the long take preserves the ambiguity of reality: unlike editing, which tells you where to look, the long take lets the viewer discover.",
+          "zh": "长镜头是一个持续时间异常的单一不间断镜头——一分钟、数分钟，或在极端情况下整部影片（希区柯克的《绳索》）。安德烈·巴赞理论化认为长镜头保存了现实的模糊性：与告诉你看哪里的剪辑不同，长镜头让观众自己发现。"
+        },
+        "why": {
+          "en": "Long takes create a different relationship with time — the viewer cannot escape into the editor's rhythm. They also showcase performance: an actor who can sustain emotion through a long uncut take demonstrates mastery impossible in coverage-based editing.",
+          "zh": "长镜头与时间建立了不同的关系——观众无法逃入剪辑师的节奏中。它们也展示了表演：能够在长时间无剪辑镜头中维持情感的演员展示了以覆盖式剪辑为基础的剪辑中不可能实现的掌控力。"
+        },
+        "position": {
+          "en": "The long take is the philosophical antithesis of montage. Where montage argues that editing creates meaning, Bazin's long-take theory argues that meaning exists in reality and editing falsifies it. Welles, Tarkovsky, and Cuarón are its great practitioners.",
+          "zh": "长镜头是蒙太奇的哲学对立面。蒙太奇认为剪辑创造意义，而巴赞的长镜头理论认为意义存在于现实中，剪辑使其失真。奥逊·威尔斯、塔可夫斯基和卡隆是其伟大的实践者。"
+        },
+        "quote": {
+          "en": "\"The long take holds shots while action occurs — it is the refusal to cut as a form of respect for reality.\"",
+          "zh": "「长镜头在动作发生时保持镜头——它是拒绝剪切作为对现实的一种尊重形式。」"
+        },
+        "quote_source": "André Bazin, What Is Cinema? (1967)"
+      }
+    },
+    {
+      "id": "j-cut-and-l-cut",
+      "name": {
+        "en": "J-Cut and L-Cut",
+        "zh": "J切与L切"
+      },
+      "type": "method",
+      "summary": {
+        "en": "Audio-visual offset transitions: the J-cut lets audio from the next shot precede its visuals; the L-cut lets audio from the current shot linger into the next.",
+        "zh": "音视频偏移过渡：J切让下一个镜头的音频先于画面出现；L切让当前镜头的音频延续到下一个镜头中。"
+      },
+      "tags": [
+        {
+          "en": "audio",
+          "zh": "音频"
+        },
+        {
+          "en": "transition",
+          "zh": "过渡"
+        }
+      ],
+      "difficulty": "intermediate",
+      "relevance": 0.7,
+      "sources": [
+        "https://www.lucidlink.com/blog/editing-techniques"
+      ],
+      "depth": 1,
+      "aliases": [
+        "音画分切",
+        "split edit"
+      ],
+      "explored_by": "main",
+      "profile": {
+        "what": {
+          "en": "In a J-cut, you hear Scene B's audio before you see Scene B — priming the viewer's attention before the visual cut. In an L-cut, you see Scene B but still hear Scene A — sustaining the emotional weight of the previous scene. The names describe the shape of the audio-video alignment on a timeline.",
+          "zh": "在J切中，你在看到场景B之前就听到它的音频——在视觉剪切前预先引导观众的注意力。在L切中，你看到场景B但仍然听到场景A——维持前一场景的情感分量。这两个名称描述了时间线上音视频对齐的形状。"
+        },
+        "why": {
+          "en": "Hard cuts between scenes can feel abrupt because audio and attention don't switch instantaneously. J and L cuts exploit the fact that sound and image can be decoupled — using audio to bridge scenes psychologically before the visual cut lands.",
+          "zh": "场景间的硬切有时感觉突兀，因为音频和注意力不会瞬间切换。J切和L切利用了音频和图像可以解耦的事实——在视觉剪切到来之前，用音频在心理上桥接场景。"
+        },
+        "position": {
+          "en": "J and L cuts are the primary tools for making audio-visual scene transitions feel smooth in continuity editing. In montage contexts, deliberate audio-visual mismatch can create ironic distance.",
+          "zh": "J切和L切是在连续性剪辑中使音视频场景过渡感觉流畅的主要工具。在蒙太奇语境中，刻意的音视频错位可以创造讽刺距离。"
+        },
+        "quote": {
+          "en": "\"The J-cut lets audio from the next shot begin before its video — using sound to arrive at the new scene before the eye does.\"",
+          "zh": "「J切让下一个镜头的音频在画面之前开始——用声音在眼睛之前抵达新场景。」"
+        },
+        "quote_source": "LucidLink, 17 Foundational Editing Techniques"
+      }
+    },
+    {
+      "id": "invisible-editing",
+      "name": {
+        "en": "Invisible Editing",
+        "zh": "无形剪辑"
+      },
+      "type": "theory",
+      "summary": {
+        "en": "The ideal of classical editing: cuts so perfectly motivated — in movement, emotion, and screen logic — that the viewer never becomes aware of the edit itself.",
+        "zh": "古典剪辑的理想境界：剪切的动机如此完美——在运动、情感和银幕逻辑上——以至于观众永远不会意识到剪辑本身的存在。"
+      },
+      "tags": [
+        {
+          "en": "style",
+          "zh": "风格"
+        },
+        {
+          "en": "Hollywood",
+          "zh": "好莱坞"
+        }
+      ],
+      "difficulty": "intermediate",
+      "relevance": 0.72,
+      "sources": [
+        "https://www.lucidlink.com/blog/editing-techniques"
+      ],
+      "depth": 1,
+      "aliases": [
+        "透明剪辑"
+      ],
+      "explored_by": "main",
+      "profile": {
+        "what": {
+          "en": "Invisible editing is not a technique but an aspiration: all continuity conventions applied so skillfully that the viewer never perceives the edits. Walter Murch's six criteria for the ideal cut include matching the actor's blink point — the edit happens when the eye naturally resets.",
+          "zh": "无形剪辑不是一种技术，而是一种追求：所有连续性惯例被如此娴熟地运用，以至于观众永远不会察觉到剪辑的存在。沃尔特·默奇的理想剪切六条标准包括匹配演员的眨眼点——剪辑发生在眼睛自然重置的时刻。"
+        },
+        "why": {
+          "en": "Invisible editing is the operating contract of mainstream narrative cinema: the audience agrees to suspend disbelief, the editor agrees to never break the spell. When an edit calls attention to itself without purpose, it breaks immersion and undercuts the story's credibility.",
+          "zh": "无形剪辑是主流叙事电影的运作契约：观众同意暂停怀疑，剪辑师同意永远不打破魔法。当一个剪辑无目的地引起对自身的关注时，它打破了观众的沉浸感，削弱了故事的可信度。"
+        },
+        "position": {
+          "en": "Invisible editing is the endpoint of continuity editing — what continuity achieves when all its rules are followed with craft and taste. It is also the target that jump cuts and Godardian self-reflexivity all deliberately miss.",
+          "zh": "无形剪辑是连续性剪辑的终点——当所有规则都以技巧和品味遵循时所能达到的效果。它也是跳切和戈达尔式自我指涉刻意错过的目标。"
+        },
+        "quote": {
+          "en": "\"The ideal cut satisfies all six criteria simultaneously — emotion, story, rhythm, eye-trace, two-dimensional plane, and three-dimensional space.\" — Walter Murch",
+          "zh": "「理想的剪切同时满足六条标准——情感、故事、节奏、视线轨迹、二维平面和三维空间。」——沃尔特·默奇"
+        },
+        "quote_source": "Walter Murch, In the Blink of an Eye (2001)"
+      }
+    },
+    {
+      "id": "parallel-editing",
+      "name": {
+        "en": "Parallel Editing",
+        "zh": "平行剪辑"
+      },
+      "type": "method",
+      "summary": {
+        "en": "Alternating between two or more narrative lines that may never converge — juxtaposition creates thematic meaning through comparison rather than dramatic tension through convergence.",
+        "zh": "在两条或多条可能永远不会汇聚的叙事线之间交替切换——并置通过比较产生主题意义，而非通过汇聚产生戏剧张力。"
+      },
+      "tags": [
+        {
+          "en": "narrative",
+          "zh": "叙事"
+        },
+        {
+          "en": "thematic",
+          "zh": "主题"
+        }
+      ],
+      "difficulty": "advanced",
+      "relevance": 0.68,
+      "sources": [
+        "https://www.lucidlink.com/blog/editing-techniques"
+      ],
+      "depth": 2,
+      "aliases": [
+        "平行蒙太奇"
+      ],
+      "explored_by": "main",
+      "profile": {
+        "what": {
+          "en": "Parallel editing shows two strands of action that exist at the same time but don't necessarily collide. The meaning comes from comparison: Griffith's Intolerance intercuts four stories across different historical eras, arguing a thematic point about intolerance through time.",
+          "zh": "平行剪辑展示两条同时存在但不一定碰撞的动作线。意义来自比较：格里菲斯的《不宽容》将四个不同历史时期的故事交叉剪辑，通过时间论证一个关于不宽容的主题观点。"
+        },
+        "why": {
+          "en": "Where cross-cutting builds suspense through convergence, parallel editing builds meaning through contrast. It is editing as argument: place two things next to each other and the viewer cannot help but compare them.",
+          "zh": "交叉剪辑通过汇聚建立悬念，而平行剪辑通过对比建立意义。它是作为论点的剪辑：将两件事并排放置，观众无法不去比较它们。"
+        },
+        "position": {
+          "en": "Parallel editing is a montage technique deployed at the narrative scale — it extends montage logic from the shot-to-shot level to the sequence-to-sequence level. The difference from cross-cutting: parallel editing need not imply temporal simultaneity.",
+          "zh": "平行剪辑是在叙事规模上部署的蒙太奇技术——它将蒙太奇逻辑从镜头到镜头的层面扩展到序列到序列的层面。与交叉剪辑的区别：平行剪辑不必暗示时间上的同时性。"
+        },
+        "quote": {
+          "en": "\"Parallel editing switches between narratives to create comparison or contrast — editing as argument by juxtaposition.\"",
+          "zh": "「平行剪辑在叙事之间切换，通过并列创造比较或对比——这是通过并置进行论证的剪辑。」"
+        },
+        "quote_source": "LucidLink, 17 Foundational Editing Techniques"
+      }
+    },
+    {
+      "id": "cutaway",
+      "name": {
+        "en": "Cutaway",
+        "zh": "切出镜头"
+      },
+      "type": "method",
+      "summary": {
+        "en": "A brief insert shot that breaks from the main action to show something contextually related — a reaction, an object, a wider environment — before returning to the primary scene.",
+        "zh": "从主要动作中短暂切出，展示与情境相关的内容——反应、物体、更广阔的环境——然后返回主要场景。"
+      },
+      "tags": [
+        {
+          "en": "insert",
+          "zh": "插入"
+        },
+        {
+          "en": "context",
+          "zh": "背景"
+        }
+      ],
+      "difficulty": "intermediate",
+      "relevance": 0.65,
+      "sources": [
+        "https://www.lucidlink.com/blog/editing-techniques"
+      ],
+      "depth": 1,
+      "aliases": [
+        "插入镜头",
+        "B-roll"
+      ],
+      "explored_by": "main",
+      "profile": {
+        "what": {
+          "en": "A cutaway interrupts the main action to show something related but outside the primary frame — a bystander's face, a ticking clock, the gun in the drawer. It can provide information, create tension, or cover a continuity problem in the main coverage.",
+          "zh": "切出镜头打断主要动作，展示与之相关但在主要画面外的内容——旁观者的脸、滴答作响的时钟、抽屉里的枪。它可以提供信息、制造紧张感，或覆盖主要覆盖中的连续性问题。"
+        },
+        "why": {
+          "en": "Cutaways serve multiple functions simultaneously: they provide narrative information, control viewer attention, relieve spatial monotony, and give the editor a practical tool for fixing problems in the main footage. They are the editor's Swiss Army knife.",
+          "zh": "切出镜头同时服务于多种功能：提供叙事信息、控制观众注意力、缓解空间单调感，以及给剪辑师一个实用工具来修复主要素材中的问题。它们是剪辑师的瑞士军刀。"
+        },
+        "position": {
+          "en": "Cutaways are a tool within continuity editing for controlling information and pacing. They are also used in documentary editing (B-roll) and are structurally related to the eyeline match: often what eyeline match 'reveals' is a cutaway.",
+          "zh": "切出镜头是连续性剪辑中控制信息和节奏的工具。它们也用于纪录片剪辑（B卷素材），与视线匹配在结构上相关：视线匹配'揭示'的内容通常就是一个切出镜头。"
+        },
+        "quote": {
+          "en": "\"Cutaways break from the main action to provide context, depth, or reveal character perspectives — the editor's most versatile problem-solving tool.\"",
+          "zh": "「切出镜头从主要动作中切出，提供背景、深度或揭示角色视角——这是剪辑师最多用途的问题解决工具。」"
+        },
+        "quote_source": "LucidLink, 17 Foundational Editing Techniques"
+      }
+    },
+    {
+      "id": "point-of-view-shot",
+      "name": {
+        "en": "Point-of-View Shot",
+        "zh": "主观视角镜头"
+      },
+      "type": "method",
+      "summary": {
+        "en": "A shot that shows the world from a character's optical standpoint — what they see, as they see it — creating subjective identification between viewer and character.",
+        "zh": "从角色的光学视点展示世界的镜头——他们所看到的，就像他们看到的那样——在观众和角色之间创造主观认同。"
+      },
+      "tags": [
+        {
+          "en": "subjectivity",
+          "zh": "主观性"
+        },
+        {
+          "en": "identification",
+          "zh": "认同"
+        }
+      ],
+      "difficulty": "intermediate",
+      "relevance": 0.65,
+      "sources": [
+        "https://www.studiobinder.com/blog/what-is-film-editing-definition/"
+      ],
+      "depth": 1,
+      "aliases": [
+        "POV shot",
+        "主观镜头"
+      ],
+      "explored_by": "main",
+      "profile": {
+        "what": {
+          "en": "A POV shot places the camera where a character's eyes are, showing us what they see. It is typically preceded by a shot establishing who is looking and followed by a reaction shot. Hitchcock's Rear Window is structured almost entirely around POV shots.",
+          "zh": "POV镜头将摄像机放置在角色眼睛所在的位置，向我们展示他们所看到的。它通常前接一个建立谁在看的镜头，后接一个反应镜头。希区柯克的《后窗》几乎完全围绕POV镜头构建。"
+        },
+        "why": {
+          "en": "POV shots are one of cinema's most powerful tools for generating empathy. When you see through a character's eyes, you inhabit their fear, their desire, their knowledge. Horror films use POV for the monster's camera precisely because it forces the viewer into the predator's position.",
+          "zh": "POV镜头是电影产生共情最强大的工具之一。当你通过角色的眼睛看世界时，你居住在他们的恐惧、欲望和认知中。恐怖片为怪物使用POV摄像机，正是因为它迫使观众进入掠食者的位置。"
+        },
+        "position": {
+          "en": "POV shots are the most subjective application of eyeline match logic — rather than showing what a character sees from a neutral angle, the camera literally occupies their position. They sit between continuity editing (require eyeline setup) and expressive editing (force identification).",
+          "zh": "POV镜头是视线匹配逻辑最主观的应用——摄像机不是从中性角度展示角色在看什么，而是实际上占据他们的位置。它们介于连续性剪辑（需要视线设置）和表现性剪辑（强制认同）之间。"
+        },
+        "quote": {
+          "en": "\"A point-of-view shot places the camera behind a character's eyes — transforming observation into experience and audience into witness.\"",
+          "zh": "「主观视角镜头将摄像机置于角色眼睛后面——将观察转化为体验，将观众转化为见证者。」"
+        },
+        "quote_source": "Studiobinder, What Is Film Editing"
+      }
+    },
+    {
+      "id": "smash-cut",
+      "name": {
+        "en": "Smash Cut",
+        "zh": "硬切"
+      },
+      "type": "method",
+      "summary": {
+        "en": "An abrupt, unexpected cut that violently contrasts with what preceded it — from silence to loud noise, stillness to frenetic action, or tension to sudden calm.",
+        "zh": "一个突然的、出乎意料的剪切，与前面的内容形成强烈对比——从寂静切到嘈杂声音、从静止切到狂乱动作，或从紧张切到突然平静。"
+      },
+      "tags": [
+        {
+          "en": "impact",
+          "zh": "冲击"
+        },
+        {
+          "en": "contrast",
+          "zh": "对比"
+        }
+      ],
+      "difficulty": "intermediate",
+      "relevance": 0.62,
+      "sources": [
+        "https://www.lucidlink.com/blog/editing-techniques"
+      ],
+      "depth": 1,
+      "aliases": [
+        "突切"
+      ],
+      "explored_by": "main",
+      "profile": {
+        "what": {
+          "en": "A smash cut is a hard cut deployed for maximum shock through contrast. A nightmare sequence cuts instantly to a person sitting up in bed screaming. A tension-filled silence smash-cuts to an explosion. The violence of the contrast is the point.",
+          "zh": "硬切是通过对比产生最大冲击的硬性剪切。一个噩梦序列瞬间切换到一个人在床上坐起尖叫。充满张力的寂静硬切到爆炸。对比的暴力性本身就是目的。"
+        },
+        "why": {
+          "en": "The smash cut weaponizes the viewer's physiological startle reflex. When used with craft (Kubrick in The Shining), the contrast generates insight rather than mere shock.",
+          "zh": "硬切将观众的生理惊吓反射武器化。当以技艺运用时（库布里克在《闪灵》中），对比会产生洞察而非单纯的冲击。"
+        },
+        "position": {
+          "en": "Smash cuts are the extreme end of rhythm manipulation — the shortest, sharpest possible duration between two maximally contrasting shots. Related to Eisenstein's metric montage (pure contrast of duration) but deployed for visceral effect.",
+          "zh": "硬切是节奏操纵的极端形式——两个对比最强烈的镜头之间尽可能短暂、尖锐的持续时间。与爱森斯坦的度量蒙太奇（纯粹的时长对比）相关，但是为了本能的效果而部署。"
+        },
+        "quote": {
+          "en": "\"A smash cut uses abrupt transition with dynamic contrast — from silence to loud noise for surprise, from safety to danger for dread.\"",
+          "zh": "「硬切使用具有动态对比的突然过渡——从寂静切到嘈杂声音制造惊喜，从安全切到危险制造恐惧。」"
+        },
+        "quote_source": "LucidLink, 17 Foundational Editing Techniques"
+      }
+    },
+    {
+      "id": "dissolve",
+      "name": {
+        "en": "Dissolve",
+        "zh": "叠化"
+      },
+      "type": "method",
+      "summary": {
+        "en": "A gradual transition in which one image fades out while the next fades in, their overlap signaling the passage of time, a thematic link, or a shift in consciousness.",
+        "zh": "一种渐进式过渡，一个画面淡出的同时下一个画面淡入，它们的重叠标志着时间流逝、主题关联或意识的转换。"
+      },
+      "tags": [
+        {
+          "en": "transition",
+          "zh": "过渡"
+        },
+        {
+          "en": "time",
+          "zh": "时间"
+        }
+      ],
+      "difficulty": "intermediate",
+      "relevance": 0.63,
+      "sources": [
+        "https://www.studiobinder.com/blog/what-is-film-editing-definition/"
+      ],
+      "depth": 1,
+      "aliases": [
+        "叠溶",
+        "cross dissolve"
+      ],
+      "explored_by": "main",
+      "profile": {
+        "what": {
+          "en": "A dissolve overlaps the end of one shot with the beginning of the next — the two images coexist for a brief moment. Duration matters: a fast dissolve (a few frames) suggests a brief time lapse; a slow dissolve (several seconds) suggests a longer passage or deep psychological connection.",
+          "zh": "叠化将一个镜头的结尾与下一个镜头的开头重叠——两个画面短暂共存。时长很重要：快速叠化（几帧）暗示短暂的时间流逝；慢速叠化（几秒）暗示更长的时间间隔或深层的心理连接。"
+        },
+        "why": {
+          "en": "In the grammar of classical cinema, a dissolve conventionally means 'time has passed.' It is a softer alternative to the hard cut, used when the transition should be felt rather than unnoticed — when the gap in time or feeling deserves its own moment.",
+          "zh": "在古典电影语法中，叠化惯例上意味着'时间已经过去'。它是硬切的柔和替代方案，用于过渡应该被感受而非不被注意的时候——当时间或情感上的间隔值得有自己的时刻时。"
+        },
+        "position": {
+          "en": "The dissolve is inherently visible — it is a transition that announces itself. This makes it unsuitable for invisible editing but useful for marking temporal or emotional structure. Unlike the cut, a dissolve is always a comment, never neutral.",
+          "zh": "叠化本质上是可见的——它是一种宣告自身存在的过渡。这使它不适合无形剪辑，但适用于标记时间或情感结构。与剪切不同，叠化始终是一种评论，从不中性。"
+        },
+        "quote": {
+          "en": "\"A dissolve signals time passage or thematic connection — one scene's visuals overlap with the next, making the transition itself part of the meaning.\"",
+          "zh": "「叠化标志着时间流逝或主题联系——一个场景的画面与下一个场景重叠，使过渡本身成为意义的一部分。」"
+        },
+        "quote_source": "Studiobinder, What Is Film Editing"
+      }
+    },
+    {
+      "id": "intellectual-montage",
+      "name": {
+        "en": "Intellectual Montage",
+        "zh": "理性蒙太奇"
+      },
+      "type": "theory",
+      "summary": {
+        "en": "Eisenstein's most radical form: juxtaposing shots with no physical relationship to produce abstract conceptual meaning — editing as philosophical argument, not narrative.",
+        "zh": "爱森斯坦最激进的形式：并置没有物理关系的镜头以产生抽象概念意义——作为哲学论点的剪辑，而非叙事。"
+      },
+      "tags": [
+        {
+          "en": "Eisenstein",
+          "zh": "爱森斯坦"
+        },
+        {
+          "en": "abstraction",
+          "zh": "抽象"
+        }
+      ],
+      "difficulty": "advanced",
+      "relevance": 0.72,
+      "sources": [
+        "https://qzcut.com/2023/11/filmtheory/830/"
+      ],
+      "depth": 2,
+      "aliases": [
+        "理性蒙太奇"
+      ],
+      "explored_by": "main",
+      "profile": {
+        "what": {
+          "en": "Intellectual montage places two shots in collision to generate a concept neither contains. Eisenstein's example in Strike (1924): a massacre intercut with cattle being slaughtered. The juxtaposition argues that the workers are treated like animals — an idea no single shot could state.",
+          "zh": "理性蒙太奇将两个镜头置于碰撞中，产生任何单一镜头都不包含的概念。爱森斯坦在《罢工》（1924）中的例子：大屠杀与牲畜被宰杀的镜头交叉剪辑。并置论证了工人们被像动物一样对待——这是任何单一镜头都无法陈述的思想。"
+        },
+        "why": {
+          "en": "Intellectual montage revealed that cinema could function as philosophy — not just storytelling. By placing non-narrative images in collision, a filmmaker can make arguments about class, power, and history that would require pages of text to state explicitly.",
+          "zh": "理性蒙太奇揭示了电影可以作为哲学运作——而不仅仅是讲故事。通过将非叙事性画面置于碰撞中，电影制作者可以提出关于阶级、权力和历史的论点，这些论点若要明确陈述需要数页文字。"
+        },
+        "position": {
+          "en": "Intellectual montage is the apex of Eisenstein's montage system — montage at its most abstract, beyond rhythmic, tonal, or overtonal concerns. It applies the Kuleshov effect at the conceptual level.",
+          "zh": "理性蒙太奇是爱森斯坦蒙太奇体系的顶点——最抽象的蒙太奇，超越了节奏性、调性甚至超调性关注。它在概念层面应用库里肖夫效应。"
+        },
+        "quote": {
+          "en": "\"Intellectual montage uses the collision of two conflicting or unrelated shots to create a third, more abstract meaning in the viewer's mind.\" — Eisenstein",
+          "zh": "「理性蒙太奇利用两个冲突或无关镜头的碰撞，在观众心中创造第三种更抽象的意义。」——爱森斯坦"
+        },
+        "quote_source": "Eisenstein, Film Form (1949)"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "the-cut",
+      "target": "continuity-editing",
+      "relation": {
+        "en": "leads_to",
+        "zh": "导向"
+      },
+      "evidence": "continuity editing is a system for organizing cuts"
+    },
+    {
+      "source": "the-cut",
+      "target": "montage",
+      "relation": {
+        "en": "leads_to",
+        "zh": "导向"
+      },
+      "evidence": "montage theory assigns meaning to the junction between cuts"
+    },
+    {
+      "source": "the-cut",
+      "target": "rhythm-and-pacing",
+      "relation": {
+        "en": "leads_to",
+        "zh": "导向"
+      },
+      "evidence": "the duration and frequency of cuts creates rhythm"
+    },
+    {
+      "source": "continuity-editing",
+      "target": "the-180-degree-rule",
+      "relation": {
+        "en": "depends_on",
+        "zh": "依赖于"
+      },
+      "evidence": "spatial continuity requires respecting the axis of action"
+    },
+    {
+      "source": "continuity-editing",
+      "target": "eyeline-match",
+      "relation": {
+        "en": "depends_on",
+        "zh": "依赖于"
+      },
+      "evidence": "perceptual coherence requires matched gaze directions"
+    },
+    {
+      "source": "continuity-editing",
+      "target": "match-on-action",
+      "relation": {
+        "en": "depends_on",
+        "zh": "依赖于"
+      },
+      "evidence": "temporal flow is maintained by cutting within movement"
+    },
+    {
+      "source": "continuity-editing",
+      "target": "establishing-shot",
+      "relation": {
+        "en": "depends_on",
+        "zh": "依赖于"
+      },
+      "evidence": "scene grammar begins with establishing the geography"
+    },
+    {
+      "source": "continuity-editing",
+      "target": "invisible-editing",
+      "relation": {
+        "en": "leads_to",
+        "zh": "导向"
+      },
+      "evidence": "invisible editing is the ideal endpoint of continuity conventions"
+    },
+    {
+      "source": "montage",
+      "target": "continuity-editing",
+      "relation": {
+        "en": "contrasts_with",
+        "zh": "对立于"
+      },
+      "evidence": "montage exploits cuts; continuity editing suppresses awareness of them"
+    },
+    {
+      "source": "montage",
+      "target": "long-take",
+      "relation": {
+        "en": "contrasts_with",
+        "zh": "对立于"
+      },
+      "evidence": "Bazin opposed montage theory with long-take realism"
+    },
+    {
+      "source": "kuleshov-effect",
+      "target": "montage",
+      "relation": {
+        "en": "leads_to",
+        "zh": "导向"
+      },
+      "evidence": "the effect is the empirical foundation of montage theory"
+    },
+    {
+      "source": "montage",
+      "target": "intellectual-montage",
+      "relation": {
+        "en": "leads_to",
+        "zh": "导向"
+      },
+      "evidence": "intellectual montage is Eisenstein's most developed form"
+    },
+    {
+      "source": "montage",
+      "target": "cross-cutting",
+      "relation": {
+        "en": "leads_to",
+        "zh": "导向"
+      },
+      "evidence": "cross-cutting is a narrative application of montage juxtaposition"
+    },
+    {
+      "source": "the-180-degree-rule",
+      "target": "eyeline-match",
+      "relation": {
+        "en": "leads_to",
+        "zh": "导向"
+      },
+      "evidence": "breaking the 180 line destroys eyeline continuity"
+    },
+    {
+      "source": "eyeline-match",
+      "target": "shot-reverse-shot",
+      "relation": {
+        "en": "leads_to",
+        "zh": "导向"
+      },
+      "evidence": "shot/reverse shot requires matched eyelines"
+    },
+    {
+      "source": "the-180-degree-rule",
+      "target": "shot-reverse-shot",
+      "relation": {
+        "en": "leads_to",
+        "zh": "导向"
+      },
+      "evidence": "shot/reverse shot is an application of the 180-degree rule"
+    },
+    {
+      "source": "eyeline-match",
+      "target": "point-of-view-shot",
+      "relation": {
+        "en": "leads_to",
+        "zh": "导向"
+      },
+      "evidence": "POV shots are the subjective extreme of eyeline match logic"
+    },
+    {
+      "source": "match-cut",
+      "target": "match-on-action",
+      "relation": {
+        "en": "leads_to",
+        "zh": "导向"
+      },
+      "evidence": "match on action is the physical form of match cut within continuity"
+    },
+    {
+      "source": "jump-cut",
+      "target": "continuity-editing",
+      "relation": {
+        "en": "contrasts_with",
+        "zh": "对立于"
+      },
+      "evidence": "jump cuts violate the core tenet of invisible continuity"
+    },
+    {
+      "source": "cross-cutting",
+      "target": "parallel-editing",
+      "relation": {
+        "en": "leads_to",
+        "zh": "导向"
+      },
+      "evidence": "parallel editing is cross-cutting without necessary convergence"
+    },
+    {
+      "source": "rhythm-and-pacing",
+      "target": "montage",
+      "relation": {
+        "en": "applies",
+        "zh": "应用于"
+      },
+      "evidence": "Eisenstein's metric and rhythmic montage formalize rhythm principles"
+    },
+    {
+      "source": "rhythm-and-pacing",
+      "target": "continuity-editing",
+      "relation": {
+        "en": "applies",
+        "zh": "应用于"
+      },
+      "evidence": "pacing determines the emotional cadence of continuity scenes"
+    },
+    {
+      "source": "j-cut-and-l-cut",
+      "target": "continuity-editing",
+      "relation": {
+        "en": "applies",
+        "zh": "应用于"
+      },
+      "evidence": "J and L cuts smooth audio-visual transitions in continuity editing"
+    },
+    {
+      "source": "smash-cut",
+      "target": "rhythm-and-pacing",
+      "relation": {
+        "en": "applies",
+        "zh": "应用于"
+      },
+      "evidence": "smash cuts are extreme rhythm — maximum contrast in minimum duration"
+    },
+    {
+      "source": "cutaway",
+      "target": "continuity-editing",
+      "relation": {
+        "en": "part_of",
+        "zh": "属于"
+      },
+      "evidence": "cutaways are a coverage tool within continuity editing grammar"
+    },
+    {
+      "source": "dissolve",
+      "target": "the-cut",
+      "relation": {
+        "en": "contrasts_with",
+        "zh": "对立于"
+      },
+      "evidence": "a dissolve is a visible transition unlike the invisible cut"
+    },
+    {
+      "source": "intellectual-montage",
+      "target": "kuleshov-effect",
+      "relation": {
+        "en": "depends_on",
+        "zh": "依赖于"
+      },
+      "evidence": "intellectual montage applies Kuleshov's discovery at the conceptual level"
+    },
+    {
+      "source": "match-cut",
+      "target": "montage",
+      "relation": {
+        "en": "applies",
+        "zh": "应用于"
+      },
+      "evidence": "thematic match cuts (bone-to-spaceship) are montage arguments"
+    },
+    {
+      "source": "point-of-view-shot",
+      "target": "cutaway",
+      "relation": {
+        "en": "part_of",
+        "zh": "属于"
+      },
+      "evidence": "what eyeline match reveals is structurally a cutaway"
+    },
+    {
+      "source": "long-take",
+      "target": "invisible-editing",
+      "relation": {
+        "en": "contrasts_with",
+        "zh": "对立于"
+      },
+      "evidence": "long takes achieve immersion through duration, not edit suppression"
+    }
+  ],
+  "meta": {
+    "foundational": [
+      "the-cut",
+      "continuity-editing",
+      "montage",
+      "rhythm-and-pacing"
+    ],
+    "tour": [
+      "the-cut",
+      "continuity-editing",
+      "the-180-degree-rule",
+      "eyeline-match",
+      "shot-reverse-shot",
+      "match-on-action",
+      "match-cut",
+      "establishing-shot",
+      "j-cut-and-l-cut",
+      "invisible-editing",
+      "rhythm-and-pacing",
+      "long-take",
+      "jump-cut",
+      "montage",
+      "kuleshov-effect",
+      "cross-cutting",
+      "parallel-editing",
+      "cutaway",
+      "point-of-view-shot",
+      "smash-cut",
+      "dissolve",
+      "intellectual-montage"
+    ]
+  },
+  "lang_default": "en"
+}
