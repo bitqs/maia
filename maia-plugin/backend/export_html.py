@@ -224,9 +224,32 @@ function drawAll(){
       const t=el("text",{"text-anchor":"middle","dominant-baseline":"central","font-family":TH.font_display,fill:TH.text_on_bg,"fill-opacity":(0.72+r*0.28).toFixed(2),"font-size":fp.toFixed(1),"letter-spacing":TH.letterspacing});t.textContent=label;g.appendChild(t);
     } else {
       const R=periR+r*(coreR-periR);
-      /* flat warm circle — opacity tracks relevance, no type-specific palette */
+      const ntype=n.type||"concept";
+      /* flat warm circle */
       const c=el("circle",{r:R.toFixed(1),fill:TH.node_core,"fill-opacity":(0.50+r*0.40).toFixed(2),stroke:TH.ink,"stroke-opacity":(0.06+r*0.10).toFixed(2),"stroke-width":"0.8"});
       g.appendChild(c);
+      /* type icon — simple geometric symbol */
+      const sc=R*0.36,sw=Math.max(0.6,R*0.068).toFixed(2);
+      const ia={stroke:TH.ink,"stroke-width":sw,"stroke-linecap":"round","stroke-linejoin":"round",fill:"none","stroke-opacity":"0.24"};
+      if(ntype==="theory"){
+        /* open book: two pages meeting at spine */
+        const bx=sc*0.72,by1=sc*0.50,by2=sc*0.68,bt=sc*0.70;
+        g.appendChild(el("path",Object.assign({},ia,{d:`M0,${-bt.toFixed(1)} L${-bx.toFixed(1)},${-by1.toFixed(1)} L${-bx.toFixed(1)},${by2.toFixed(1)} L0,${by2.toFixed(1)} L${bx.toFixed(1)},${by2.toFixed(1)} L${bx.toFixed(1)},${-by1.toFixed(1)} Z`})));
+        g.appendChild(el("line",Object.assign({},ia,{x1:"0",y1:(-bt).toFixed(1),x2:"0",y2:by2.toFixed(1)})));
+        g.appendChild(el("line",Object.assign({},ia,{"stroke-opacity":"0.12",x1:(-sc*0.55).toFixed(1),y1:(-sc*0.08).toFixed(1),x2:(-sc*0.08).toFixed(1),y2:(-sc*0.08).toFixed(1)})));
+      } else if(ntype==="method"){
+        /* three horizontal lines, middle widest */
+        [[0.58,-0.38],[0.68,0],[0.46,0.38]].forEach(([hw,fy])=>{
+          g.appendChild(el("line",Object.assign({},ia,{x1:(-sc*hw).toFixed(1),y1:(sc*fy).toFixed(1),x2:(sc*hw).toFixed(1),y2:(sc*fy).toFixed(1)})));
+        });
+      } else if(ntype==="tool"){
+        /* diamond */
+        g.appendChild(el("path",Object.assign({},ia,{d:`M0,${(-sc*0.72).toFixed(1)} L${(sc*0.62).toFixed(1)},0 L0,${(sc*0.72).toFixed(1)} L${(-sc*0.62).toFixed(1)},0 Z`})));
+      } else {
+        /* concept: outer ring + inner dot */
+        g.appendChild(el("circle",Object.assign({},ia,{r:(sc*0.65).toFixed(1)})));
+        g.appendChild(el("circle",{r:(sc*0.20).toFixed(1),fill:TH.ink,"fill-opacity":"0.18",stroke:"none"}));
+      }
       /* label below the circle */
       const fp=Math.min(base*0.016,R*0.52);
       const label=nm(n,lang);
