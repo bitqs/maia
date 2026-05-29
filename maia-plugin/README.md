@@ -12,9 +12,7 @@
 
 <div align="center">
 
-### *graphs that teach.*
-
-**Turn any body of knowledge into a living map that explains itself.**
+### *Turn any knowledge into a map that teaches you.*
 
 [Why](#why) · [What makes it different](#what-makes-it-different) · [Gallery](#gallery) · [Quickstart](#quickstart) · [How it works](#how-it-works)
 
@@ -175,7 +173,7 @@ MIT — do anything, keep the notice.
 
 <div align="center">
 
-### *能教会你的图谱。*
+### *把任何知识，变成一张会教你的地图。*
 
 **把任何知识体系变成一张会自我讲解的活地图。**
 
