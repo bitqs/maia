@@ -12,6 +12,7 @@ v5 — DEPTH + LEFT/RIGHT LAYOUT:
 
 Double-click to open: no server, no build, no network.
 """
+
 from __future__ import annotations
 import json
 import sys
@@ -21,13 +22,20 @@ from pathlib import Path
 DEFAULT_THEME = {
     "name": "warm-paper",
     "bg_css": "radial-gradient(ellipse 120% 90% at 38% 32%, #26241d 0%, #1a1813 55%, #131109 100%)",
-    "ink": "#1a1813", "accent": "#c9bfa6", "node_core": "#d8c89a",
-    "node_edge": "#c9bfa6", "text_on_bg": "#f3e9cf",
+    "ink": "#1a1813",
+    "accent": "#c9bfa6",
+    "node_core": "#d8c89a",
+    "node_edge": "#c9bfa6",
+    "text_on_bg": "#f3e9cf",
     "font_display": "Georgia, 'Songti SC', serif",
     "font_body": "Georgia, 'Songti SC', serif",
     "letterspacing": "0",
-    "layout": "radial", "edge_style": "curved", "node_shape": "circle",
-    "centrality_by": "solidity", "rationale_en": "", "rationale_zh": "",
+    "layout": "radial",
+    "edge_style": "curved",
+    "node_shape": "circle",
+    "centrality_by": "solidity",
+    "rationale_en": "",
+    "rationale_zh": "",
 }
 FONT_MAP = {
     "var(--font-serif)": "Georgia, 'Songti SC', 'Noto Serif', serif",
@@ -36,15 +44,17 @@ FONT_MAP = {
 }
 
 
-def resolve_font(f): return FONT_MAP.get(f, f)
+def resolve_font(f):
+    return FONT_MAP.get(f, f)
 
 
 def build_html(graph, theme, title="Knowledge Map"):
     th = {**DEFAULT_THEME, **(theme or {})}
     th["font_display"] = resolve_font(th["font_display"])
     th["font_body"] = resolve_font(th["font_body"])
-    payload = json.dumps({"graph": graph, "theme": th},
-                         ensure_ascii=False).replace("</", "<\\/")
+    payload = json.dumps({"graph": graph, "theme": th}, ensure_ascii=False).replace(
+        "</", "<\\/"
+    )
     return TEMPLATE.replace("__TITLE__", title).replace("__PAYLOAD__", payload)
 
 
@@ -134,6 +144,7 @@ TEMPLATE = r"""<!DOCTYPE html>
         <title>Concept graph</title><desc id="svg-desc"></desc>
         <defs id="defs"></defs>
         <g id="edges" fill="none"></g>
+        <g id="elabels"></g>
         <g id="nodes"></g>
       </svg>
       <div id="legend"></div>
@@ -186,7 +197,7 @@ function computeLayout(){
     drawAll();return;
   }
   pos[root]={x:CX,y:CY,vx:0,vy:0};
-  const ids=NODES.map(n=>n.id),repel=spread*spread*0.6,LL=spread*0.55;
+  const ids=NODES.map(n=>n.id),repel=spread*spread*1.0,LL=spread*0.78;
   for(let it=0;it<480;it++){
     for(let i=0;i<ids.length;i++)for(let j=i+1;j<ids.length;j++){const a=pos[ids[i]],b=pos[ids[j]];let dx=a.x-b.x,dy=a.y-b.y,d=Math.hypot(dx,dy)||1,f=repel/(d*d);a.vx+=dx/d*f;a.vy+=dy/d*f;b.vx-=dx/d*f;b.vy-=dy/d*f;}
     EDGES.forEach(e=>{const a=pos[e.source],b=pos[e.target];if(!a||!b)return;let dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy)||1,f=(d-LL)*0.013;a.vx+=dx/d*f;a.vy+=dy/d*f;b.vx-=dx/d*f;b.vy-=dy/d*f;});
@@ -198,7 +209,7 @@ function computeLayout(){
 let edgeEls=[],nodeEls={};
 function drawAll(){
   eg.innerHTML="";ng.innerHTML="";edgeEls=[];nodeEls={};
-  const base=Math.min(W,H),coreR=base*0.04,periR=base*0.027;
+  const base=Math.min(W,H),coreR=base*0.072,periR=base*0.022;
   EDGES.forEach(e=>{const a=pos[e.source],b=pos[e.target];if(!a||!b)return;let d;
     if(TH.edge_style==="straight"||TH.edge_style==="elbow"){d=`M${a.x},${a.y} L${b.x},${b.y}`;}
     else{const mx=(a.x+b.x)/2,my=(a.y+b.y)/2,dx=b.x-a.x,dy=b.y-a.y,h=Math.hypot(dx,dy)||1,k=(TH.edge_style==="arc"?0.06:0.045)*base;const cx=mx-dy/h*k,cy=my+dx/h*k;d=`M${a.x},${a.y} Q${cx},${cy} ${b.x},${b.y}`;}
@@ -212,16 +223,41 @@ function drawAll(){
       g.appendChild(el("rect",{x:-w/2,y:-h/2,width:w,height:h,rx:6,fill:TH.node_core,"fill-opacity":(0.14+r*0.34).toFixed(2),stroke:TH.accent,"stroke-opacity":(0.4+r*0.5).toFixed(2),"stroke-width":isCore?"1.4":"0.7"}));
       const t=el("text",{"text-anchor":"middle","dominant-baseline":"central","font-family":TH.font_display,fill:TH.text_on_bg,"fill-opacity":(0.72+r*0.28).toFixed(2),"font-size":fp.toFixed(1),"letter-spacing":TH.letterspacing});t.textContent=label;g.appendChild(t);
     } else {
-      const R=TH.centrality_by==="size"?(periR*0.6+r*coreR):(isCore?coreR:periR);
-      if(r>0.85&&(TH.centrality_by==="solidity"||TH.centrality_by==="glow"))g.appendChild(el("circle",{r:R+base*0.022,fill:"url(#halo)"}));
-      const c=el("circle",{r:R});
-      if(isCore&&TH.centrality_by!=="size"){c.setAttribute("fill","url(#core)");}else{c.setAttribute("fill",TH.node_core);c.setAttribute("fill-opacity",(0.16+r*0.5).toFixed(2));}
-      c.setAttribute("stroke",TH.accent);c.setAttribute("stroke-opacity",(0.25+r*0.55).toFixed(2));c.setAttribute("stroke-width",isCore?"1.4":"0.7");g.appendChild(c);
-      const below=(TH.centrality_by==="size"),fp=isCore?base*0.027:base*0.02;
-      const t=el("text",{"text-anchor":"middle","font-family":TH.font_display,"letter-spacing":TH.letterspacing});
-      if(below){t.setAttribute("y",R+fp);t.setAttribute("fill",TH.text_on_bg);t.setAttribute("font-size",fp.toFixed(1));}
-      else{t.setAttribute("dominant-baseline","central");t.setAttribute("fill",isCore?TH.ink:TH.text_on_bg);t.setAttribute("font-size",fp.toFixed(1));}
-      t.setAttribute("fill-opacity",isCore?"1":(0.62+r*0.38).toFixed(2));t.textContent=nm(n,lang);g.appendChild(t);
+      const R=periR+r*(coreR-periR);
+      const ntype=n.type||"concept";
+      /* type palette — amber for major works, sage for methods, cream for concepts */
+      const TFILL={theory:"#b8872a",method:"#5e8878",tool:"#7a7858"};
+      const TSTR={theory:"#e8c060",method:"#88b8a0",tool:"#a8a878"};
+      const TLBL={theory:"#f0d580",method:"#b0d8c4",tool:"#d0d0a8"};
+      const tfill=TFILL[ntype],tstr=TSTR[ntype],tlbl=TLBL[ntype];
+      /* halo: relevance-gated soft glow */
+      if(r>0.72)g.appendChild(el("circle",{r:(R*1.7).toFixed(1),fill:"url(#halo)"}));
+      const c=el("circle",{r:R.toFixed(1)});
+      if(tfill){
+        /* typed node: solid color, relevance drives opacity */
+        c.setAttribute("fill",tfill);
+        c.setAttribute("fill-opacity",(0.18+r*0.72).toFixed(2));
+        c.setAttribute("stroke",tstr);
+      } else if(isCore){
+        /* high-relevance concept: radial gradient, brighter stroke */
+        c.setAttribute("fill","url(#core)");
+        c.setAttribute("stroke",TH.text_on_bg);
+      } else {
+        /* peripheral concept: muted cream, relevance-scaled */
+        c.setAttribute("fill",TH.node_core);
+        c.setAttribute("fill-opacity",(0.1+r*0.72).toFixed(2));
+        c.setAttribute("stroke",TH.accent);
+      }
+      c.setAttribute("stroke-opacity",(0.28+r*0.62).toFixed(2));
+      c.setAttribute("stroke-width",ntype==="theory"?"2.0":isCore?"1.6":"0.9");
+      g.appendChild(c);
+      /* label: white halo technique — dark stroke behind + bright fill on top */
+      const fp=Math.min(base*0.017, R*0.50);
+      const label=nm(n,lang);
+      const tH=el("text",{"text-anchor":"middle","dominant-baseline":"central","font-family":TH.font_display,"letter-spacing":"0.02em","stroke":"#0a0806","stroke-width":"4","stroke-linejoin":"round","stroke-opacity":"0.92","fill":"none"});
+      tH.setAttribute("y","0");tH.setAttribute("font-size",fp.toFixed(1));tH.textContent=label;g.appendChild(tH);
+      const t=el("text",{"text-anchor":"middle","dominant-baseline":"central","font-family":TH.font_display,"letter-spacing":"0.02em","fill":"#f5efe2","fill-opacity":"0.97"});
+      t.setAttribute("y","0");t.setAttribute("font-size",fp.toFixed(1));t.textContent=label;g.appendChild(t);
     }
     ng.appendChild(g);nodeEls[n.id]=g;});
   if(cur)paint(cur);
@@ -230,13 +266,55 @@ function drawAll(){
 const defs=document.getElementById("defs");
 (function(){const c=el("radialGradient",{id:"core",cx:"50%",cy:"50%",r:"50%"});
   c.appendChild(el("stop",{offset:"0%","stop-color":"#ffffff","stop-opacity":"0.95"}));c.appendChild(el("stop",{offset:"55%","stop-color":TH.node_core}));c.appendChild(el("stop",{offset:"100%","stop-color":TH.ink,"stop-opacity":"0.6"}));defs.appendChild(c);
-  const h=el("radialGradient",{id:"halo",cx:"50%",cy:"50%",r:"50%"});h.appendChild(el("stop",{offset:"0%","stop-color":TH.accent,"stop-opacity":"0.45"}));h.appendChild(el("stop",{offset:"100%","stop-color":TH.accent,"stop-opacity":"0"}));defs.appendChild(h);})();
+  const h=el("radialGradient",{id:"halo",cx:"50%",cy:"50%",r:"50%"});h.appendChild(el("stop",{offset:"0%","stop-color":TH.accent,"stop-opacity":"0.45"}));h.appendChild(el("stop",{offset:"100%","stop-color":TH.accent,"stop-opacity":"0"}));defs.appendChild(h);
+  const f=el("filter",{id:"tshadow",x:"-40%",y:"-40%",width:"180%",height:"180%"});f.appendChild(el("feDropShadow",{dx:"0",dy:"0",stdDeviation:"3","flood-color":"#000000","flood-opacity":"0.92"}));defs.appendChild(f);})();
+
+function showEdgeLabels(id){
+  const elg=document.getElementById("elabels");elg.innerHTML="";
+  if(!id)return;
+  const base=Math.min(W,H),fp=base*0.0145;
+  EDGES.forEach(e=>{
+    if(e.source!==id&&e.target!==id)return;
+    const a=pos[e.source],b=pos[e.target];if(!a||!b)return;
+    const label=rel(e,lang);if(!label)return;
+    /* midpoint of the bezier curve (t=0.5 approximation: just lerp endpoints) */
+    const mx=(a.x+b.x)/2,my=(a.y+b.y)/2;
+    /* direction arrow: → if source==id, ← if target==id */
+    const arrow=e.source===id?" →":" ←";
+    const txt=label+arrow;
+    const tw=txt.length*fp*0.60+14;
+    const bg=el("rect",{x:(mx-tw/2).toFixed(1),y:(my-fp*0.92).toFixed(1),
+      width:tw.toFixed(1),height:(fp*1.7).toFixed(1),rx:"4",
+      fill:"#0e0c09","fill-opacity":"0.88",
+      stroke:TH.accent,"stroke-opacity":"0.4","stroke-width":"0.5"});
+    const t=el("text",{"text-anchor":"middle","x":mx.toFixed(1),"y":(my+fp*0.52).toFixed(1),
+      "font-family":TH.font_body,"font-size":fp.toFixed(1),
+      fill:TH.accent,"fill-opacity":"0.95","letter-spacing":"0.025em"});
+    t.textContent=txt;
+    elg.appendChild(bg);elg.appendChild(t);
+  });
+}
 
 function paint(id){
-  Object.values(nodeEls).forEach(g=>{const s=g.querySelector("circle:last-of-type, rect");if(!s)return;
-    if(g.dataset.id===id){s.setAttribute("stroke",TH.text_on_bg);s.setAttribute("stroke-opacity","1");s.setAttribute("stroke-width","2.2");}
-    else{const nn=byId[g.dataset.id],rr=relevance(nn);s.setAttribute("stroke",TH.accent);s.setAttribute("stroke-opacity",(0.25+rr*0.55).toFixed(2));s.setAttribute("stroke-width",FOUND.has(nn.id)?"1.4":"0.7");}});
-  edgeEls.forEach(p=>{const on=p.dataset.s===id||p.dataset.t===id;p.setAttribute("stroke-opacity",on?"0.6":"0.16");p.setAttribute("stroke-width",on?"1.8":"1");});
+  /* build connected set for dimming unrelated nodes */
+  const conn=new Set([id]);
+  EDGES.forEach(e=>{if(e.source===id)conn.add(e.target);if(e.target===id)conn.add(e.source);});
+  Object.values(nodeEls).forEach(g=>{
+    const nid=g.dataset.id,nn=byId[nid],rr=relevance(nn);
+    const s=g.querySelector("circle:last-of-type, rect"),t=g.querySelector("text");if(!s)return;
+    if(nid===id){
+      s.setAttribute("stroke",TH.text_on_bg);s.setAttribute("stroke-opacity","1");s.setAttribute("stroke-width","2.4");
+      g.style.opacity="1";
+    } else if(conn.has(nid)){
+      s.setAttribute("stroke",TH.accent);s.setAttribute("stroke-opacity",(0.5+rr*0.4).toFixed(2));s.setAttribute("stroke-width","1.2");
+      g.style.opacity="1";
+    } else {
+      s.setAttribute("stroke",TH.accent);s.setAttribute("stroke-opacity",(0.1+rr*0.15).toFixed(2));s.setAttribute("stroke-width","0.6");
+      g.style.opacity="0.22";
+    }
+  });
+  edgeEls.forEach(p=>{const on=p.dataset.s===id||p.dataset.t===id;p.setAttribute("stroke-opacity",on?"0.75":"0.06");p.setAttribute("stroke-width",on?"2.0":"0.8");});
+  showEdgeLabels(id);
 }
 
 const STR={en:{tour:"start tour",next:"next ›",hint:"Tap any concept to read its full archive — what it is, why it matters, where it sits, and a key line. Or take the guided tour. ← → to step, F to present.",leg:"● solid = core   ○ faint = peripheral",search:"Search…",present:"⤢ present",what:"What it is",why:"Why it matters",position:"Its place in the system",rels:"Connections",src:"sources"},
@@ -247,7 +325,14 @@ function render(id){
   const what=pf(n,"what",lang)||sm(n,lang), why=pf(n,"why",lang), position=pf(n,"position",lang), quote=pf(n,"quote",lang), qsrc=(n.profile||{}).quote_source||"";
   const conns=EDGES.filter(e=>e.source===id||e.target===id).map(e=>{const o=e.source===id?e.target:e.source,d=e.source===id?"→":"←";return `<span class="rel" data-go="${o}">${rel(e,lang)} ${d} ${nm(byId[o],lang)}</span>`;}).join("");
   const altName = lang==="en" ? ((n.name||{}).zh||"") : ((n.name||{}).en||"");
-  const kicker = {theory:lang==="zh"?"根本理念":"foundational idea", method:lang==="zh"?"修养方法":"practice / method", tool:lang==="zh"?"工具":"tool", concept:lang==="zh"?"概念":"concept"}[n.type||"concept"];
+  const typeLabel={theory:lang==="zh"?"根本理念":"major work",method:lang==="zh"?"方法":"method",tool:lang==="zh"?"工具":"tool",concept:lang==="zh"?"概念":"concept"}[n.type||"concept"];
+  const diff=n.difficulty||"intermediate";
+  const CHAP_EN={foundational:"Chapter I · Foundations",intermediate:"Chapter II · Core Ideas",advanced:"Chapter III · Deep Cuts"};
+  const CHAP_ZH={foundational:"第一章 · 基础",intermediate:"第二章 · 核心",advanced:"第三章 · 深入"};
+  const chapLabel=(lang==="zh"?CHAP_ZH:CHAP_EN)[diff]||"";
+  const tourPos=(META.tour||[]).indexOf(id);
+  const posLabel=tourPos>=0?`${tourPos+1} / ${(META.tour||[]).length}`:"";
+  const kicker=`${chapLabel}${posLabel?" — #"+posLabel:""} · ${typeLabel}`;
   let html = `<div class="kicker">${kicker}</div><div class="nm">${nm(n,lang)}</div><div class="alt">${altName}</div><div class="archive">`;
   if(what){ html+=`<div class="seg-label">${s.what}</div><div class="seg-body">${what}</div>`; }
   if(why){ html+=`<div class="seg-label">${s.why}</div><div class="seg-body">${why}</div>`; }
@@ -305,15 +390,17 @@ buildControls();computeLayout();setLang(lang);
 
 def main():
     if len(sys.argv) < 2:
-        print(__doc__); sys.exit(1)
+        print(__doc__)
+        sys.exit(1)
     graph = json.load(open(sys.argv[1], encoding="utf-8"))
-    theme = None; out = "knowledge_map.html"
+    theme = None
+    out = "knowledge_map.html"
     if len(sys.argv) >= 3 and sys.argv[2].endswith(".json"):
         theme = json.load(open(sys.argv[2], encoding="utf-8"))
         out = sys.argv[3] if len(sys.argv) >= 4 else out
     elif len(sys.argv) >= 3:
         out = sys.argv[2]
-    title = ((graph.get("expert") or {}).get("en") or "Knowledge Map")
+    title = (graph.get("expert") or {}).get("en") or "Knowledge Map"
     Path(out).write_text(build_html(graph, theme, title=title), encoding="utf-8")
     print(f"wrote {out}")
 
