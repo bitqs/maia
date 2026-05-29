@@ -201,7 +201,7 @@ function computeLayout(){
   for(let it=0;it<480;it++){
     for(let i=0;i<ids.length;i++)for(let j=i+1;j<ids.length;j++){const a=pos[ids[i]],b=pos[ids[j]];let dx=a.x-b.x,dy=a.y-b.y,d=Math.hypot(dx,dy)||1,f=repel/(d*d);a.vx+=dx/d*f;a.vy+=dy/d*f;b.vx-=dx/d*f;b.vy-=dy/d*f;}
     EDGES.forEach(e=>{const a=pos[e.source],b=pos[e.target];if(!a||!b)return;let dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy)||1,f=(d-LL)*0.013;a.vx+=dx/d*f;a.vy+=dy/d*f;b.vx-=dx/d*f;b.vy-=dy/d*f;});
-    ids.forEach(k=>{const n=pos[k],tr=spread*(0.28+(1-relevance(byId[k]))*0.72);let dx=n.x-CX,dy=n.y-CY,d=Math.hypot(dx,dy)||1;n.vx+=dx/d*(tr-d)*0.02;n.vy+=dy/d*(tr-d)*0.02;if(k===root){n.x=CX;n.y=CY;return;}n.x+=(n.vx*=0.8);n.y+=(n.vy*=0.8);const m=Math.min(W,H)*0.07;n.x=Math.max(m,Math.min(W-m,n.x));n.y=Math.max(m,Math.min(H-m,n.y));});
+    ids.forEach(k=>{const n=pos[k],tr=spread*(0.28+(1-relevance(byId[k]))*0.72);let dx=n.x-CX,dy=n.y-CY,d=Math.hypot(dx,dy)||1;n.vx+=dx/d*(tr-d)*0.02;n.vy+=dy/d*(tr-d)*0.02;if(k===root){n.x=CX;n.y=CY;return;}n.x+=(n.vx*=0.8);n.y+=(n.vy*=0.8);const m=Math.min(W,H)*0.07,mb=Math.min(W,H)*0.14;n.x=Math.max(m,Math.min(W-m,n.x));n.y=Math.max(m,Math.min(H-mb,n.y));});
   }
   drawAll();
 }
